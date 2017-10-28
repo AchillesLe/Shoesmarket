@@ -72,10 +72,10 @@
 	          <a href="{{url('admin/producttype/list')}}">Loại giày</a>
 	        </li>
 	        <li>
-	          <a href="{{url('admin/guarantee/list')}}">Bảo hành</a>
-	        </li>
-	        <li>
 	          <a href="{{url('admin/discount/list')}}">Giảm giá</a>
+	        </li>
+	         <li>
+	          <a href="{{url('admin/package/list')}}">Gói tin</a>
 	        </li>
 	      </ul>
 	    </li>

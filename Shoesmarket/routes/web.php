@@ -34,6 +34,7 @@
 	Route::group(['prefix'=>'admin'],function(){
 		Route::get('/','admin\pageController@getDashboard');
 		Route::get('/dashboard','admin\pageController@getDashboard')->name('dashboard');
+
 		Route::group(['prefix'=>'user'],function(){
 			Route::get('list','admin\userController@getlist');
 			Route::get('detail/{idtype}','admin\userController@getdetail');
@@ -51,14 +52,20 @@
 			Route::post('update','admin\producttypeController@update');
 			Route::get('delete/{id}','admin\producttypeController@delete');
 		});
-		Route::group(['prefix'=>'guarantee'],function(){
-			Route::get('list','admin\guaranteeController@getlist');
-			Route::post('update','admin\guaranteeController@update');
-			Route::get('delete/{id}','admin\guaranteeController@delete');
-		});
 		Route::group(['prefix'=>'discount'],function(){
 			Route::get('list','admin\discountController@getlist');
 			Route::post('update','admin\discountController@update');
 			Route::get('delete/{id}','admin\discountController@delete');
+		});
+		Route::group(['prefix'=>'package'],function(){
+			Route::get('list','admin\packageController@getlist');
+			Route::post('update','admin\packageController@update');
+			Route::get('delete/{id}','admin\packageController@delete');
+		});
+		Route::group(['prefix'=>'seller'],function(){
+			Route::get('list','admin\sellerController@getlist');
+			Route::post('update','admin\sellerController@update');
+			Route::get('updatestatus/{id}','admin\sellerController@updatestatus');
+			Route::get('delete/{id}','admin\sellerController@delete');
 		});
 	});
