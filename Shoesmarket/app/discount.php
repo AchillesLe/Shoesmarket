@@ -8,6 +8,7 @@ class discount extends Model
 {
     protected $table = "discount";
     public $timestamps = false;
+    
     public function product()
     {
     	return $this->hasMany('App\product','iddiscount','id');
