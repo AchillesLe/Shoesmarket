@@ -12,7 +12,7 @@ class sellerController extends Controller
 {
     public function getlist()
     {
-        $list = seller::all();
+        //$list = seller::all();
     	return view('admin/seller/list',['list'=>$list]);
     }
     public function update(Request $request)
