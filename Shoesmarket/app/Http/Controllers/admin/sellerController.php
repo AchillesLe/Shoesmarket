@@ -12,7 +12,7 @@ class sellerController extends Controller
 {
     public function getlist()
     {
-        //$list = seller::all();
+        $list = seller::all();
     	return view('admin/seller/list',['list'=>$list]);
     }
     public function update(Request $request)
@@ -52,25 +52,20 @@ class sellerController extends Controller
        
         
     }
-    public function delete($id)
-    {
-    	$seller = seller::where('idseller',$id)->delete();
-    	return redirect('admin/producttype/list')->with('thongbao','Xoá thành công');
-    }
+
     public function updatestatus($id)
     {
-        $seller = seller::where('idseller',$id);
-        die($seller->name);
+        $seller = seller::where('idseller',$id)->first();
         if(!empty($seller))
         {
             if($seller->isblock =='0')
             {
-                $seller->update(['isblock'=>'1']);
+                seller::where('idseller',$id)->update(['isblock'=>'1']);
                 return 1;
             }
             else 
             {
-                $seller->update(['isblock'=>'0']);
+                seller::where('idseller',$id)->update(['isblock'=>'0']);
                 return 0;
             }
             

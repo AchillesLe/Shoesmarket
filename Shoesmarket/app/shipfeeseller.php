@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class slide extends Model
+class shipfeeseller extends Model
 {
     //
 }
