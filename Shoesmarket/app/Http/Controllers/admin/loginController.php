@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
-class LoginController extends Controller
+class loginController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -36,8 +37,24 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
     public function getlogin()
     {
-        
+        return view('admin.login');
+    }
+    public function postlogin(loginRequest $request)
+    {
+    	$login  = array(
+    		'username'=>$request->username,
+    		'password'=>$request->password
+
+    	);
+    	if($this->auth()->attempt($login))
+    	{
+    		return redirect()->route('dashboard');
+    	}
+    	else{
+    		return redirect()->back();
+    	}
     }
 }

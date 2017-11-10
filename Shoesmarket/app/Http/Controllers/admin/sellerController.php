@@ -12,7 +12,8 @@ class sellerController extends Controller
 {
     public function getlist()
     {
-        $list = seller::all();
+        $list = seller::orderBy('isblock','DESC')->get();//all()->sortBy('isblock');
+        //dd($list);
     	return view('admin/seller/list',['list'=>$list]);
     }
     public function update(Request $request)
@@ -61,16 +62,23 @@ class sellerController extends Controller
             if($seller->isblock =='0')
             {
                 seller::where('idseller',$id)->update(['isblock'=>'1']);
-                return 1;
             }
             else 
             {
                 seller::where('idseller',$id)->update(['isblock'=>'0']);
-                return 0;
             }
             
         }
-        return false; 
+        return redirect()->route('admin.listseller');
     }
 
+    public function sellpackage()
+    {
+        return view('admin.seller.sellpackage');
+    }
+    public function penalize()
+    {
+        return view('admin.seller.penalize');
+    }
+    
 }

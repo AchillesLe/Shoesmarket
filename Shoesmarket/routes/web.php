@@ -32,6 +32,10 @@
 // Phần của Bảo -- Admin ( Tạo nhóm Route)
 
 	Route::group(['prefix'=>'admin'],function(){
+
+		Route::get('login','admin\loginController@getlogin')->name('login');
+		Route::post('login','admin\loginController@postlogin')->name('postlogin');
+
 		Route::get('/','admin\pageController@getDashboard');
 		Route::get('/dashboard','admin\pageController@getDashboard')->name('dashboard');
 
@@ -45,17 +49,12 @@
 		Route::group(['prefix'=>'type'],function(){
 			Route::get('list','admin\typeController@getlist');
 			Route::post('update','admin\typeController@update');
-			Route::get('delete/{id}','admin\typeController@delete');
+			Route::get('updatestatus/{id}','admin\typeController@updatestatus');
 		});
 		Route::group(['prefix'=>'producttype'],function(){
 			Route::get('list','admin\producttypeController@getlist');
 			Route::post('update','admin\producttypeController@update');
-			Route::get('delete/{id}','admin\producttypeController@delete');
-		});
-		Route::group(['prefix'=>'discount'],function(){
-			Route::get('list','admin\discountController@getlist');
-			Route::post('update','admin\discountController@update');
-			Route::get('delete/{id}','admin\discountController@delete');
+			Route::get('updatestatus/{id}','admin\producttypeController@updatestatus');
 		});
 		Route::group(['prefix'=>'package'],function(){
 			Route::get('list','admin\packageController@getlist');
@@ -63,9 +62,19 @@
 			Route::get('delete/{id}','admin\packageController@delete');
 		});
 		Route::group(['prefix'=>'seller'],function(){
-			Route::get('list','admin\sellerController@getlist');
-			Route::post('update','admin\sellerController@update');
+			Route::get('list','admin\sellerController@getlist')->name('admin.listseller');
 			Route::get('updatestatus/{id}','admin\sellerController@updatestatus');
-			Route::get('delete/{id}','admin\sellerController@delete');
+			Route::get('sellpackage','admin\sellerController@sellpackage')->name('sellpackage');
 		});
+		Route::group(['prefix'=>'penalize'],function(){
+			Route::get('list','admin\penalizeController@index')->name('admin.penalize');
+			Route::get('create','admin\penalizeController@create')->name('admin.penalize.create');
+		});
+
+		Route::get('/revenue/interval','admin\revenueController@revenue');
+
+		Route::get('/receipt/index','admin\receiptController@index')->name('admin.receipt');
+
+		Route::get('/bill/index','admin\billController@index')->name('admin.bill');
+
 	});

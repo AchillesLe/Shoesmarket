@@ -2,7 +2,7 @@
 @section('content')
 	<ol class="breadcrumb">
         <li class="breadcrumb-item">
-          Cài đặt
+          Cấu hình
         </li>
         <li class="breadcrumb-item active">danh sách loại giày</li>
 	</ol>
@@ -78,7 +78,7 @@
 	                  <td >{{$producttype->description}}</td>
 	                  <td width="150px">
 	                  	<button class="btn btn-info" name="Edit"  id="edit">Sửa</button></a>
-	                  	<a href="{{url('admin/producttype/delete',[$producttype->id])}}"><button class="btn btn-danger" name="delete"  id="delete" >Xoá</button><a>
+	                  	<a href="{{url('admin/producttype/updatestatus',[$producttype->id])}}"><button class="btn btn-danger" name="delete"  id="delete" >Xoá</button><a>
 	                  	</td>
 	                </tr>
                 @endforeach

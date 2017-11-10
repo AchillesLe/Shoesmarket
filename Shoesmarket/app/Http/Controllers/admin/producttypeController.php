@@ -11,7 +11,7 @@ class producttypeController extends Controller
 {
     public function getlist()
     {
-    	$list =  producttype::all();
+    	$list =  producttype::all()->where('isdelete','0');
         $listtype = type::all();
     	return view('admin/producttype/listproducttype',['list'=>$list,'listtype'=>$listtype]);
     }
@@ -52,9 +52,9 @@ class producttypeController extends Controller
        
         
     }
-    public function delete($id)
+    public function updatestatus($id)
     {
-    	$producttype = producttype::where('id',$id)->delete();
+    	$producttype = producttype::where('id',$id)->update(['isdelete'=>'1']);
     	return redirect('admin/producttype/list')->with('thongbao','Xoá thành công');
     }
 

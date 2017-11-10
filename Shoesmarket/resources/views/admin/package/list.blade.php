@@ -2,7 +2,7 @@
 @section('content')
 	<ol class="breadcrumb">
         <li class="breadcrumb-item">
-          Cài đặt
+          Cấu hình
         </li>
         <li class="breadcrumb-item active">danh sách gói tin</li>
 	</ol>

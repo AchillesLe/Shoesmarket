@@ -4,3 +4,9 @@
 #dataTable thead tr th ,td {
 	text-align: center;
 }
+.groupaction ul li{
+	padding:2px 0px 2px 16px;
+} 
+.div-modalnewsinfo div input , textarea{
+	margin-top: 10px;
+}

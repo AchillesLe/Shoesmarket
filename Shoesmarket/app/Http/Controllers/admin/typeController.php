@@ -10,7 +10,7 @@ class typeController extends Controller
 {
     public function getlist()
     {
-    	$list = type::all();
+    	$list = type::all()->where('isdelete','0');
     	return view('admin/type/listtype',['list'=>$list]);
     }
     public function update(Request $request)
@@ -49,9 +49,9 @@ class typeController extends Controller
        
         
     }
-    public function delete($id)
+    public function updatestatus($id)
     {
-    	$type = type::where('id',$id)->delete();
+    	$type = type::where('id',$id)->update(['isdelete'=>'1']);
         return redirect('admin/type/list')->with('thongbao','Xoá thành công');
     }
 

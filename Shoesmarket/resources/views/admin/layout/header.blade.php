@@ -1,5 +1,5 @@
 <ul class="navbar-nav ml-auto">
-	<li class="nav-item dropdown">
+{{-- 	<li class="nav-item dropdown">
 	  <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	    <i class="fa fa-fw fa-envelope"></i>
 	    <span class="d-lg-none">Messages
@@ -88,7 +88,7 @@
 	    </div>
 	  </form>
 	</li>
-	<li class="nav-item">
+ --}}	<li class="nav-item">
 	  <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
 	    <i class="fa fa-fw fa-sign-out"></i>Logout</a>
 	</li>

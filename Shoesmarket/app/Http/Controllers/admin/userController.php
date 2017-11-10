@@ -13,17 +13,6 @@ class userController extends Controller
     	$list = user::all();
     	return view('admin/user/listuser',['list'=>$list]);
     }
-    public function getdetail($iduser)
-    {
-    	$user = user::where('iduser',$iduser)->get()->first();
-    	return view('admin/user/detail',['user'=>$user]);
-    }
-    public function delete($iduser)
-    {
-    	$user = user::where('iduser',$iduser)->delete();
-        $list = user::all();
-    	return view('admin/user/listuser',['list'=>$list]);
-    }
     public function editStatus($iduser)
     {
     	$user = user::where('iduser',$iduser)->get()->first();
