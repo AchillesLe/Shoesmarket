@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class employees extends Model
 {
-    protected $table = "detail_bill";
+    protected $table = "employees";
 
     public function role()
     {

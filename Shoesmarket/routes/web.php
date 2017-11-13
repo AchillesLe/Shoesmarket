@@ -70,6 +70,12 @@
 			Route::get('list','admin\penalizeController@index')->name('admin.penalize');
 			Route::get('create','admin\penalizeController@create')->name('admin.penalize.create');
 		});
+		Route::group(['prefix'=>'employee'],function(){
+			Route::get('list','admin\employeeController@index')->name('admin.employee');
+			Route::post('update','admin\employeeController@update');
+			Route::get('edit/{idemployee}','admin\employeeController@editStatus');
+			Route::get('create','admin\employeeController@create');
+		});
 		Route::group(['prefix'=>'mail'],function(){
 			Route::get('list','admin\mailController@index')->name('admin.mail');
 			Route::get('create/{idseller}','admin\mailController@create')->name('admin.mail.create');

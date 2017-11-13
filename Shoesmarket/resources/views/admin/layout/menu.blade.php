@@ -22,9 +22,9 @@
 	        <li>
 	          <a href="{{url('admin/seller/list')}}">Danh sách sản phẩm</a>
 	        </li>
-	        <li>
+	        {{-- <li>
 	          <a href="{{url('admin/seller/list')}}">Cards</a>
-	        </li>
+	        </li> --}}
 	      </ul>
 	    </li>
 		<!--Seller-->
@@ -52,9 +52,9 @@
 	        <li>
 	          <a href="{{url('admin/user/list')}}">Danh sách</a>
 	        </li>
-	        <li>
+	       {{--  <li>
 	          <a href="{{url('admin/user/list')}}">Cards</a>
-	        </li>
+	        </li> --}}
 	      </ul>
 	    </li>
 
@@ -85,10 +85,10 @@
 	      </a>
 	      <ul class="sidenav-second-level collapse" id="collapseEmloyee">
 	        <li>
-	          <a href="{{url('admin/user/list')}}">Danh sách nhân viên</a>
+	          <a href="{{url('admin/employee/list')}}">Danh sách nhân viên</a>
 	        </li>
 	        <li>
-	          <a href="{{url('admin/user/list')}}">Cards</a>
+	          <a href="{{url('admin/employee/create')}}">Thêm nhân viên</a>
 	        </li>
 	      </ul>
 	    </li>

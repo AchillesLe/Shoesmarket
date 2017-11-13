@@ -16,3 +16,9 @@
 table.mailtemplatetable thead tr th.action{
 	width: 110px!important;
 }
+.formaddemployee div.form-inline {
+	margin-top: 10px;
+}
+/*.formaddemployee div.form-inline label text{
+	margin-left: 5px;
+}*/

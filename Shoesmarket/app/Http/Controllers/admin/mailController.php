@@ -45,7 +45,7 @@ class mailController extends Controller
                 'mailTo.required'=>'Địa chỉ người nhận không được để trống',
             ]);
         
-        Mail::send(null,array('name'=>$request->nameTo,'email'=>$request->mailTo, 'content'=>$request->content), function($message){
+        Mail::send('admin.mail.message',array('name'=>$request->nameTo,'email'=>$request->mailTo, 'content'=>$request->content ,'title'=>$request->title), function($message){
             $message->to($request->mailTo, $request->mailTo)->subject($request->content);
         });
 
