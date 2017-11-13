@@ -8,8 +8,8 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <title>Shoes Market</title>
-  <base href="{{asset('')}}">
   <!-- Bootstrap core CSS-->
+  <base href="{{asset('')}}">
   <link href="sourceAdmin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
   <link href="sourceAdmin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -17,7 +17,6 @@
   <link href="sourceAdmin/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="sourceAdmin/css/sb-admin.css" rel="stylesheet">
-  <link href="sourceAdmin/css/custom-admin.css" rel="stylesheet">
   <script src="sourceAdmin/vendor/jquery/jquery.min.js"></script>
 </head>
 
@@ -32,7 +31,7 @@
     <footer class="sticky-footer">
       <div class="container">
         <div class="text-center">
-          <small>Copyright © Sb Admin 2 2017</small>
+          <small>Copyright © sbAdmin2 Website 2017</small>
         </div>
       </div>
     </footer>
@@ -50,10 +49,10 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <div class="modal-body">Chọn logout để  thoát ra ngoài !</div>
+          <div class="modal-body">Chọn "Logout" để rời khỏi đây !</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="{{url('admin/login')}}">Logout</a>
+            <a class="btn btn-primary" href="login.html">Logout</a>
           </div>
         </div>
       </div>
@@ -62,17 +61,12 @@
     
   </div>
 
-    <script src="sourceAdmin/vendor/popper/popper.min.js"></script>
     <script src="sourceAdmin/vendor/bootstrap/js/bootstrap.min.js"></script>
     <!-- Core plugin JavaScript-->
     <script src="sourceAdmin/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <!-- Page level plugin JavaScript-->
     <script src="sourceAdmin/vendor/datatables/jquery.dataTables.js"></script>
     <script src="sourceAdmin/vendor/datatables/dataTables.bootstrap4.js"></script>
-    <!-- Custom scripts for all pages-->
     <script src="sourceAdmin/js/sb-admin.min.js"></script>
-    <!-- Custom scripts for this page-->
     <script src="sourceAdmin/js/sb-admin-datatables.min.js"></script>
-
 </body>
 </html>
