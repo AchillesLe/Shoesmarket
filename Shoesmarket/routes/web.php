@@ -70,6 +70,15 @@
 			Route::get('list','admin\penalizeController@index')->name('admin.penalize');
 			Route::get('create','admin\penalizeController@create')->name('admin.penalize.create');
 		});
+		Route::group(['prefix'=>'mail'],function(){
+			Route::get('list','admin\mailController@index')->name('admin.mail');
+			Route::get('create/{idseller}','admin\mailController@create')->name('admin.mail.create');
+			Route::post('createsubmit','admin\mailController@createsubmit');
+			Route::get('getcontent/{id}','admin\mailController@getcontent')->name('admin.mail.get.content');
+			Route::get('mailtemplate','admin\mailController@listmailtemplate')->name('admin.mail.listmailTemplate');
+			Route::post('updatemailTemplate','admin\mailController@updatemailTemplate')->name('admin.mail.updatemailTemplate');
+			Route::get('mailtemplate/delete/{id}','admin\mailController@delete')->name('admin.mail.deletemailTemplate');
+		});
 
 		Route::get('/revenue/interval','admin\revenueController@revenue');
 

@@ -92,7 +92,7 @@
 	        </li>
 	      </ul>
 	    </li>
-	    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Nhóm nhân viên">
+	    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Doanh thu">
 	      <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#revenue" data-parent="#exampleAccordion">
 	        <i class="fa fa-fw  fa-money"></i>
 	        <span class="nav-link-text">Doanh thu</span>
@@ -100,6 +100,20 @@
 	      <ul class="sidenav-second-level collapse" id="revenue">
 	        <li>
 	          <a href="{{url('admin/revenue/interval')}}">Theo khoảng thời gian</a>
+	        </li>
+	      </ul>
+	    </li>
+	    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Gửi mail">
+	      <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#mailseller" >
+	        <i class="fa fa-fw  fa-envelope"></i>
+	        <span class="nav-link-text">Mail</span>
+	      </a>
+	      <ul class="sidenav-second-level collapse" id="mailseller">
+	        <li>
+	          <a href="{{url('admin/mail/list')}}">Danh sách mail gửi</a>
+	        </li>
+	        <li>
+	          <a href="{{url('admin/mail/mailtemplate')}}">Danh sách mail mẫu</a>
 	        </li>
 	      </ul>
 	    </li>

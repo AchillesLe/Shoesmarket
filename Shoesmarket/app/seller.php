@@ -12,10 +12,6 @@ class seller extends Model
 	{
 		return $this->hasMany('App\product','idseller','idseller');
 	}
-	 public function comment()
-	{
-		return $this->hasMany('App\comment','idseller','idseller');
-	}
 	 public function rating()
     {
     	return $this->hasOne('App\rating','idseller','idseller');

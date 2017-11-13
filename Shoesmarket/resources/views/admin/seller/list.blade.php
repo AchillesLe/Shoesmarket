@@ -56,6 +56,9 @@
                             <li >
                               <a href="{!!url('admin/seller/sellpackage')!!}"><button class="btn btn-outline-info" name="addpackage" >Nạp tin</button></a>
                             </li>
+                            <li >
+                              <a href="{!!url('admin/mail/create',$seller->idseller)!!}"><button class="btn btn-outline-info" name="addmail" >Gửi mail</button></a>
+                            </li>
                           </ul>
                       </div>
 	                </tr>
