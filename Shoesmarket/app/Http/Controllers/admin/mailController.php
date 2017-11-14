@@ -9,6 +9,7 @@ use App\emails;
 use App\seller;
 use Carbon\Carbon;
 use Mail;
+use App\Mail\AdminMailShipped;
 class mailController extends Controller
 {
     public function index()
@@ -44,12 +45,23 @@ class mailController extends Controller
                 'nameTo.required'=>'Người nhận không được để trống',
                 'mailTo.required'=>'Địa chỉ người nhận không được để trống',
             ]);
-        
-        Mail::send('admin.mail.message',array('name'=>$request->nameTo,'email'=>$request->mailTo, 'content'=>$request->content ,'title'=>$request->title), function($message){
-            $message->to($request->mailTo, $request->mailTo)->subject($request->content);
-        });
 
-        return redirect()->route('admin.mail')->with('thongbao','Gửi thành công !');
+        $data = array(['mailTo'=>$request->mailTo,'nameTo'=>$request->nameTo,'title'=>$request->title,'content'=>$request->content]);
+           if(Mail::send(new AdminMailShipped($data)))
+            {
+                $email =  new App\emails;
+                $emails->nameFrom = (config('mail.from'))['name'];
+                $emails->mailFrom = (config('mail.from'))['address'];
+                $emails->nameTo = $request->nameTo;
+                $emails->mailTo = $request->mailTo;
+                $emails->title = $request->title;
+                $emails->content = $request->content;
+                $emails->save();
+                
+            }
+        else
+            return redirect()->route('admin.mail')->with('thongbao','Gửi thất bại !');
+        
     }
     public function getcontent($id)
     {

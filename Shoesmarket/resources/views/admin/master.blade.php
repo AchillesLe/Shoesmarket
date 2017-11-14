@@ -17,6 +17,7 @@
   <link href="sourceAdmin/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="sourceAdmin/css/sb-admin.css" rel="stylesheet">
+  <link href="sourceAdmin/css/custom-admin.css" rel="stylesheet">
   <script src="sourceAdmin/vendor/jquery/jquery.min.js"></script>
   <script src="sourceAdmin/vendor/popper/popper.js"></script>
   <script src="sourceAdmin/vendor/popper/popper.min.js"></script>

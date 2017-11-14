@@ -16,9 +16,10 @@ class AdminMailShipped extends Mailable
      *
      * @return void
      */
-    public function __construct()
-    {
-        //
+    public $data;
+    public function __construct($data)
+    { 
+        $this->data = $data[0];         
     }
 
     /**
@@ -28,6 +29,6 @@ class AdminMailShipped extends Mailable
      */
     public function build()
     {
-        return $this->view('admin.mail.message');
+        return $this->view('admin.mail.message')->with('data',$this->data)->to($this->data['mailTo']);
     }
 }
