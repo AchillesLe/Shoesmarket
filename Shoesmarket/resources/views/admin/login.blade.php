@@ -14,6 +14,8 @@
   <link href="sourceAdmin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
   <link href="sourceAdmin/css/sb-admin.css" rel="stylesheet">
+  <script src="sourceAdmin/vendor/popper/popper.js"></script>
+  <script src="sourceAdmin/vendor/popper/popper.min.js"></script>
 </head>
 
 <body class="bg-dark">

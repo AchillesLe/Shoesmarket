@@ -14,6 +14,8 @@
   <link href="sourceAdmin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
   <link href="sourceAdmin/css/sb-admin.css" rel="stylesheet">
+  <script src="sourceAdmin/vendor/popper/popper.js"></script>
+  <script src="sourceAdmin/vendor/popper/popper.min.js"></script>
 </head>
 
 <body class="bg-dark">
@@ -52,14 +54,10 @@
             <span hidden class="text-danger">Mật khẩu xác nhận không đúng</span>
           </div>
 
-          <button type="submit" class="btn btn-outline-primary btn-block" id="change" name="change">Thay đổi</button>
+          <button type="submit" class="btn btn-outline-primary btn-block" id="change" name="change" hidden>Thay đổi</button>
         </form>
         <hr>
         <a  href="{{url('admin/login')}}"   name="change">Trở lại đăng nhập</a>
-        <!-- <div class="text-center">
-          <a class="d-block small mt-3" href="register.html">Register an Account</a>
-          <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
-        </div> -->
       </div>
     </div>
   </div>
@@ -68,22 +66,22 @@
   <script src="sourceAdmin/vendor/popper/popper.min.js"></script>
 </body>
 <script type="text/javascript">
-		// $(document).ready(function(){
-		// 	$('$comfirmpass').on('input',function(e){
-		// 		$old = $('#oldpassword').val();
-		// 		$new = $('#newpassword').val();
-		// 		$com = $('#comfirmpass').val();
-		// 		if($.trim($com)===$.trim($new))
-		// 		{
-		// 			$('#change').remove('hidden');
-		// 			// $('#comfirmpass').css('outline-color', '#00b300');
-		// 		}
-		// 		else
-		// 		{
-		// 			// $('#comfirmpass').css('outline-color', '#ff3333');
-		// 		}
-		// 	});
-		// });
+		$(document).ready(function(){
+			$('#comfirmpass').on('input',function(e){
+				$old = $('#oldpassword').val();
+				$new = $('#newpassword').val();
+				$com = $('#comfirmpass').val();
+				if($com===$new)
+				{
+					$('#change').removeAttr('hidden');
+					$('#comfirmpass').css('border-color', '#00b300');
+				}
+				else
+				{
+					$('#comfirmpass').css('border-color', '#ff3333');
+				}
+			});
+		});
 </script>
 </html>
 
