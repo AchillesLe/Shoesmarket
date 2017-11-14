@@ -18,6 +18,8 @@
   <!-- Custom styles for this template-->
   <link href="sourceAdmin/css/sb-admin.css" rel="stylesheet">
   <script src="sourceAdmin/vendor/jquery/jquery.min.js"></script>
+  <script src="sourceAdmin/vendor/popper/popper.js"></script>
+  <script src="sourceAdmin/vendor/popper/popper.min.js"></script>
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -62,6 +64,7 @@
   </div>
 
     <script src="sourceAdmin/vendor/bootstrap/js/bootstrap.min.js"></script>
+
     <!-- Core plugin JavaScript-->
     <script src="sourceAdmin/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="sourceAdmin/vendor/datatables/jquery.dataTables.js"></script>
