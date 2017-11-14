@@ -66,5 +66,42 @@ class employeeController extends Controller
 		$listrole = role::all();
 		return view('admin.employee.create',['listrole'=>$listrole]);
 	}
+    // public function getchangePass()
+    // {
+    //     return view('admin.employee.changePassword');
+    // }
+    // public function changePass(Request $request)
+    // {
+    //      $this->validate($request,
+    //         [
+    //             'username'=>'required|min:3|max:50|unique:employees,username',
+    //             'newpassword'=>'required|min:3|max:50',
+    //             'oldpassword'=>'required|min:3|max:50',
+    //             'comfirmpass'=>'required|min:3|max:50',
+    //         ],
+    //         [
+    //             'username.required'=>'Username không được bỏ trống.',
+    //             'username.min'=>'Username phải dài hơn 3  .' ,
+    //             'username.max'=>'Username phải ít hơn 50 kí tự .',
+    //             'newpassword.required'=>'password mới không được bỏ trống.',
+    //             'newpassword.min'=>'password mới phải dài hơn 3  .' ,
+    //             'newpassword.max'=>'password mới phải ít hơn 50 kí tự .',
+    //             'oldpassword.required'=>'password cũ không được bỏ trống.',
+    //             'oldpassword.min'=>'password cũ phải dài hơn 3  .' ,
+    //             'oldpassword.max'=>'password cũ phải ít hơn 50 kí tự .',
+    //             'comfirmpass.required'=>'xác nhận password cũ không được bỏ trống.',
+    //             'comfirmpass.min'=>'xác nhận cũ password phải dài hơn 3  .' ,
+    //             'comfirmpass.max'=>'xác nhận cũ  password phải ít hơn 50 kí tự .',
+    //         ]);
+    //     $comfirmpass = $request->oldpassword;
+    //     $oldpassword = $request->oldpassword;
+    //     $newpassword = $request->newpassword;
+    //     $username = $request->username;
+    //     if(trim($oldpassword,"")===trim($newpassword))
+    //     {
+    //         $employee = employee::where(['username','=',$username],['password','=',$oldpassword])->update('password',Hash::make($newpassword));
+    //     }
+    //     return view('admin.employee.changePassword',['listrole'=>$listrole])->with('thongbao','Thay đổi password thành công');
+    // }
 
 }

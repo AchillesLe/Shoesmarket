@@ -33,8 +33,11 @@
 
 	Route::group(['prefix'=>'admin'],function(){
 
-		Route::get('login','admin\loginController@getlogin')->name('login');
+		Route::get('login','admin\loginController@getlogin')->name('admin.login');
 		Route::post('login','admin\loginController@postlogin')->name('postlogin');
+		Route::get('changepass','admin\loginController@getchangePass')->name('admin.getchangepass');
+		Route::post('changepass','admin\loginController@changePass');
+
 
 		Route::get('/','admin\pageController@getDashboard');
 		Route::get('/dashboard','admin\pageController@getDashboard')->name('dashboard');
