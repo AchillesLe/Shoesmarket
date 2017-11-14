@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\employees;
 use Illuminate\Support\Facades\Hash;
+use Auth;
 class loginController extends Controller
 {
     /*
@@ -27,7 +28,6 @@ class loginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -36,27 +36,36 @@ class loginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest:admin')->except('logout');
     }
 
     public function getlogin()
     {
         return view('admin.login');
     }
-    public function postlogin(loginRequest $request)
+    public function postlogin(Request $request)
     {
-    	$login  = array(
-    		'username'=>$request->username,
-    		'password'=>$request->password
-
-    	);
-    	if($this->auth()->attempt($login))
-    	{
-    		return redirect()->route('dashboard');
-    	}
-    	else{
-    		return redirect()->back();
-    	}
+        // if($employee = employees::where('username',$request->username)->where('password',$password))
+        // {
+        //     Auth::user= $employees;
+        //     return redirect()->route('admin.dashboard');
+        // }
+        // else
+        //     return redirect()->back();
+    	$this->validate($request,[
+            'email'=>'required|email',
+            'password'=>'required|min:6|max:32'
+        ]);
+        if(Auth::guard('admin')->attempt(['email'=>$request->email,'password'=>$request->password],null))
+        {
+            return redirect()->route('admin.dashboard');
+        }
+        return redirect()->back();
+    }
+    public function logout()
+    {
+        Auth::guard('admin')->logout();
+        return redirect()->route('admin.login');
     }
     public function getchangePass()
     {

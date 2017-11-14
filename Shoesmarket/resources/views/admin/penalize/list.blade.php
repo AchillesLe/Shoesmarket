@@ -9,7 +9,7 @@
 
 	<p style="width: 150px;margin-bottom: 10px;">
 		<a class="btn btn-success yess"  href="{{route('admin.penalize.create')}}"  >
-		    Thêm gói tin
+		    Thêm phiếu phạt
 		</a>
 	</p>
 		<div class="card mb-3">

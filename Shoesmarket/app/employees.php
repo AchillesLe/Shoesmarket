@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
-class employees extends Model
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+class employees extends Authenticatable
 {
-    protected $table = "employees";
+	use Notifiable;
+
+    protected $guard ='admin';
 
     public function role()
     {

@@ -43,20 +43,44 @@
       <i class="fa fa-angle-up"></i>
     </a>
     <!-- Logout Modal-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+    <div class="modal fade" id="infoemployee" tabindex="-1" role="dialog" >
+      <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Bạn muốn rời khỏi?</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Thông tin của bạn</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <div class="modal-body">Chọn "Logout" để rời khỏi đây !</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+          <div class="modal-body infoEmploy" >
+            <form action="{{url('admin')}}" method="POST">
+              {{csrf_field()}}
+            <div class=" form-inline" hidden >
+              <label for="name" class="col-md-3"><b>Ảnh</b></label>
+              <input class="form-control col-md-8" name="username" type="text">
+            </div>
+            <div class=" form-inline" >
+              <label for="name" class="col-md-3"><b>Tên</b></label>
+              <input class="form-control col-md-8" name="username" type="text" value="Achilles">
+            </div>
+            <div class=" form-inline" >
+              <label for="name" class="col-md-3"><b>Email</b></label>
+              <input class="form-control col-md-8" name="username" type="text">
+            </div>
+            <div class=" form-inline" >
+              <label for="name" class="col-md-3"><b>Địa chỉ</b></label>
+              <input class="form-control col-md-8" name="username" type="text">
+            </div>
+            <div class=" form-inline" >
+              <label for="name" class="col-md-3"><b>Số điện thoại</b></label>
+              <input class="form-control col-md-8" name="username" type="text">
+            </div>
           </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">đóng</button>
+            <a class="btn btn-primary">Lưu</a>
+          </div>
+          </form>
         </div>
       </div>
     </div>
