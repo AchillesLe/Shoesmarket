@@ -49,18 +49,20 @@ class mailController extends Controller
         $data = array(['mailTo'=>$request->mailTo,'nameTo'=>$request->nameTo,'title'=>$request->title,'content'=>$request->content]);
            if(Mail::send(new AdminMailShipped($data)))
             {
-                $email =  new App\emails;
-                $emails->nameFrom = (config('mail.from'))['name'];
-                $emails->mailFrom = (config('mail.from'))['address'];
-                $emails->nameTo = $request->nameTo;
-                $emails->mailTo = $request->mailTo;
-                $emails->title = $request->title;
-                $emails->content = $request->content;
-                $emails->save();
-                
+                $email =  new emails;
+                $email->nameFrom = (config('mail.from'))['name'];
+                $email->mailFrom = (config('mail.from'))['address'];
+                $email->nameTo = $request->nameTo;
+                $email->mailTo = $request->mailTo;
+                $email->title = $request->title;
+                $email->content = $request->content;
+                $email->save();
+                return redirect()->route('admin.mail')->with('thongbao','Gửi thành công !');
             }
-        else
-            return redirect()->route('admin.mail')->with('thongbao','Gửi thất bại !');
+            else
+                return redirect()->route('admin.mail')->with('thongbao','Gửi thất bại !');
+            
+            
         
     }
     public function getcontent($id)

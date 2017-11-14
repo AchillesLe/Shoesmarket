@@ -11,7 +11,7 @@
                     @endif
 
                     @if(session('thongbao'))
-                        <div  class="alert alert-success" id="noti" style="margin-top: 5px;">{{session('thongbao')}}</div>
+                    <div  class="alert   @if(strpos(session('thongbao'), 'thành công') !== false) {{"alert-success"}} @else {{"alert-danger"}} @endif" id="noti" style="margin-top: 5px;">{{session('thongbao')}}</div>
                     @endif
 	<div class="card card-block">
 		<div class="card-header">

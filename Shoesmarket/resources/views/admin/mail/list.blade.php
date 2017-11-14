@@ -16,8 +16,8 @@
                         </div>
                     @endif
 
-                    @if(session('thongbao'))
-                        <div  class="alert alert-success" id="noti" style="margin-top: 5px;">{{session('thongbao')}}</div>
+                   @if(session('thongbao'))
+                    <div  class="alert   @if(strpos(session('thongbao'), 'thành công') !== false) {{"alert-success"}} @else {{"alert-danger"}} @endif" id="noti" style="margin-top: 5px;">{{session('thongbao')}}</div>
                     @endif
 	<div class="card mb-3">
         <div class="card-header">

@@ -23,7 +23,7 @@
     <div class="card card-login mx-auto mt-5">
       <div class="card-header">Đổi mật khẩu</div>
       <div class="card-body">
-      				@if(count($errors)>0)
+      				      @if(count($errors)>0)
                         <div class="alert alert-danger" id="noti">
                             @foreach($errors->all() as $err)
                                {{$err}}<br>
