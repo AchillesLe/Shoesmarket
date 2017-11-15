@@ -9,6 +9,7 @@ class pageController extends Controller
 {
 	// public function __construct()
  //    {
+ //    	//dd("5");
  //    	$this->middleware('auth:admin');
  //    }
     public function getDashboard()

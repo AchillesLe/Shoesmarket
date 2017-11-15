@@ -38,9 +38,7 @@
 		Route::get('logout','admin\loginController@logout')->name('admin.logout');
 		Route::get('changepass','admin\loginController@getchangePass')->name('admin.getchangepass');
 		Route::post('changepass','admin\loginController@changePass');
-
-
-		Route::get('/','admin\pageController@getDashboard');
+		
 		Route::get('/dashboard','admin\pageController@getDashboard')->name('admin.dashboard');
 
 		Route::group(['prefix'=>'user'],function(){

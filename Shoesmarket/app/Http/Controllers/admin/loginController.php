@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Auth;
 use App\employees;
 use Illuminate\Support\Facades\Hash;
-use Auth;
 class loginController extends Controller
 {
     /*
@@ -20,27 +19,15 @@ class loginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
+        //dd("1");
         $this->middleware('guest:admin')->except('logout');
     }
 
     public function getlogin()
     {
+        //dd("3");
         return view('admin.login');
     }
     public function postlogin(Request $request)
@@ -58,12 +45,14 @@ class loginController extends Controller
         ]);
         if(Auth::guard('admin')->attempt(['email'=>$request->email,'password'=>$request->password],null))
         {
+            //dd("4");
             return redirect()->route('admin.dashboard');
         }
         return redirect()->back();
     }
     public function logout()
     {
+         dd("logout");
         Auth::guard('admin')->logout();
         return redirect()->route('admin.login');
     }
