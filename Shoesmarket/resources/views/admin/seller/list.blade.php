@@ -27,7 +27,7 @@
               <tbody>
               	@foreach($list as $seller)
 	              	<tr data-address="{{$seller->address}}" data-identification="{{$seller->identification}}" data-created="{{$seller->created_at}}" data-updated="{{$seller->updated_at}}" data-reason="{{$seller->reason}}" data-status="{{$seller->isblock}}">
-	                  <td width="80px;">{{$seller->idseller}}</td>
+	                  <td width="80px;">{{$seller->id}}</td>
 	                  <td width="130px;">{{$seller->name}}</td>
                     <td width="130px;" >{{$seller->phone}}</td>
                     <td width="130px;" >{{$seller->email}}</td>
@@ -47,8 +47,8 @@
                           </button>
                           <ul class="dropdown-menu" style="min-width: 120px!important">
                             <li >
-                                <a href="{!!url('admin/seller/updatestatus',$seller->idseller)!!}"><button class="btn btn-outline-danger" name="block" id="status"  @if($seller->isblock=='1') {{"hidden"}} @endif>Khoá</button></a>
-                                <a href="{!!url('admin/seller/updatestatus',$seller->idseller)!!}"><button class="btn btn-outline-info" name="active" id="status" @if($seller->isblock=='0') {{"hidden"}} @endif>Mở khoá</button></a>
+                                <a href="{!!url('admin/seller/updatestatus',$seller->id)!!}"><button class="btn btn-outline-danger" name="block" id="status"  @if($seller->isblock=='1') {{"hidden"}} @endif>Khoá</button></a>
+                                <a href="{!!url('admin/seller/updatestatus',$seller->id)!!}"><button class="btn btn-outline-info" name="active" id="status" @if($seller->isblock=='0') {{"hidden"}} @endif>Mở khoá</button></a>
                             </li>
                             <li >
                               <button class="btn btn-outline-info" id="view"  type="button"  data-toggle="modal" data-target="#sellerinfo" >Xem</button>
@@ -57,7 +57,7 @@
                               <a href="{!!url('admin/seller/sellpackage')!!}"><button class="btn btn-outline-info" name="addpackage" >Nạp tin</button></a>
                             </li>
                             <li >
-                              <a href="{!!url('admin/mail/create',$seller->idseller)!!}"><button class="btn btn-outline-info" name="addmail" >Gửi mail</button></a>
+                              <a href="{!!url('admin/mail/create',$seller->id)!!}"><button class="btn btn-outline-info" name="addmail" >Gửi mail</button></a>
                             </li>
                           </ul>
                       </div>

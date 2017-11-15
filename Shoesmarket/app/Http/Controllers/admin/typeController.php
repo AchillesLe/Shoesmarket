@@ -17,7 +17,7 @@ class typeController extends Controller
     {
         $this->validate($request,
             [
-                'name'=>'required|min:3|max:50'
+                'name'=>'required|min:3|max:50|unique:type,name'
             ],
             [
                 'name.required'=>'Bạn chưa nhập tên thể loại',
@@ -26,7 +26,7 @@ class typeController extends Controller
             ]);
         if($request->has('edit'))
         {
-            type::where('name',$request->id)->update(['name'=>$request->name,'description'=>$request->des]);  
+            type::where('id',$request->id)->update(['name'=>$request->name,'description'=>$request->des]);  
 
             return redirect('admin/type/list')->with('thongbao','Sửa thành công');      
         }

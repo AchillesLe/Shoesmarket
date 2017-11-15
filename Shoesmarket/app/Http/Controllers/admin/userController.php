@@ -13,13 +13,13 @@ class userController extends Controller
     	$list = user::all();
     	return view('admin/user/listuser',['list'=>$list]);
     }
-    public function editStatus($iduser)
+    public function editStatus($id)
     {
-    	$user = user::where('iduser',$iduser)->get()->first();
+    	$user = user::where('id',$id)->get()->first();
     	if($user->isblock=='1')
-    		user::where('iduser',$iduser)->update(['isblock'=>'0']);
+    		user::where('id',$id)->update(['isblock'=>'0']);
     	if($user->isblock=='0')
-    		user::where('iduser',$iduser)->update(['isblock'=>'1']);
+    		user::where('id',$id)->update(['isblock'=>'1']);
     	return redirect(url('admin/user/list'));
     }
 }

@@ -27,8 +27,8 @@
               </thead>
               <tbody>
               	@foreach($list as $user)
-	              	<tr data-id="{{$user->iduser}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-phone="{{$user->phone}}" data-status="{{$user->isblock}}" data-reason="{{$user->reason}}" data-created="{{$user->created_at}}" data-updated="{{$user->updated_at}}">
-	                  <td>{{$user->iduser}}</td>
+	              	<tr data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-phone="{{$user->phone}}" data-status="{{$user->isblock}}" data-reason="{{$user->reason}}" data-created="{{$user->created_at}}" data-updated="{{$user->updated_at}}">
+	                  <td>{{$user->id}}</td>
 	                  <td>{{$user->name}}</td>
 	                  <td>{{$user->email}}</td>
 	                  <td>{{$user->updated_at}}</td>
@@ -39,9 +39,9 @@
 	                  		@endif</td>
 	                  <td width="170px">
 	                  	@if($user->isblock=='0') 
-	                  	<a href="{!! url('/admin/user/edit',[$user->iduser]) !!}"><button class="btn btn-warning" data-target="#reason" name="block" >Khoá</button></a>
+	                  	<a href="{!! url('/admin/user/edit',[$user->id]) !!}"><button class="btn btn-warning" data-target="#reason" name="block" >Khoá</button></a>
 	                  	@elseif($user->isblock=='1')
-	                  	<a href="{!! url('/admin/user/edit',[$user->iduser]) !!}"><button class="btn btn-success" name="active">Mở khoá</button></a>
+	                  	<a href="{!! url('/admin/user/edit',[$user->id]) !!}"><button class="btn btn-success" name="active">Mở khoá</button></a>
 	                  	@endif
 	                  	<button class="btn btn-info" name="detail"  id="view" data-toggle="modal" data-target="#employinfo">Chi tiết</button></a>
 	                  	</td>

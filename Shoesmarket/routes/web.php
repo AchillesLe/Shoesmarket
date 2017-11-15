@@ -43,9 +43,9 @@
 
 		Route::group(['prefix'=>'user'],function(){
 			Route::get('list','admin\userController@getlist');
-			Route::get('detail/{idtype}','admin\userController@getdetail');
-			Route::get('edit/{idtype}','admin\userController@editStatus');
-			Route::get('delete/{idtype}','admin\userController@delete');
+			Route::get('detail/{id}','admin\userController@getdetail');
+			Route::get('edit/{id}','admin\userController@editStatus');
+			Route::get('delete/{id}','admin\userController@delete');
 
 		});
 		Route::group(['prefix'=>'type'],function(){
@@ -75,12 +75,12 @@
 		Route::group(['prefix'=>'employee'],function(){
 			Route::get('list','admin\employeeController@index')->name('admin.employee');
 			Route::post('update','admin\employeeController@update');
-			Route::get('edit/{idemployee}','admin\employeeController@editStatus');
+			Route::get('edit/{id}','admin\employeeController@editStatus');
 			Route::get('create','admin\employeeController@create');
 		});
 		Route::group(['prefix'=>'mail'],function(){
 			Route::get('list','admin\mailController@index')->name('admin.mail');
-			Route::get('create/{idseller}','admin\mailController@create')->name('admin.mail.create');
+			Route::get('create/{id}','admin\mailController@create')->name('admin.mail.create');
 			Route::post('createsubmit','admin\mailController@createsubmit');
 			Route::get('getcontent/{id}','admin\mailController@getcontent')->name('admin.mail.get.content');
 			Route::get('mailtemplate','admin\mailController@listmailtemplate')->name('admin.mail.listmailTemplate');

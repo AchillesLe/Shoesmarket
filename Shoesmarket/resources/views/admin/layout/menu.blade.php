@@ -37,9 +37,9 @@
 	        <li>
 	          <a href="{{url('admin/seller/list')}}">Danh sách </a>
 	        </li>
-	        <li>
+{{-- 	        <li>
 	          <a href="{{url('admin/seller/sellpackage')}}">Nạp gói tin</a>
-	        </li>
+	        </li> --}}
 	      </ul>
 	    </li>
 	    <!--User-->

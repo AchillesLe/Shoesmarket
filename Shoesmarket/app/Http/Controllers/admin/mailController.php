@@ -17,9 +17,9 @@ class mailController extends Controller
         $list = emails::orderBy('created_at','DESC')->get();
         return view('admin.mail.list',['list'=>$list]);
     }
-    public function create($idseller)
+    public function create($id)
     {
-        if($seller = seller::where('idseller',$idseller)->first())
+        if($seller = seller::where('id',$id)->first())
         {
             $name = $seller->name;
             $email = $seller->email;

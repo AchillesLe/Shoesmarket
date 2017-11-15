@@ -4,7 +4,7 @@
         <li class="breadcrumb-item">
           User
         </li>
-        <li class="breadcrumb-item ">{{$user->iduser}}</li>
+        <li class="breadcrumb-item ">{{$user->id}}</li>
 	</ol>
 	<div class="col-md-6">
 		<div class="card card-outline-info mb-3">

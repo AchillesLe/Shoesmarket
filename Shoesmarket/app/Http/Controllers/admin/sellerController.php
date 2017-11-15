@@ -18,16 +18,16 @@ class sellerController extends Controller
 
     public function updatestatus($id)
     {
-        $seller = seller::where('idseller',$id)->first();
+        $seller = seller::where('id',$id)->first();
         if(!empty($seller))
         {
             if($seller->isblock =='0')
             {
-                seller::where('idseller',$id)->update(['isblock'=>'1']);
+                seller::where('id',$id)->update(['isblock'=>'1']);
             }
             else 
             {
-                seller::where('idseller',$id)->update(['isblock'=>'0']);
+                seller::where('id',$id)->update(['isblock'=>'0']);
             }
             
         }
