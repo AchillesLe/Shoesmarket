@@ -30,16 +30,16 @@
 		});
 
 // Phần của Bảo -- Admin ( Tạo nhóm Route)
-		Route::get('admin/login','admin\loginController@getlogin')->name('admin.login');
-		Route::post('admin/login','admin\loginController@postlogin');
+		Route::get('admin/login','admin\AdminLoginController@getlogin')->name('admin.login');
+		Route::post('admin/login','admin\AdminLoginController@postlogin');
 		
 	Route::group(['prefix'=>'admin','middleware'=>'auth:admin'],function(){
 
-		Route::get('logout','admin\loginController@logout')->name('admin.logout');
-		Route::get('changepass','admin\loginController@getchangePass')->name('admin.getchangepass');
-		Route::post('changepass','admin\loginController@changePass');
+		Route::get('logout','admin\AdminLoginController@logout')->name('admin.logout');
+		Route::get('changepass','admin\AdminLoginController@getchangePass')->name('admin.getchangepass');
+		Route::post('changepass','admin\AdminLoginController@changePass');
 		
-		Route::get('/dashboard','admin\pageController@getDashboard')->name('admin.dashboard');
+		Route::get('/','admin\pageController@getDashboard')->name('admin.dashboard');
 
 		Route::group(['prefix'=>'user'],function(){
 			Route::get('list','admin\userController@getlist');

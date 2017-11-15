@@ -2,32 +2,21 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Auth;
-use App\employees;
-use Illuminate\Support\Facades\Hash;
-class loginController extends Controller
+
+class AdminLoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
     public function __construct()
     {
-        //dd("1");
+       
         $this->middleware('guest:admin')->except('logout');
     }
 
     public function getlogin()
     {
-        //dd("3");
+       
         return view('admin.login');
     }
     public function postlogin(Request $request)
@@ -39,20 +28,20 @@ class loginController extends Controller
         // }
         // else
         //     return redirect()->back();
-    	$this->validate($request,[
+        $this->validate($request,[
             'email'=>'required|email',
             'password'=>'required|min:6|max:32'
         ]);
         if(Auth::guard('admin')->attempt(['email'=>$request->email,'password'=>$request->password],null))
         {
-            //dd("4");
+           
             return redirect()->route('admin.dashboard');
         }
         return redirect()->back();
     }
     public function logout()
     {
-         dd("logout");
+         
         Auth::guard('admin')->logout();
         return redirect()->route('admin.login');
     }

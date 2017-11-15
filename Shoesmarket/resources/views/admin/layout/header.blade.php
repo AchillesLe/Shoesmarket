@@ -98,7 +98,7 @@
 	    <div class="dropdown-menu" aria-labelledby="btngroupinfo" >
 	      <a class="dropdown-item" data-toggle="modal" data-target="#infoemployee" style="cursor: pointer"><i class="fa fa-fw fa-address-book-o "></i>Profile</a>
 	      <a class="dropdown-item" href="{{url('admin/changepass')}}"><i class="fa fa-fw fa-edit"></i>Đổi mật khẩu</a>
-	      <a class="dropdown-item" href="{{url('admin/login')}}"><i class="fa fa-fw fa-sign-out"></i>Logout</a>
+	      <a class="dropdown-item" href="{{url('admin/logout')}}"><i class="fa fa-fw fa-sign-out"></i>Logout</a>
 	    </div>
   </div>
 	 </li>
