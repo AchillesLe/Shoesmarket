@@ -28,7 +28,7 @@ class producttypeController extends Controller
             ]);
         if($request->has('edit'))
         {
-            producttype::where('id',$request->id)->update(['name'=>$request->name,'description'=>$request->des,'idtype'=>$request->type]);  
+            producttype::where('id',$request->id)->update(['name'=>$request->name,'idtype'=>$request->type]);  
 
             return redirect('admin/producttype/list')->with('thongbao','Sửa thành công');      
         }
@@ -44,7 +44,6 @@ class producttypeController extends Controller
             $newtype = new producttype;
             $newtype->name = $request->name;
             $newtype->namemeta = changeTitle($request->name);
-            $newtype->description = $request->des;
             $newtype->idtype = $request->type;
             $newtype->save();
             return redirect('admin/producttype/list')->with('thongbao','Thêm thành công');

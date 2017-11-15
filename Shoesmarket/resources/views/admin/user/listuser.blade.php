@@ -17,7 +17,7 @@
             <table class="table table-bordered employtable" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>Mã người dùng</th>
+                  <th>Mã khách</th>
                   <th>Tên</th>
                   <th>Email</th>
                   <th>Ngày cập nhật</th>

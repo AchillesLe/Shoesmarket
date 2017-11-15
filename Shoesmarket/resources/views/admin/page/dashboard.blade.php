@@ -133,7 +133,7 @@
     </div> --}}
     <div class="card mb-3" >
       <div class="card-header">
-        <i class="fa fa-table"></i> Danh sách tin đăng</div>
+        <i class="fa fa-table"></i> Danh sách tin đăng gần đây</div>
       <div class="card-body">
         <div class="table-responsive">
           <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
@@ -149,22 +149,24 @@
               </tr>
             </thead>
             <tbody>
+              @foreach($list as $new)
                     <tr>
-                      <td>1</td>
-                      <td>Giày da công sở</td>
-                      <td><img src="" width="" height="" alt="đây là ảnh"></td>
-                      <td>1000000 VNĐ</td>
-                      <td>hiển thị</td>
-                      <td>2011/04/25</td>
-                      <td><a class="btn btn-primary"  data-toggle="modal" data-target="#newsinfo">Xem chi tiết</a></td>
+                      <td>{{$new->id}}</td>
+                      <td>{{$new->product->name}}</td>
+                      <td><img src="{{asset('sourceAdmin/admin-upload/$new->product->image')}}" width="200px" height="150px" alt="đây là ảnh"></td>
+                      <td>{{$new->product->price}} VNĐ</td>
+                      <td>@if($new->status=="0")Đang hiển thị @else Đang ẩn @endif</td>
+                      <td>{{$new->created_at}}</td>
+                      <td><a class="btn btn-primary"  href="{{url('admin/news/detail',$new->id)}}">Xem chi tiết</a></td>
                     </tr>
+              @endforeach
             </tbody>
           </table>
         </div>
       </div>
       <div class="card-footer small text-muted">Tổng cộng {{count($list)}} tin đăng</div>
      </div>
-    <div class="modal fade" id="newsinfo" tabindex="-1" role="dialog"  aria-hidden="true">
+{{-- <div class="modal fade" id="newsinfo" tabindex="-1" role="dialog"  aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -175,10 +177,10 @@
       </div>
       <div class="modal-body">
         <div style="padding: 20px;" class="div-modalnewsinfo">
-{{--           <div class="form-group" hidden>
+          <div class="form-group" hidden>
                   <label for="image">Ảnh</label>
                   <input class="form-control" type="text" name=""  readonly>
-          </div> --}}
+          </div>
           <div class="form-inline">
                   <label for="namepro" class="col-md-3"><b>Tên sản phẩm</b></label>
                   <input class="form-control col-md-9" type="text" name="namepro" readonly >
@@ -218,10 +220,5 @@
       </div>
     </div>
   </div>
-</div>
-    <script type="text/javascript">
-      $(document).ready(function(){
-        
-      });
-    </script>
+</div> --}}
 @endsection

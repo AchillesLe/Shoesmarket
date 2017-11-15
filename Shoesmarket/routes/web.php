@@ -39,7 +39,11 @@
 		Route::get('changepass','admin\AdminLoginController@getchangePass')->name('admin.getchangepass');
 		Route::post('changepass','admin\AdminLoginController@changePass');
 		
-		Route::get('/','admin\pageController@getDashboard')->name('admin.dashboard');
+		Route::get('/','admin\newsController@getDashboard')->name('admin.dashboard');
+		Route::group(['prefix'=>'news'],function(){
+			
+			Route::get('detail/{id}','admin\newsController@detailsnew');
+		});
 
 		Route::group(['prefix'=>'user'],function(){
 			Route::get('list','admin\userController@getlist');
@@ -89,9 +93,8 @@
 		});
 
 		Route::get('/revenue/interval','admin\revenueController@revenue');
-
 		Route::get('/receipt/index','admin\receiptController@index')->name('admin.receipt');
-
 		Route::get('/bill/index','admin\billController@index')->name('admin.bill');
 
+		
 	});

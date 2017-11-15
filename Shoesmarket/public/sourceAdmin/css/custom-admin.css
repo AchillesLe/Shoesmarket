@@ -25,3 +25,13 @@ table.mailtemplatetable thead tr th.action{
 .infoEmploy div{
 	margin-top: 20px;
 }
+.infonews{
+	margin:20px;
+}
+.infonews div{
+	margin-top: 15px;
+}
+.infonews div label  {
+	/*padding-left: 30px;*/
+	text-align: left;
+}

@@ -13,7 +13,7 @@
 	      </a>
 	    </li>   
 	    <!--product-->
-	    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Nhóm sản phẩm">
+	    {{-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Nhóm sản phẩm">
 	      <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseProduct" data-parent="#exampleAccordion">
 	        <i class="fa fa-fw  fa-product-hunt"></i>
 	        <span class="nav-link-text">Nhóm sản phẩm</span>
@@ -22,11 +22,11 @@
 	        <li>
 	          <a href="{{url('admin/seller/list')}}">Danh sách sản phẩm</a>
 	        </li>
-	        {{-- <li>
+	        <li>
 	          <a href="{{url('admin/seller/list')}}">Cards</a>
-	        </li> --}}
+	        </li>
 	      </ul>
-	    </li>
+	    </li> --}}
 		<!--Seller-->
 	   	<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Nhóm người bán">
 	      <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseSeller" data-parent="#exampleAccordion">
