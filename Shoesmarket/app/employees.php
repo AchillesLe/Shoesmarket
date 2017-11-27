@@ -26,7 +26,7 @@ class employees extends Authenticatable
 
     public function role()
     {
-    	return $this->belongsTo('App\role','idrole','idrole');
+    	return $this->belongsTo('App\role','idrole','id');
     }
     
     

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\news;
 use App\product;
+use App\seller;
 use Illuminate\Support\facades\Hash;
 
 class newsController extends Controller
@@ -14,8 +15,9 @@ class newsController extends Controller
     {
 
     	$list = news::orderBy('created_at','DESC')->get();
-
-    	return view('admin.page.dashboard',['list'=>$list]);
+        $listseller = seller::where('isblock','1')->get();
+        $number = count($listseller);
+    	return view('admin.page.dashboard',['list'=>$list,'number'=>$number]);
     }
     public function detailsnew($id)
     {

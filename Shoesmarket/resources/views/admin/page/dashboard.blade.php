@@ -13,7 +13,7 @@
               <div class="card-body-icon">
                 <i class="fa fa-fw fa-comments"></i>
               </div>
-              <div class="mr-5">26 người bán chờ duyệt </div>
+              <div class="mr-5">{{$number}} người bán chờ duyệt </div>
             </div>
             <a class="card-footer text-white clearfix small z-1" href="{{route('admin.listseller')}}" >
               <span class="float-left">Xem chi tiết</span>

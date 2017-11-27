@@ -7,17 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class bill extends Model
 {
     protected $table = "bill";
-    
-    public function detail_bill()
+    protected $timestamp =false;
+    public function bill_seller()
     {
-    	return $this->hasMany('App\detail_bill','idbill','idbill');
+        return $this->hasMany('App\bill_seller','idbill','id');
     }
     public function users()
     {
-    	return $this->belongsTo('App\user','iduser','iduser');
+    	return $this->belongsTo('App\user','iduser','id');
     }
-    public function employee()
+    public function county()
     {
-    	return $this->belongsTo('App\users','iduser','iduser');
+        return $this->belongsTo('App\county','countyname','id');
     }
 }

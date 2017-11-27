@@ -65,7 +65,6 @@
                   <th>Mã loại</th>
                   <th>Tên</th>
                   <th>Thể loại</th>
-                  <th>Mô Tả</th>
                   <th>Hành động</th>
                 </tr>
               </thead>
@@ -75,7 +74,6 @@
 	                  <td width="80px;">{{$producttype->id}}</td>
 	                  <td width="130px;">{{$producttype->name}}</td>
                     <td width="130px;" >{{$producttype->type->name}}</td>
-	                  <td >{{$producttype->description}}</td>
 	                  <td width="150px">
 	                  	<button class="btn btn-info" name="Edit"  id="edit">Sửa</button></a>
 	                  	<a href="{{url('admin/producttype/updatestatus',[$producttype->id])}}"><button class="btn btn-danger" name="delete"  id="delete" >Xoá</button><a>

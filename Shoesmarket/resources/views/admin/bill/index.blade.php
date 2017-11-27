@@ -13,28 +13,29 @@
 	          <div class="table-responsive">
 	            <table class="table table-bordered mytable" id="dataTable" width="100%" cellspacing="0">
 	              <thead>
-	                <tr>
+	                <tr >
 	                  <th>Mã đơn hàng</th>
-	                  <th>Mã tin</th>
 	                  <th>Người mua</th>
 	                  <th>Địa chỉ nhận hàng</th>
 	                  <th>Tổng tiền</th>
+	                  <th>Ngày lập</th>
 	                  <th>Hành động</th>
 	                </tr>
 	              </thead>
 	              <tbody>
-	              	{{-- @foreach($list as $bill) --}}
-		              	<tr>
-		                  <td >1</td>
-		                  <td >12</td>
-	                      <td  >XXXXXXX</td>
-		                  <td >AAAAAAA</td>
-		                  <td >BBBBB</td>
+	              	@php($number=0)
+	              	 @foreach($list as $bill)
+		              	<tr >
+		                  <td >{{++$number}}</td>
+		                  <td >{{$bill->users->name}}</td>
+	                      <td >{{$bill->housenumber}} {{$bill->streetname}} , {{$bill->county->name}}</td>
+		                  <td >{{$bill->total}}</td>
+		                  <td >{{$bill->created_at}}</td>
 		                  <td >
-							<button class="btn btn-info" id="view"  type="button"  data-toggle="modal" data-target="#billinfo" >Xem chi tiết</button>
+							<a class="btn btn-link" href="{{url('admin/bill/detail',$bill->id)}}">Xem chi tiết</a>
 		                  </td>
 		                </tr>
-	                {{-- @endforeach --}}
+	                 @endforeach 
 	              </tbody>
 	            </table>
 	          </div>
