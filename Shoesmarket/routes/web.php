@@ -24,6 +24,9 @@
 	Route::get('/contacts','User\pageController@getContacts');
 	Route::get('/abouts','User\pageController@getAbouts');
 
+//bao-29/11/2017
+	Route::get('login','User\LoginController@getlogin')->name('login');
+
 // Phần của Khang -- Seller ( Tạo nhóm Route)
 
 	Route::group(['prefix'=>'sellercenter'],function(){
