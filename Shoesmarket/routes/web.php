@@ -22,6 +22,9 @@
 	Route::get('/productType','User\pageController@getProductType');
 	Route::get('/detailproduct','User\pageController@getDetailProduct');
 
+//bao-29/11/2017
+	Route::get('login','User\LoginController@getlogin')->name('login');
+
 // Phần của Khang -- Seller ( Tạo nhóm Route)
 
 	Route::group(['prefix'=>'sellercenter'],function(){
