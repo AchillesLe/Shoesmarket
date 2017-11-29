@@ -19,8 +19,10 @@
 // Phần của Vân đom -- user
 
 	Route::get('/home','User\pageController@getIndex')->name('home');
-	Route::get('/productType','User\pageController@getProductType');
-	Route::get('/detailproduct','User\pageController@getDetailProduct');
+	Route::get('/productType','User\pageController@getProductType');//loại sản phẩm
+	Route::get('/detailproduct','User\pageController@getDetailProduct');//chi tiết sản phẩm
+	Route::get('/contacts','User\pageController@getContacts');
+	Route::get('/abouts','User\pageController@getAbouts');
 
 // Phần của Khang -- Seller ( Tạo nhóm Route)
 
