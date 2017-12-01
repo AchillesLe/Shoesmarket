@@ -8,6 +8,7 @@
 	<link href='source/assets/dest/css/css_1.css' rel='stylesheet' type='text/css'>
 	<link href='source/assets/dest/css/css_2.css' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="source/assets/dest/css/bootstrap.min.css">
+	<link rel="stylesheet" href="source/assets/dest/css/custom_3_2.css">
 	<link rel="stylesheet" href="source/assets/dest/css/font-awesome.min.css">
 	<link rel="stylesheet" href="source/assets/dest/vendors/colorbox/example3/colorbox.css">
 	<link rel="stylesheet" href="source/assets/dest/rs-plugin/css/settings.css">
@@ -18,28 +19,15 @@
 	<script src="source/assets/dest/js/jquery.js"></script>
 	<script src="source/assets/dest/js/scripts.min.js"></script>
 	<script src="source/assets/dest/js/bootstrap.min.js"></script>
-	<script src="source/assets/dest/js/custom2.js"></script>
-	<script src="source/assets/dest/vendors/jqueryui/jquery-ui-1.10.4.custom.min.js"></script>
-	<script src="source/assets/dest/vendors/bxslider/jquery.bxslider.min.js"></script>
-	<script src="source/assets/dest/vendors/colorbox/jquery.colorbox-min.js"></script>
-	<script src="source/assets/dest/vendors/animo/Animo.js"></script>
-	<script src="source/assets/dest/vendors/dug/dug.js"></script>
-
-	<script src="source/assets/dest/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-	<script src="source/assets/dest/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-	<script src="source/assets/dest/js/waypoints.min.js"></script>
-	<script src="source/assets/dest/js/wow.min.js"></script>
+	
 </head>
 <body>
 
 	@include('user.layout.header')
 
-	
-
-	@yield('content')
-
-
-
+	<div class="container">
+		@yield('content')
+	</div>
 	@include('user.layout.footer')
 
 	<div class="copyright">
@@ -52,6 +40,16 @@
 
 	<!-- include js files -->
 	
+	<script src="source/assets/dest/vendors/jqueryui/jquery-ui-1.10.4.custom.min.js"></script>
+	<script src="source/assets/dest/vendors/bxslider/jquery.bxslider.min.js"></script>
+	<script src="source/assets/dest/vendors/colorbox/jquery.colorbox-min.js"></script>
+	<script src="source/assets/dest/vendors/animo/Animo.js"></script>
+	<script src="source/assets/dest/vendors/dug/dug.js"></script>
+	<script src="source/assets/dest/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+	<script src="source/assets/dest/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+	<script src="source/assets/dest/js/waypoints.min.js"></script>
+	<script src="source/assets/dest/js/wow.min.js"></script>
+	<script src="source/assets/dest/js/custom2.js"></script>
 {{-- 	<script>
 	// $(document).ready(function($) {    
 	// 	$(window).scroll(function(){
