@@ -21,6 +21,7 @@
 	Route::get('/home','User\pageController@getIndex')->name('home');
 	Route::get('/contacts','User\pageController@getContacts');
 	Route::get('/abouts','User\pageController@getAbouts');
+	Route::get('/detailproduct','User\pageController@getdetailspro');
 
 //bao-29/11/2017 -- phần login
 	Route::get('login','User\LoginController@getlogin')->name('login');

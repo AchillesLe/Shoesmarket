@@ -38,4 +38,8 @@ class pageController extends Controller
     {
         return view('user.page.abouts');
     }
+    public function getdetailspro()
+    {
+        return view('user.page.detailproduct');
+    }
 }
