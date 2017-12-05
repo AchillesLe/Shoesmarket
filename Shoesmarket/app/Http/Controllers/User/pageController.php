@@ -30,13 +30,12 @@ class pageController extends Controller
         }
     	return view('user.page.home',['listnew'=>$listnew,'total'=>$counter]);
     }
-    public function getProductType()
+    public function getContacts()
     {
-        $pro = 
-    	return view('user.page.product_type');
+        return view('user.page.contacts');
     }
-    public function DetailProduct($name)
+     public function getAbouts()
     {
-    	return view('user.page.detailproduct');
+        return view('user.page.abouts');
     }
 }

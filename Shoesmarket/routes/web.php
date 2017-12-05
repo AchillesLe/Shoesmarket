@@ -21,6 +21,10 @@
 	Route::get('/home','User\pageController@getIndex')->name('home');
 	Route::get('/productType','User\pageController@getProductType');
 	Route::get('/detailproduct/{name}','User\pageController@DetailProduct');
+	Route::get('/productType','User\pageController@getProductType');//loại sản phẩm
+	Route::get('/detailproduct','User\pageController@getDetailProduct');//chi tiết sản phẩm
+	Route::get('/contacts','User\pageController@getContacts');
+	Route::get('/abouts','User\pageController@getAbouts');
 
 //bao-29/11/2017 -- phần login
 	Route::get('login','User\LoginController@getlogin')->name('login');
