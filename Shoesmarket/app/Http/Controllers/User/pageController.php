@@ -4,19 +4,39 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\news;
 
 class pageController extends Controller
 {
     public function getIndex()
     {
-    	return view('user.page.home');
+        $listnews = news::all();
+        $counter =  count($listnews);
+        $n = CEIL($counter/4);
+        $listnew =  array();
+        $j=0;
+        for($i = 0 ;$i < $counter ; $i++)
+        {
+            for($x=0;$x<6;$x++)
+            {
+                if($i<$counter)
+                {
+                    $listnew[$j][$x] = $listnews[$i];
+                }
+                $i++;
+            }
+            $i--;
+            $j++;  
+        }
+    	return view('user.page.home',['listnew'=>$listnew,'total'=>$counter]);
     }
     public function getProductType()
     {
+        $pro = 
     	return view('user.page.product_type');
     }
-    public function getDetailProduct()
+    public function DetailProduct($name)
     {
-    	return view('user.page.product');
+    	return view('user.page.detailproduct');
     }
 }

@@ -20,20 +20,19 @@
 
 	Route::get('/home','User\pageController@getIndex')->name('home');
 	Route::get('/productType','User\pageController@getProductType');
-	Route::get('/detailproduct','User\pageController@getDetailProduct');
+	Route::get('/detailproduct/{name}','User\pageController@DetailProduct');
 
-//bao-29/11/2017
+//bao-29/11/2017 -- phần login
 	Route::get('login','User\LoginController@getlogin')->name('login');
 	Route::post('login','User\LoginController@postlogin');
 	Route::get('logout','User\LoginController@logout');
 	Route::get('register','User\LoginController@register')->name('register');
 	Route::post('register','User\LoginController@postregister');
-
 	Route::get('password/reset','User\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 	Route::post('password/email','User\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-
 	Route::post('password/reset', 'User\ResetPasswordController@reset');
 	Route::get('password/reset/{token}', 'User\ResetPasswordController@showResetForm')->name('password.reset');
+//bao-  phần tin tức.
 	
 
 // Phần của Khang -- Seller ( Tạo nhóm Route)
