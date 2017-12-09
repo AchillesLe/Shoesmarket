@@ -27,7 +27,7 @@
           {{csrf_field()}}
           <div class="form-group">
             <label for="email">Email</label>
-            <input class="form-control" name="email" id="email" type="text" placeholder="Nhập email">
+            <input class="form-control" name="email" id="email" type="email" placeholder="Nhập email">
           </div>
           <div class="form-group">
             <label for="password">Password</label>

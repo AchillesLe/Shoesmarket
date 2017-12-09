@@ -22,13 +22,28 @@ table.mailtemplatetable thead tr th.action{
 /*.formaddemployee div.form-inline label text{
 	margin-left: 5px;
 }*/
+
 .infoEmploy div{
 	margin-top: 20px;
+}
+.infoEmploy div label{
+	text-align: left;
+	display: block;
 }
 .infonews{
 	margin:20px;
 }
-.infonews div{
+.infonews .image {
+	float: left;
+}
+.infonews .sub_content_info {
+	float: left;
+}
+.infonews .sub_content_info label{
+	text-align: left;
+	display: block;
+}
+.infonews .sub_content_info div{
 	margin-top: 15px;
 }
 .infonews div label  {

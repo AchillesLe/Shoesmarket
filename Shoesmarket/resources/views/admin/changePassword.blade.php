@@ -37,8 +37,8 @@
         <form action="{{url('admin/changepass')}}" method="POST">
           {{csrf_field()}}
           <div class="form-group">
-            <label for="username">Tên tài khoản</label>
-            <input class="form-control" name="username" id="username" type="text" placeholder="Nhập username">
+            <label for="email">Địa chỉ Email</label>
+            <input class="form-control" name="email" id="email" type="email" placeholder="Nhập email">
           </div>
           <div class="form-group">
             <label for="oldpassword">Mật khẩu cũ</label>
@@ -51,13 +51,12 @@
           <div class="form-group">
             <label for="comfirmpass">xác nhận mật khẩu mới</label>
             <input class="form-control" id="comfirmpass" name="comfirmpass" type="password" placeholder="Xác nhận password mới">
-            <span hidden class="text-danger">Mật khẩu xác nhận không đúng</span>
           </div>
 
           <button type="submit" class="btn btn-outline-primary btn-block" id="change" name="change" hidden>Thay đổi</button>
         </form>
         <hr>
-        <a  href="{{url('admin/login')}}"   name="change">Trở lại đăng nhập</a>
+        <a  href="{{url('admin/login')}}"   name="change">Trở lại </a>
       </div>
     </div>
   </div>

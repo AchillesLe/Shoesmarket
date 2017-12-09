@@ -26,6 +26,17 @@
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
   @include('admin.layout.menu')
+                      @if(count($errors)>0)
+                    <div class="alert alert-danger" id="noti">
+                        @foreach($errors->all() as $err)
+                           {{$err}}<br>
+                        @endforeach
+                    </div>
+                    @endif
+
+                   {{--  @if(session('thongbao'))
+                        <div  class="alert alert-success" id="noti" style="margin-top: 5px;">{{session('thongbao')}}</div>
+                    @endif --}}
   <div class="content-wrapper">
     <div class="container-fluid">
      	 @yield('content')
@@ -43,6 +54,7 @@
       <i class="fa fa-angle-up"></i>
     </a>
     <!-- Logout Modal-->
+
     <div class="modal fade" id="infoemployee" tabindex="-1" role="dialog" >
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -53,32 +65,31 @@
             </button>
           </div>
           <div class="modal-body infoEmploy" >
-            <form action="{{url('admin')}}" method="POST">
+            <form action="{{url('admin/employee/update')}}" method="POST">
               {{csrf_field()}}
             <div class=" form-inline" hidden >
-              <label for="name" class="col-md-3"><b>Ảnh</b></label>
-              <input class="form-control col-md-8" name="username" type="text">
+              <input class="form-control col-md-8" name="id" hidden value="{{Auth::user()->id}}">
             </div>
             <div class=" form-inline" >
-              <label for="name" class="col-md-3"><b>Tên</b></label>
-              <input class="form-control col-md-8" name="username" type="text" value="Achilles">
+              <label for="name" class="col-md-3"><b >Tên</b></label>
+              <input class="form-control col-md-8" name="name" type="text" readonly value="{{Auth::user()->name}}">
             </div>
             <div class=" form-inline" >
               <label for="name" class="col-md-3"><b>Email</b></label>
-              <input class="form-control col-md-8" name="username" type="text">
+              <input class="form-control col-md-8" name="email" type="email" readonly value="{{Auth::user()->email}}">
             </div>
             <div class=" form-inline" >
               <label for="name" class="col-md-3"><b>Địa chỉ</b></label>
-              <input class="form-control col-md-8" name="username" type="text">
+              <input class="form-control col-md-8" name="address" type="text" value="{{Auth::user()->address}}">
             </div>
             <div class=" form-inline" >
               <label for="name" class="col-md-3"><b>Số điện thoại</b></label>
-              <input class="form-control col-md-8" name="username" type="text">
+              <input class="form-control col-md-8" name="phone" type="text" value="{{Auth::user()->phone}}">
             </div>
           </div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">đóng</button>
-            <a class="btn btn-primary">Lưu</a>
+            <button class="btn btn-primary" type="submit" name="edit">Lưu</button>
           </div>
           </form>
         </div>

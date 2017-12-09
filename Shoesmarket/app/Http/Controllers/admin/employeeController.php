@@ -26,26 +26,62 @@ class employeeController extends Controller
     }
 	public function update(Request $request)
     {
-        $this->validate($request,
-            [
-                'username'=>'required|min:3|max:50'
-            ],
-            [
-                'username.required'=>'Username không được bỏ trống.',
-                'username.min'=>'Username phải dài hơn 3  .' ,
-                'username.max'=>'Username phải ít hơn 50 kí tự .',
-            ]);
+        
         if($request->has('edit'))
         {
-            employees::where('id',$request->id)->update(['username'=>$request->name,'description'=>$request->des,'idtype'=>$request->type]);
+            $this->validate($request,
+            [
+                'name'=>'required|min:6|max:20',
+                'email'=>'required|min:8|max:50',
+                'phone'=>'required|min:10|max:11',
+                'address'=>'required|min:10|max:70',
 
-            return redirect('admin/employee/create')->with('thongbao','Sửa thành công');      
+            ],
+            [
+                'name.required'=>'Tên không được bỏ trống.',
+                'name.min'=>'Tên phải dài từ 8->50 kí tự  .' ,
+                'name.max'=>'Tên phải dài từ 8->50 kí tự  .',
+                'email.required'=>'Địa chỉ email không được bỏ trống.',
+                'email.min'=>'Địa chỉ email phải dài từ 3->50 kí tự  .' ,
+                'email.max'=>'Địa chỉ email phải dài từ 3->50 kí tự  .',
+                'phone.required'=>'Số điện thoại không được bỏ trống.',
+                'phone.min'=>'Số điện thoại phải dài từ 10->11 kí tự  .' ,
+                'phone.max'=>'Số điện thoại phải dài từ 10->11 kí tự  .',
+                'address.required'=>'Địa chỉ không được bỏ trống.',
+                'address.min'=>'Địa chỉ  phải dài từ 10->70 kí tự  .' ,
+                'address.max'=>'Địa chỉ  phải dài từ 10->70 kí tự  .',
+            ]);
+            employees::where('id',$request->id)->update(['phone'=>$request->phone,'address'=>$request->address]);
+              
         }
-        else
+        else if($request->has('add'))
         {
+            $this->validate($request,
+            [
+                'name'=>'required|min:6|max:20',
+                'pass'=>'min:8|max:50',
+                'email'=>'required|min:8|max:50',
+                'phone'=>'required|min:10|max:11',
+                'address'=>'required|min:10|max:70',
+
+            ],
+            [
+                'name.required'=>'Tên không được bỏ trống.',
+                'name.min'=>'Tên phải dài từ 8->50 kí tự  .' ,
+                'name.max'=>'Tên phải dài từ 8->50 kí tự  .',
+                'pass.min'=>'Mật khẩu phải dài từ 3->50 kí tự  .' ,
+                'pass.max'=>'Mật khẩu  phải dài từ 3->50 kí tự  .',
+                'email.required'=>'Địa chỉ email không được bỏ trống.',
+                'email.min'=>'Địa chỉ email phải dài từ 3->50 kí tự  .' ,
+                'email.max'=>'Địa chỉ email phải dài từ 3->50 kí tự  .',
+                'phone.required'=>'Số điện thoại không được bỏ trống.',
+                'phone.min'=>'Số điện thoại phải dài từ 10->11 kí tự  .' ,
+                'phone.max'=>'Số điện thoại phải dài từ 10->11 kí tự  .',
+                'address.required'=>'Địa chỉ không được bỏ trống.',
+                'address.min'=>'Địa chỉ  phải dài từ 10->70 kí tự  .' ,
+                'address.max'=>'Địa chỉ  phải dài từ 10->70 kí tự  .',
+            ]);
             $employee = new employees;
-            if($request->has('username'))
-            	$employee->username = $request->username;
             if($request->has('pass'))
             	$employee->password = Hash::make($request->pass);
             if($request->has('name'))
@@ -60,6 +96,7 @@ class employeeController extends Controller
             $employee->save();
             return redirect('admin/employee/create')->with('thongbao','Thêm thành công');
         }
+        return redirect()->back();   
 	}
 	public function create()
 	{

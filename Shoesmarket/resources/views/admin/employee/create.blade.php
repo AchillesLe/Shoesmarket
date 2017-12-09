@@ -5,7 +5,7 @@
           <i class="fa fa-address-card-o"></i>Thông tin nhân viên
       	</div>
         <div class="card-body">
-        	@if(count($errors)>0)
+        	          @if(count($errors)>0)
                         <div class="alert alert-danger" id="noti">
                             @foreach($errors->all() as $err)
                                {{$err}}<br>

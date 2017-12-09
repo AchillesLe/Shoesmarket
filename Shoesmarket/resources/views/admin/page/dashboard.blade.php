@@ -140,7 +140,7 @@
             <thead class="thead-">
               <tr>
                 <th>#</th>
-                <th>Sản phẩm</th>
+                <th style="word-wrap:break-word ">Sản phẩm</th>
                 <th>Hình ảnh</th>
                 <th>Giá</th>
                 <th>Trạng thái</th>
@@ -149,11 +149,12 @@
               </tr>
             </thead>
             <tbody>
+              @php($id = 1)
               @foreach($list as $new)
                     <tr>
-                      <td>{{$new->id}}</td>
-                      <td>{{$new->product->name}}</td>
-                      <td><img src="{{asset('sourceAdmin/admin-upload/$new->product->image')}}" width="200px" height="150px" alt="đây là ảnh"></td>
+                      <td>{{$id++}}</td>
+                      <td >{{$new->product->name}}</td>
+                      <td><img src="{{asset('source/Upload').'/'.$new->product->image}}" width="130px" height="150px" alt="đây là ảnh"></td>
                       <td>{{$new->product->price}} VNĐ</td>
                       <td>@if($new->status=="0")Đang hiển thị @else Đang ẩn @endif</td>
                       <td>{{$new->created_at}}</td>

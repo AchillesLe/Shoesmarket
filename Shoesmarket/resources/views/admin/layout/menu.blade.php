@@ -68,9 +68,9 @@
 	        <li>
 	          <a href="{{url('admin/type/list')}}">Thể loại giày</a>
 	        </li>
-	        <li>
+{{-- 	        <li>
 	          <a href="{{url('admin/producttype/list')}}">Loại giày</a>
-	        </li>
+	        </li> --}}
 	         <li>
 	          <a href="{{url('admin/package/list')}}">Gói tin</a>
 	        </li>
