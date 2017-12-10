@@ -10,48 +10,41 @@ namespace App\Models;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class Rating
+ * Class Shipfeeseller
  * 
  * @property int $id
  * @property int $idseller
- * @property int $onestar
- * @property int $twostar
- * @property int $threestar
- * @property int $fourstar
- * @property int $fivestar
- * @property float $average
- * @property int $total
+ * @property int $idCounty
+ * @property float $shipfee
  * 
+ * @property \App\Models\County $county
  * @property \App\Models\Seller $seller
  *
  * @package App\Models
  */
-class Rating extends Eloquent
+class Shipfeeseller extends Eloquent
 {
-	protected $table = 'rating';
+	protected $table = 'shipfeeseller';
+	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
+		'id' => 'int',
 		'idseller' => 'int',
-		'onestar' => 'int',
-		'twostar' => 'int',
-		'threestar' => 'int',
-		'fourstar' => 'int',
-		'fivestar' => 'int',
-		'average' => 'float',
-		'total' => 'int'
+		'idCounty' => 'int',
+		'shipfee' => 'float'
 	];
 
 	protected $fillable = [
 		'idseller',
-		'onestar',
-		'twostar',
-		'threestar',
-		'fourstar',
-		'fivestar',
-		'average',
-		'total'
+		'idCounty',
+		'shipfee'
 	];
+
+	public function county()
+	{
+		return $this->belongsTo(\App\Models\County::class, 'idCounty');
+	}
 
 	public function seller()
 	{
