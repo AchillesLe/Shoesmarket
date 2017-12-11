@@ -4,17 +4,45 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ * @property int $idbill_seller
+ * @property int $idproduct
+ * @property float $cost
+ * @property int $quantity
+ * @property float $total
+ * @property int $status
+ * @property int $israting
+ * @property BillSeller $billSeller
+ * @property Product $product
+ */
 class detail_bill extends Model
 {
-    //
-    protected $table = "detail_bill";
+    /**
+     * The table associated with the model.
+     * 
+     * @var string
+     */
+    protected $table = 'detail_bill';
 
-    public function bill()
+    /**
+     * @var array
+     */
+    protected $fillable = ['idbill_seller', 'idproduct', 'cost', 'quantity', 'total', 'status', 'israting'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function billSeller()
     {
-    	return $this->belongsTo('App\bill','idbill','idbill');
+        return $this->belongsTo('App\BillSeller', 'idbill_seller');
     }
-	public function product()
-	{
-		return $this->hasOne('App\product','idproduct','idproduct');
-	}
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function product()
+    {
+        return $this->belongsTo('App\Product', 'idproduct');
+    }
 }

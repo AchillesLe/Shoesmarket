@@ -1,4 +1,4 @@
-@extends('admin.master')
+@extends('Seller.master')
 @section('content')
 <ol class="breadcrumb">
         <li class="breadcrumb-item">

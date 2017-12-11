@@ -77,6 +77,12 @@
 	  </div>
 	</li>
 	<li class="nav-item">
+		<a class="nav-link" href="#">
+	    <i class="fa fa-shopping-cart" style="font-size:24px; color:white" ></i>
+	      <span class="badge badge-light">6</span>
+	  	</a>
+	</li>
+	<li class="nav-item">
 	  <form class="form-inline my-2 my-lg-0 mr-lg-2">
 	    <div class="input-group">
 	      <input class="form-control" type="text" placeholder="Search for...">

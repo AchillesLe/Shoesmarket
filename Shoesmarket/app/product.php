@@ -4,32 +4,76 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ * @property int $idseller
+ * @property int $idtype
+ * @property string $name
+ * @property int $quantity
+ * @property float $price
+ * @property int $size
+ * @property string $sex
+ * @property string $image
+ * @property int $status
+ * @property string $created_at
+ * @property string $updated_at
+ * @property Type $type
+ * @property Seller $seller
+ * @property DetailBill[] $detailBills
+ * @property News[] $news
+ * @property Productcolor[] $productcolors
+ */
 class product extends Model
 {
-   protected $table = "product";
-    public function detail_bill()
+    /**
+     * The table associated with the model.
+     * 
+     * @var string
+     */
+    protected $table = 'product';
+
+    /**
+     * @var array
+     */
+    protected $fillable = ['idseller', 'idtype', 'name', 'quantity', 'price', 'size', 'sex', 'image', 'status', 'created_at', 'updated_at'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function type()
     {
-    	return $this->hasMany('App\detail_bill','idproduct','idproduct');
-    }
-	public function detail_cart()
-    {
-    	return $this->hasMany('App\detail_cart','idproduct','idproduct');
-    }
-	public function supplier()
-	{
-		return $this->belongsTo('App\supllier','idsupplier','idsupplier');
-	}
-	public function discount()
-    {
-    	return $this->belongsTo('App\discount','iddiscount','id');
-    }
-    public function guarantee()
-    {
-    	return $this->belongsTo('App\guarantee','idguarantee','id');
-    }
-    public function producttype()
-    {
-        return $this->belongsTo('App\producttype','idprotype','id');
+        return $this->belongsTo('App\Type', 'idtype');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function seller()
+    {
+        return $this->belongsTo('App\Seller', 'idseller');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function detailBills()
+    {
+        return $this->hasMany('App\DetailBill', 'idproduct');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function news()
+    {
+        return $this->hasMany('App\News', 'idproduct');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function productcolors()
+    {
+        return $this->hasMany('App\Productcolor', 'idproduct');
+    }
 }
