@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * @property int $id
@@ -16,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $updated_at
  * @property Bill[] $bills
  */
-class User extends Eloquent
+class User extends Authenticatable
 {
     /**
      * The table associated with the model.
