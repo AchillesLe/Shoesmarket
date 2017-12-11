@@ -8,9 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <title>SB Admin - Start Bootstrap Template</title>
-
   <!-- Bootstrap core CSS-->
-  <base href="{{asset('')}}">
   <link href="sourceAdmin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
   <link href="sourceAdmin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -18,16 +16,12 @@
   <link href="sourceAdmin/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="sourceAdmin/css/sb-admin.css" rel="stylesheet">
-  <link href="sourceAdmin/css/custom-admin.css" rel="stylesheet">
   <script src="sourceAdmin/vendor/jquery/jquery.min.js"></script>
-  <script type="text/javascript" src="sourceAdmin/ckeditor/ckeditor.js"></script>
-  <script type="text/javascript" src="js/myscript.js"></script>
-
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
-  @include('Seller.layout.menu')
+  @include('admin.layout.menu')
   <div class="content-wrapper">
     <div class="container-fluid">
      	 @yield('content')

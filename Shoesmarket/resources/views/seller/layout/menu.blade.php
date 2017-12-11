@@ -8,7 +8,7 @@
 	    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
 	      <a class="nav-link" href="index.html">
 	        <i class="fa fa-fw fa-dashboard"></i>
-	        <span class="{{url('sellercenter/dashboard')}}">Dashboard</span>
+	        <span class="nav-link-text">Dashboard</span>
 	      </a>
 	    </li>
 	    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
@@ -18,42 +18,39 @@
 	      </a>
 	    </li>
 	    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-	      <a class="nav-link" href="{!! route('getFeeshipConfig') !!}">
+	      <a class="nav-link" href="tables.html">
 	        <i class="fa fa-fw fa-table"></i>
-	        <span class="nav-link-text">Cài đặt phí giao hàng</span>
+	        <span class="nav-link-text">Tables</span>
 	      </a>
 	    </li>
 	    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
 	      <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
 	        <i class="fa fa-fw fa-wrench"></i>
-	        <span class="nav-link-text">Gói tin</span>
+	        <span class="nav-link-text">Components</span>
 	      </a>
 	      <ul class="sidenav-second-level collapse" id="collapseComponents">
 	        <li>
-	          <a href="{!! route('getBuyPackage') !!}">Mua gói tin</a>
+	          <a href="navbar.html">Navbar</a>
 	        </li>
 	        <li>
-	          <a href="{!! route('getAddNews') !!}">Đăng tin</a>
-	        </li>
-	        <li>
-	          <a href="{!! route('getListOrderNews') !!}">Lịch sử giao dịch</a>
+	          <a href="cards.html">Cards</a>
 	        </li>
 	      </ul>
 	    </li>
 	    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
 	      <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
 	        <i class="fa fa-fw fa-file"></i>
-	        <span class="nav-link-text">Quản lý sản phẩm</span>
+	        <span class="nav-link-text">Example Pages</span>
 	      </a>
 	      <ul class="sidenav-second-level collapse" id="collapseExamplePages">
 	        <li>
-	          <a href="">Danh sách sản phẩm</a>
+	          <a href="login.html">Login Page</a>
 	        </li>
 	        <li>
-	          <a href="{!! route('getListProduct') !!}">Bảng sản phẩm</a>
+	          <a href="register.html">Registration Page</a>
 	        </li>
 	        <li>
-	          <a href="{!! route('getEditNews') !!}">Sửa sản phẩm</a>
+	          <a href="forgot-password.html">Forgot Password Page</a>
 	        </li>
 	        <li>
 	          <a href="blank.html">Blank Page</a>
@@ -63,14 +60,14 @@
 	    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
 	      <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
 	        <i class="fa fa-fw fa-sitemap"></i>
-	        <span class="nav-link-text">Đơn hàng</span>
+	        <span class="nav-link-text">Menu Levels</span>
 	      </a>
 	      <ul class="sidenav-second-level collapse" id="collapseMulti">
 	        <li>
-	          <a href="{!! route('getListOrder') !!}">Quản lý đơn hàng</a>
+	          <a href="#">Second Level Item</a>
 	        </li>
 	        <li>
-	          <a href="#">Thống kê</a>
+	          <a href="#">Second Level Item</a>
 	        </li>
 	        <li>
 	          <a href="#">Second Level Item</a>
@@ -107,7 +104,7 @@
 	    </li>
 	  </ul>
 
-	  @include('Seller.layout.header')
+	  @include('admin.layout.header')
 
 	</div>
 </nav>
