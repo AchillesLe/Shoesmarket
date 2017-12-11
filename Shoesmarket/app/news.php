@@ -4,12 +4,28 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ * @property int $idproduct
+ * @property string $name_meta
+ * @property string $note
+ * @property int $status
+ * @property string $created_at
+ * @property string $updated_at
+ * @property Product $product
+ */
 class news extends Model
 {
-    protected $table = "news";
-	public function product()
+    /**
+     * @var array
+     */
+    protected $fillable = ['idproduct', 'name_meta', 'note', 'status', 'created_at', 'updated_at'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function product()
     {
-    	return $this->hasOne('App\product','id','idproduct');
+        return $this->belongsTo('App\Product', 'idproduct');
     }
-    
 }

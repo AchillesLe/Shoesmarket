@@ -4,14 +4,38 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ * @property int $idseller
+ * @property int $idemployee
+ * @property string $namepackage
+ * @property int $newquantity
+ * @property float $money
+ * @property string $created_at
+ * @property string $updated_at
+ * @property Employee $employee
+ * @property Seller $seller
+ */
 class receipts extends Model
 {
+    /**
+     * @var array
+     */
+    protected $fillable = ['idseller', 'idemployee', 'namepackage', 'newquantity', 'money', 'created_at', 'updated_at'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function employee()
     {
-    	return $this->hasOne('App\employees','id','idemployee');
+        return $this->belongsTo('App\Employee', 'idemployee');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function seller()
     {
-    	return $this->hasOne('App\seller','id','idseller');
+        return $this->belongsTo('App\Seller', 'idseller');
     }
 }

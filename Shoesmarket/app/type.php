@@ -4,16 +4,33 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property int $isdelete
+ * @property string $namemeta
+ * @property string $description
+ * @property Product[] $products
+ */
 class type extends Model
 {
-    protected $table = "type";
-    public $timestamps = false;
-    public function producttype()
+    /**
+     * The table associated with the model.
+     * 
+     * @var string
+     */
+    protected $table = 'type';
+
+    /**
+     * @var array
+     */
+    protected $fillable = ['name', 'isdelete', 'namemeta', 'description'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function products()
     {
-    	return $this->hasMany('App\producttype','idtype','id');
-    }
-    public function product()
-    {
-    	return $this->hasManyThrough('App\product','App\producttype','idtype','idprotype','id');
+        return $this->hasMany('App\Product', 'idtype');
     }
 }

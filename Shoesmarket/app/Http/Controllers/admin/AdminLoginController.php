@@ -40,7 +40,7 @@ class AdminLoginController extends Controller
             'email'=>'required|email',
             'password'=>'required|min:6|max:32'
         ]);
-        if(Auth::guard('admin')->attempt(['email'=>$request->email,'password'=>$request->password],null))
+        if(Auth::guard('admin')->attempt(['email'=>$request->email,'password'=>$request->password]))
         {
            
             return redirect()->route('admin.dashboard');

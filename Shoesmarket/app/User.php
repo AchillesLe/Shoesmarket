@@ -2,34 +2,39 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class user extends Authenticatable
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $phone
+ * @property int $isblock
+ * @property string $email
+ * @property string $password
+ * @property string $remember_token
+ * @property string $created_at
+ * @property string $updated_at
+ * @property Bill[] $bills
+ */
+class User extends Eloquent
 {
-    use Notifiable;
+    /**
+     * The table associated with the model.
+     * 
+     * @var string
+     */
+    protected $table = 'user';
 
+    /**
+     * @var array
+     */
+    protected $fillable = ['name', 'phone', 'isblock', 'email', 'password', 'remember_token', 'created_at', 'updated_at'];
 
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
-
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-
-    protected $table = "user";
-    
-    public function bill()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function bills()
     {
-        return $this->hasMany('App\bill','iduser','iduser');
-    }
-    public function cart()
-    {
-        return $this->hasMany('App\cart','iduser','iduser');
-    }
-    public function comment()
-    {
-        return $this->hasMany('App\product','iduser','iduser');
+        return $this->hasMany('App\Bill', 'iduser');
     }
 }

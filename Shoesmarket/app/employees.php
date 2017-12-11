@@ -2,32 +2,55 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-class employees extends Authenticatable
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User ;
+
+/**
+ * @property int $id
+ * @property int $idrole
+ * @property string $username
+ * @property string $phone
+ * @property string $address
+ * @property string $image
+ * @property int $status
+ * @property string $name
+ * @property string $email
+ * @property string $password
+ * @property string $remember_token
+ * @property string $created_at
+ * @property string $updated_at
+ * @property Role $role
+ * @property Penalize[] $penalizes
+ * @property Receipt[] $receipts
+ */
+class employees extends Model
 {
-	use Notifiable;
-
-    protected $table ='employees';
-    protected $guard ='admin';
-
-    protected $fillable = [
-        'name', 'email', 'password','username'
-    ];
-
     /**
-     * The attributes that should be hidden for arrays.
-     *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    protected $fillable = ['idrole', 'username', 'phone', 'address', 'image', 'status', 'name', 'email', 'password', 'remember_token', 'created_at', 'updated_at'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function role()
     {
-    	return $this->belongsTo('App\role','idrole','id');
+        return $this->belongsTo('App\Role', 'idrole');
     }
-    
-    
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function penalizes()
+    {
+        return $this->hasMany('App\Penalize', 'idemployee');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function receipts()
+    {
+        return $this->hasMany('App\Receipt', 'idemployee');
+    }
 }
