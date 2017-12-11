@@ -3,11 +3,11 @@
 	<div class="inner-header">
 		<div class="container">
 			<div class="pull-left">
-				<h6 class="inner-title">Sản phẩm</h6>
+				<h6 class="inner-title">Sản phẩm{{$sanpham->name}}</h6>
 			</div>
 			<div class="pull-right">
 				<div class="beta-breadcrumb font-large">
-					<a href="{{url('/home')}}">Trang chủ</a> / <span>Sản phẩm</span>
+					<a href="{{url('/home')}}">Trang chủ</a> / <span>Thông tin sản phẩm</span>
 				</div>
 			</div>
 			<div class="clearfix"></div>
@@ -21,13 +21,13 @@
 
 					<div class="row">
 						<div class="col-sm-4">
-							<img src="source/assets/dest/images/products/6.jpg" alt="">
+							<img src="source/Upload/{{$sanpham->image}}" alt="">
 						</div>
 						<div class="col-sm-8">
 							<div class="single-item-body">
-								<p class="single-item-title">Sample Woman Top</p>
+								<p class="single-item-title">{{$sanpham->image}}</p>
 								<p class="single-item-price">
-									<span>$34.55</span>
+									@if($new->)
 								</p>
 							</div>
 

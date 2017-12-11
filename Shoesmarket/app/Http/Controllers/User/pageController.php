@@ -38,8 +38,9 @@ class pageController extends Controller
     {
         return view('user.page.abouts');
     }
-    public function getdetailspro()
+    public function getdetailspro(Request $req;)
     {
-        return view('user.page.detailproduct');
+        $sanpham=product::where('id',$req->id)->first();
+        return view('user.page.detailproduct',compact('sanpham'));
     }
 }
