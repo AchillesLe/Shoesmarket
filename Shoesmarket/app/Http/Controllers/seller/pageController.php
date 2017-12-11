@@ -11,4 +11,8 @@ class pageController extends Controller
     {
     	return view('seller.page.dashboard');
     }
+    public function getListProductPage()
+    {
+    	return view('seller.page.listproduct');
+    }
 }
