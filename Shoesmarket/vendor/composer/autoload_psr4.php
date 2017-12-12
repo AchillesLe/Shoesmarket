@@ -36,6 +36,7 @@ return array(
     'Krlove\\EloquentModelGenerator\\' => array($vendorDir . '/krlove/eloquent-model-generator/src'),
     'Krlove\\CodeGenerator\\' => array($vendorDir . '/krlove/code-generator/src'),
     'Illuminate\\' => array($vendorDir . '/laravel/framework/src/Illuminate'),
+    'Gloudemans\\Shoppingcart\\' => array($vendorDir . '/gloudemans/shoppingcart/src'),
     'Fideloper\\Proxy\\' => array($vendorDir . '/fideloper/proxy/src'),
     'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),
     'Egulias\\EmailValidator\\' => array($vendorDir . '/egulias/email-validator/EmailValidator'),
