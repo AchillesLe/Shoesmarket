@@ -22,7 +22,7 @@ class Penalize extends Model
      * 
      * @var string
      */
-    protected $table = 'penalize';
+    protected $table = 'penalizes';
 
     /**
      * @var array

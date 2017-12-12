@@ -18,7 +18,7 @@ ounty extends Model
      * 
      * @var string
      */
-    protected $table = 'county';
+    protected $table = 'countys';
 
     /**
      * @var array

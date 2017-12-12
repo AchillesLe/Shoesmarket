@@ -22,7 +22,7 @@ class Bill_seller extends Model
      * 
      * @var string
      */
-    protected $table = 'bill_seller';
+    protected $table = 'bill_sellers';
 
     /**
      * @var array

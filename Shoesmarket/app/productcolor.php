@@ -19,7 +19,7 @@ class Productcolor extends Model
      * 
      * @var string
      */
-    protected $table = 'productcolor';
+    protected $table = 'productcolors';
 
     /**
      * @var array

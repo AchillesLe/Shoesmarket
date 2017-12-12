@@ -23,7 +23,7 @@ class Detail_bill extends Model
      * 
      * @var string
      */
-    protected $table = 'detail_bill';
+    protected $table = 'detail_bills';
 
     /**
      * @var array
