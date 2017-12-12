@@ -40,15 +40,15 @@
 	
 
 // Phần của Khang -- Seller ( Tạo nhóm Route)
-	Route::group(['prefix'=>'sellercenter'],function(){
-
-		Route::get('login', ['as' => 'seller.login', 'uses' => 'seller\SellerAuthController@getLogin']);
-		Route::post('/login', ['as' => 'seller.login.post', 'uses' => 'seller\SellerAuthController@postLogin']);
+		Route::get('sellercenter/login', ['as' => 'seller.login', 'uses' => 'seller\SellerLoginController@getLogin']);
+		Route::post('sellercenter/login', ['as' => 'seller.login.post', 'uses' => 'seller\SellerLoginController@postLogin']);
+	Route::group(['prefix'=>'sellercenter','middleware'=>'auth:seller'],function(){
 		Route::get('/register', ['as' => 'seller.register', 'uses' => 'seller\SellerAuthController@getRegister']);
 		Route::post('/register', ['as' => 'seller.register.post', 'uses' => 'seller\SellerAuthController@postRegister']);
+		Route::get('/logout', ['as' => 'seller.logout', 'uses' => 'seller\SellerLoginController@logout']);
 
 		Route::get('/','seller\pageController@getDashboard');
-		Route::get('/dashboard','seller\pageController@getDashboard')->name('dashboard');
+		Route::get('/dashboard','seller\pageController@getDashboard')->name('seller.dashboard');
 		Route::get('feeship-config',['as' => 'getFeeshipConfig', 'uses' => 'seller\FeeshipController@getFeeshipConfig']);
 
 		Route::group(['prefix'=>'products'],function(){

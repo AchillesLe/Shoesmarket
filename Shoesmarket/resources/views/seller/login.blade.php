@@ -24,12 +24,12 @@
         <form action="{!! route('postLogin') !!}" method="POST">
           {{csrf_field()}}
           <div class="form-group">
-            <label for="username">UserName</label>
-            <input class="form-control" name="username" id="username" type="text" placeholder="Nhập username">
+            <label for="email">Email</label>
+            <input class="form-control" name="email" id="email" type="text" placeholder="Nhập Email">
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input class="form-control" id="password" type="password" placeholder="Password">
+            <input class="form-control" name="password"  id="password" type="password" placeholder="Nhập Password">
           </div>
           <div class="form-group">
             <div class="form-check">

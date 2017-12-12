@@ -11,15 +11,15 @@
                     <form class="form-horizontal" method="POST" action="{{ route('seller.login.post') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                            <label for="usrename" class="col-md-4 control-label">Username</label>
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">Email</label>
 
                             <div class="col-md-6">
-                                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
+                                <input id="Email" type="Email" class="form-control" name="email" value="{{ old('Email') }}" required autofocus>
 
-                                @if ($errors->has('username'))
+                                @if ($errors->has('Email'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('username') }}</strong>
+                                        <strong>{{ $errors->first('Email') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -39,7 +39,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+{{--                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
                                     <label>
@@ -47,7 +47,7 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
