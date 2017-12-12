@@ -80,7 +80,7 @@ return [
         ],
         'admins' => [
             'driver' => 'eloquent',
-            'model' => App\employees::class,
+            'model' => App\Employees::class,
         ],
 
         // 'users' => [
@@ -107,12 +107,12 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
-            'table' => 'password_resets',
+            'table' => 'Password_resets',
             'expire' => 60,
         ],
         'admins' => [
             'provider' => 'admins',
-            'table' => 'admin_password_resets',
+            'table' => 'Admin_password_resets',
             'expire' => 60,
         ],
     ],
