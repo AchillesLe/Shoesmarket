@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $content
  * @property string $created_at
  */
-class emails extends Model
+class Emails extends Model
 {
     /**
      * @var array

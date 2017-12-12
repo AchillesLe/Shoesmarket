@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property User $user
  * @property BillSeller[] $billSellers
  */
-class bill extends Model
+class Bill extends Model
 {
     /**
      * The table associated with the model.

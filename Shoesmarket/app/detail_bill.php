@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property BillSeller $billSeller
  * @property Product $product
  */
-class detail_bill extends Model
+class Detail_bill extends Model
 {
     /**
      * The table associated with the model.

@@ -29,14 +29,14 @@
                       @if(count($errors)>0)
                     <div class="alert alert-danger" id="noti">
                         @foreach($errors->all() as $err)
-                           {{$err}}<br>
+                           {{ $err }}<br>
                         @endforeach
                     </div>
                     @endif
 
-                   {{--  @if(session('thongbao'))
+                    @if(session('thongbao'))
                         <div  class="alert alert-success" id="noti" style="margin-top: 5px;">{{session('thongbao')}}</div>
-                    @endif --}}
+                    @endif
   <div class="content-wrapper">
     <div class="container-fluid">
      	 @yield('content')

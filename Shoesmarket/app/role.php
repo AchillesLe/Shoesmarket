@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property Employee[] $employees
  */
-class role extends Model
+class Role extends Model
 {
     /**
      * The table associated with the model.

@@ -19,7 +19,6 @@ class billController extends Controller
         $listbillseller = bill_seller::where('idbill',$id)->get();
         $idbillseller = $listbillseller[0]->id;
         $listdetailbill = detail_bill::whereIn('idbill_seller',$listbillseller[0]->id)->get();
-        dd($listbillseller);
         return view('admin.bill.detail',['list'=>$list]);
     }
 }

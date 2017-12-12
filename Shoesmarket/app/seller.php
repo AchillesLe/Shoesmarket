@@ -29,7 +29,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property Receipt[] $receipts
  * @property Shipfeeseller[] $shipfeesellers
  */
-class seller extends Authenticatable
+class Seller extends Authenticatable
 {
     /**
      * The table associated with the model.

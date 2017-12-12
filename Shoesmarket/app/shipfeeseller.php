@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property County $county
  * @property Seller $seller
  */
-class shipfeeseller extends Model
+class Shipfeeseller extends Model
 {
     /**
      * The table associated with the model.

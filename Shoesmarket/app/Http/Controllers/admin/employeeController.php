@@ -31,25 +31,23 @@ class employeeController extends Controller
         {
             $this->validate($request,
             [
-                'name'=>'required|min:6|max:20',
+                'name'=>'required|min:3|max:20',
                 'email'=>'required|min:8|max:50',
                 'phone'=>'required|min:10|max:11',
-                'address'=>'required|min:10|max:70',
+                'address'=>'required|min:5|max:70',
 
             ],
             [
                 'name.required'=>'Tên không được bỏ trống.',
-                'name.min'=>'Tên phải dài từ 8->50 kí tự  .' ,
-                'name.max'=>'Tên phải dài từ 8->50 kí tự  .',
                 'email.required'=>'Địa chỉ email không được bỏ trống.',
-                'email.min'=>'Địa chỉ email phải dài từ 3->50 kí tự  .' ,
-                'email.max'=>'Địa chỉ email phải dài từ 3->50 kí tự  .',
+                'email.min'=>'Địa chỉ email phải dài từ 8->50 kí tự  .' ,
+                'email.max'=>'Địa chỉ email phải dài từ 8->50 kí tự  .',
                 'phone.required'=>'Số điện thoại không được bỏ trống.',
                 'phone.min'=>'Số điện thoại phải dài từ 10->11 kí tự  .' ,
                 'phone.max'=>'Số điện thoại phải dài từ 10->11 kí tự  .',
                 'address.required'=>'Địa chỉ không được bỏ trống.',
-                'address.min'=>'Địa chỉ  phải dài từ 10->70 kí tự  .' ,
-                'address.max'=>'Địa chỉ  phải dài từ 10->70 kí tự  .',
+                'address.min'=>'Địa chỉ  phải dài từ 5->70 kí tự  .' ,
+                'address.max'=>'Địa chỉ  phải dài từ 5->70 kí tự  .',
             ]);
             employees::where('id',$request->id)->update(['phone'=>$request->phone,'address'=>$request->address]);
               

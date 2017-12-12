@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $description
  * @property Product[] $products
  */
-class type extends Model
+class Type extends Model
 {
     /**
      * The table associated with the model.

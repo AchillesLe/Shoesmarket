@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property News[] $news
  * @property Productcolor[] $productcolors
  */
-class product extends Model
+class Product extends Model
 {
     /**
      * The table associated with the model.
