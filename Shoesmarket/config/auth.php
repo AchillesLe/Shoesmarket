@@ -75,7 +75,7 @@ return [
         ],
         'seller' => [
             'driver' => 'eloquent',
-            'model' => App\seller::class,
+            'model' => App\Seller::class,
         ],
         // 'users' => [
         //     'driver' => 'database',
@@ -101,12 +101,12 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
-            'table' => 'password_resets',
+            'table' => 'Password_resets',
             'expire' => 60,
         ],
         'seller' => [
             'provider' => 'seller',
-            'table' => 'seller_password_resets',
+            'table' => 'Seller_password_resets',
             'expire' => 60,
         ],
     ],
