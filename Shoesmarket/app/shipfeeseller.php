@@ -19,7 +19,7 @@ class Shipfeeseller extends Model
      * 
      * @var string
      */
-    protected $table = 'shipfeeseller';
+    protected $table = 'shipfeesellers';
 
     /**
      * Indicates if the IDs are auto-incrementing.

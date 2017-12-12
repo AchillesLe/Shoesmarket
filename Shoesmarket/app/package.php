@@ -17,7 +17,7 @@ class Package extends Model
      * 
      * @var string
      */
-    protected $table = 'package';
+    protected $table = 'packages';
 
     /**
      * @var array

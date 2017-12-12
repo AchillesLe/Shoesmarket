@@ -30,7 +30,7 @@ class Product extends Model
      * 
      * @var string
      */
-    protected $table = 'product';
+    protected $table = 'products';
 
     /**
      * @var array

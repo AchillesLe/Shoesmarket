@@ -36,7 +36,7 @@ class Seller extends Authenticatable
      * 
      * @var string
      */
-    protected $table = 'seller';
+    protected $table = 'sellers';
 
     /**
      * @var array

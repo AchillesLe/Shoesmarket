@@ -23,7 +23,7 @@ class Rating extends Model
      * 
      * @var string
      */
-    protected $table = 'rating';
+    protected $table = 'ratings';
 
     /**
      * @var array
