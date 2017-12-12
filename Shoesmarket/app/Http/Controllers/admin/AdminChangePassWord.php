@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\facades\Hash;
 use App\Http\Controllers\admin\AdminLoginController as AdminLoginController;
 use Auth;
-use App\employees;
+use App\Employee;
 class 	AdminChangePassWord extends Controller
 {
 
@@ -45,7 +45,7 @@ class 	AdminChangePassWord extends Controller
 
         if($comfirmpass==$newpassword)
         {
-            $employee = employees::where('email',$email)->first();
+            $employee = Employee::where('email',$email)->first();
             if(Hash::check($oldpassword, $employee->password))
             {
                 $employee->update( ['password'=>Hash::make($newpassword)] );

@@ -4,24 +4,24 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\employees;
-use App\role;
+use App\Employee;
+use App\Role;
 use Illuminate\Support\facades\Hash;
 
 class employeeController extends Controller
 {
     public function index()
     {
-    	$list = employees::all();
+    	$list = Employee::all();
     	return view('admin/employee/list',['list'=>$list]);
     }
     public function editStatus($id)
     {
-    	$employee = employees::where('id',$id)->get()->first();
+    	$employee = Employee::where('id',$id)->get()->first();
     	if($employee->status=='1')
-    		employees::where('id',$id)->update(['status'=>'0']);
+    		Employee::where('id',$id)->update(['status'=>'0']);
     	if($employee->status=='0')
-    		employees::where('id',$id)->update(['status'=>'1']);
+    		Employee::where('id',$id)->update(['status'=>'1']);
     	return redirect(url('admin/employee/list'));
     }
 	public function update(Request $request)
@@ -49,7 +49,7 @@ class employeeController extends Controller
                 'address.min'=>'Địa chỉ  phải dài từ 5->70 kí tự  .' ,
                 'address.max'=>'Địa chỉ  phải dài từ 5->70 kí tự  .',
             ]);
-            employees::where('id',$request->id)->update(['phone'=>$request->phone,'address'=>$request->address]);
+            Employee::where('id',$request->id)->update(['phone'=>$request->phone,'address'=>$request->address]);
               
         }
         else if($request->has('add'))
@@ -79,7 +79,7 @@ class employeeController extends Controller
                 'address.min'=>'Địa chỉ  phải dài từ 10->70 kí tự  .' ,
                 'address.max'=>'Địa chỉ  phải dài từ 10->70 kí tự  .',
             ]);
-            $employee = new employees;
+            $employee = new Employee;
             if($request->has('pass'))
             	$employee->password = Hash::make($request->pass);
             if($request->has('name'))
@@ -98,7 +98,7 @@ class employeeController extends Controller
 	}
 	public function create()
 	{
-		$listrole = role::all();
+		$listrole = Role::all();
 		return view('admin.employee.create',['listrole'=>$listrole]);
 	}
    

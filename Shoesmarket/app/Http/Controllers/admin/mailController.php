@@ -4,9 +4,9 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\emailtemplates;
-use App\emails;
-use App\seller;
+use App\Emailtemplate;
+use App\Email;
+use App\Seller;
 use Carbon\Carbon;
 use Mail;
 use App\Mail\AdminMailShipped;
@@ -14,16 +14,16 @@ class mailController extends Controller
 {
     public function index()
     {
-        $list = emails::orderBy('created_at','DESC')->get();
+        $list = Email::orderBy('created_at','DESC')->get();
         return view('admin.mail.list',['list'=>$list]);
     }
     public function create($id)
     {
-        if($seller = seller::where('id',$id)->first())
+        if($seller = Seller::where('id',$id)->first())
         {
             $name = $seller->name;
             $email = $seller->email;
-            $list = emailtemplates::orderBy('updated_at','DESC')->get();
+            $list = Emailtemplate::orderBy('updated_at','DESC')->get();
             return view('admin.mail.create',['list'=>$list,'name'=>$name,'email'=>$email]);
         } 
     }
@@ -49,7 +49,7 @@ class mailController extends Controller
         $data = array(['mailTo'=>$request->mailTo,'nameTo'=>$request->nameTo,'title'=>$request->title,'content'=>$request->content]);
            if(Mail::send(new AdminMailShipped($data)))
             {
-                $email =  new emails;
+                $email =  new Email;
                 $email->nameFrom = (config('mail.from'))['name'];
                 $email->mailFrom = (config('mail.from'))['address'];
                 $email->nameTo = $request->nameTo;
@@ -67,7 +67,7 @@ class mailController extends Controller
     }
     public function getcontent($id)
     {
-        if($emailtemplate = emailtemplates::where('id',$id)->first())
+        if($emailtemplate = Emailtemplate::where('id',$id)->first())
         {
              $content = $emailtemplate->content;
         }
@@ -76,7 +76,7 @@ class mailController extends Controller
     }
     public function listmailtemplate()
     {
-        $list = $emailtemplate = emailtemplates::all();
+        $list = $emailtemplate = Emailtemplate::all();
         
         return view('admin.mail.updateTemplate',['list'=>$list]);
     }
@@ -96,7 +96,7 @@ class mailController extends Controller
             ]);
         if($request->has('edit'))
         {
-            emailtemplates::where('id',$request->id)->update(['title'=>$request->title,'content'=>$request->content,'updated_at'=>(Carbon::now())->toDateTimeString()]);  
+            Emailtemplate::where('id',$request->id)->update(['title'=>$request->title,'content'=>$request->content,'updated_at'=>(Carbon::now())->toDateTimeString()]);  
             return redirect('admin/mail/mailtemplate')->with('thongbao','Sửa thành công');      
         }
         else
@@ -108,7 +108,7 @@ class mailController extends Controller
                 [
                     'title.unique'=>'Tiêu đề mail đã có trong hệ thống .Vui lòng kiểm tra lại .',
                 ]);
-            $emailtemplate= new emailtemplates;
+            $emailtemplate= new Emailtemplate;
             $emailtemplate->title = $request->title;
             $emailtemplate->content = $request->content;
             $emailtemplate->save();
@@ -119,7 +119,7 @@ class mailController extends Controller
     }
     public function delete($id)
     {
-        $emailtemplate = emailtemplates::where('id',$id)->delete();    
+        $emailtemplate = Emailtemplate::where('id',$id)->delete();    
         return redirect('admin/mail/mailtemplate')->with('thongbao','Xoá thành công');
     }
 
