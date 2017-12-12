@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $token
  * @property string $created_at
  */
-class seller_password_resets extends Model
+class Seller_password_resets extends Model
 {
     /**
      * @var array

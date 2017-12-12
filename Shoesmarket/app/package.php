@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $newquantity
  * @property float $money
  */
-class package extends Model
+class Package extends Model
 {
     /**
      * The table associated with the model.

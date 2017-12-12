@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $created_at
  * @property string $updated_at
  */
-class emailtemplates extends Model
+class Emailtemplates extends Model
 {
     /**
      * @var array

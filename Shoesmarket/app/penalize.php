@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Employee $employee
  * @property Seller $seller
  */
-class penalize extends Model
+class Penalize extends Model
 {
     /**
      * The table associated with the model.

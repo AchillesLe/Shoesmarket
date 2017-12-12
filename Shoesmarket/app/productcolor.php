@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $quantity
  * @property Product $product
  */
-class productcolor extends Model
+class Productcolor extends Model
 {
     /**
      * The table associated with the model.

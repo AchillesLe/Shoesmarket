@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $total
  * @property Seller $seller
  */
-class rating extends Model
+class Rating extends Model
 {
     /**
      * The table associated with the model.

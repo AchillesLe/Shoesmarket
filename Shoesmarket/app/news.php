@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $updated_at
  * @property Product $product
  */
-class news extends Model
+class News extends Model
 {
     /**
      * @var array
