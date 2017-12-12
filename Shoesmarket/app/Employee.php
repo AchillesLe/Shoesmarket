@@ -23,7 +23,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property Penalize[] $penalizes
  * @property Receipt[] $receipts
  */
-class employees extends Authenticatable
+class employee extends Authenticatable
 {
     /**
      * @var array

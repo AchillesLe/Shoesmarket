@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Employee $employee
  * @property Seller $seller
  */
-class Receipts extends Model
+class Receipt extends Model
 {
     /**
      * @var array
@@ -28,7 +28,7 @@ class Receipts extends Model
      */
     public function employee()
     {
-        return $this->belongsTo('App\employee', 'idemployee');
+        return $this->belongsTo('App\Employee', 'idemployee');
     }
 
     /**
@@ -36,6 +36,6 @@ class Receipts extends Model
      */
     public function seller()
     {
-        return $this->belongsTo('App\seller', 'idseller');
+        return $this->belongsTo('App\Seller', 'idseller');
     }
 }
