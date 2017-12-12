@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * @property int $id
@@ -22,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Penalize[] $penalizes
  * @property Receipt[] $receipts
  */
-class employees extends Model
+class employees extends Authenticatable
 {
     /**
      * @var array
