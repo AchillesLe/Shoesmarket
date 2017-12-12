@@ -83,6 +83,10 @@ class ComposerStaticInitebe2e8ef3f29e55d33e251d6c47fce4e
         array (
             'Illuminate\\' => 11,
         ),
+        'G' => 
+        array (
+            'Gloudemans\\Shoppingcart\\' => 24,
+        ),
         'F' => 
         array (
             'Fideloper\\Proxy\\' => 16,
@@ -236,6 +240,10 @@ class ComposerStaticInitebe2e8ef3f29e55d33e251d6c47fce4e
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
         ),
+        'Gloudemans\\Shoppingcart\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/gloudemans/shoppingcart/src',
+        ),
         'Fideloper\\Proxy\\' => 
         array (
             0 => __DIR__ . '/..' . '/fideloper/proxy/src',
@@ -373,6 +381,28 @@ class ComposerStaticInitebe2e8ef3f29e55d33e251d6c47fce4e
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\User' => __DIR__ . '/../..' . '/app/User.php',
+        'App\\admin_password_resets' => __DIR__ . '/../..' . '/app/admin_password_resets.php',
+        'App\\bill' => __DIR__ . '/../..' . '/app/bill.php',
+        'App\\bill_seller' => __DIR__ . '/../..' . '/app/bill_seller.php',
+        'App\\county' => __DIR__ . '/../..' . '/app/county.php',
+        'App\\detail_bill' => __DIR__ . '/../..' . '/app/detail_bill.php',
+        'App\\emails' => __DIR__ . '/../..' . '/app/emails.php',
+        'App\\emailtemplates' => __DIR__ . '/../..' . '/app/emailtemplates.php',
+        'App\\employees' => __DIR__ . '/../..' . '/app/employees.php',
+        'App\\news' => __DIR__ . '/../..' . '/app/news.php',
+        'App\\package' => __DIR__ . '/../..' . '/app/package.php',
+        'App\\password_resets' => __DIR__ . '/../..' . '/app/password_resets.php',
+        'App\\penalize' => __DIR__ . '/../..' . '/app/penalize.php',
+        'App\\product' => __DIR__ . '/../..' . '/app/product.php',
+        'App\\productcolor' => __DIR__ . '/../..' . '/app/productcolor.php',
+        'App\\rating' => __DIR__ . '/../..' . '/app/rating.php',
+        'App\\receipts' => __DIR__ . '/../..' . '/app/receipts.php',
+        'App\\role' => __DIR__ . '/../..' . '/app/role.php',
+        'App\\seller' => __DIR__ . '/../..' . '/app/seller.php',
+        'App\\seller_password_resets' => __DIR__ . '/../..' . '/app/seller_password_resets.php',
+        'App\\shipfeeseller' => __DIR__ . '/../..' . '/app/shipfeeseller.php',
+        'App\\type' => __DIR__ . '/../..' . '/app/type.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
         'Carbon\\Exceptions\\InvalidDateException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',
@@ -1281,6 +1311,16 @@ class ComposerStaticInitebe2e8ef3f29e55d33e251d6c47fce4e
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
         'File_Iterator_Factory' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Factory.php',
+        'Gloudemans\\Shoppingcart\\CanBeBought' => __DIR__ . '/..' . '/gloudemans/shoppingcart/src/CanBeBought.php',
+        'Gloudemans\\Shoppingcart\\Cart' => __DIR__ . '/..' . '/gloudemans/shoppingcart/src/Cart.php',
+        'Gloudemans\\Shoppingcart\\CartItem' => __DIR__ . '/..' . '/gloudemans/shoppingcart/src/CartItem.php',
+        'Gloudemans\\Shoppingcart\\CartItemOptions' => __DIR__ . '/..' . '/gloudemans/shoppingcart/src/CartItemOptions.php',
+        'Gloudemans\\Shoppingcart\\Contracts\\Buyable' => __DIR__ . '/..' . '/gloudemans/shoppingcart/src/Contracts/Buyable.php',
+        'Gloudemans\\Shoppingcart\\Exceptions\\CartAlreadyStoredException' => __DIR__ . '/..' . '/gloudemans/shoppingcart/src/Exceptions/CartAlreadyStoredException.php',
+        'Gloudemans\\Shoppingcart\\Exceptions\\InvalidRowIDException' => __DIR__ . '/..' . '/gloudemans/shoppingcart/src/Exceptions/InvalidRowIDException.php',
+        'Gloudemans\\Shoppingcart\\Exceptions\\UnknownModelException' => __DIR__ . '/..' . '/gloudemans/shoppingcart/src/Exceptions/UnknownModelException.php',
+        'Gloudemans\\Shoppingcart\\Facades\\Cart' => __DIR__ . '/..' . '/gloudemans/shoppingcart/src/Facades/Cart.php',
+        'Gloudemans\\Shoppingcart\\ShoppingcartServiceProvider' => __DIR__ . '/..' . '/gloudemans/shoppingcart/src/ShoppingcartServiceProvider.php',
         'Hamcrest\\Arrays\\IsArray' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArray.php',
         'Hamcrest\\Arrays\\IsArrayContaining' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArrayContaining.php',
         'Hamcrest\\Arrays\\IsArrayContainingInAnyOrder' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArrayContainingInAnyOrder.php',
