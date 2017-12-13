@@ -5,12 +5,11 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\News as news;
-
 class pageController extends Controller
 {
     public function getIndex()
     {
-        $listnews =news::all();
+        $listnews = news::all();
         $counter =  count($listnews);
         $n = CEIL($counter/4);
         $listnew =  array();
