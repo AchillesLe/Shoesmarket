@@ -14,11 +14,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $updated_at
  * @property Product $product
  */
-class New extends Model
+class News extends Model
 {
     /**
      * @var array
      */
+    protected $table="news";
     protected $fillable = ['idproduct', 'name_meta', 'note', 'status', 'created_at', 'updated_at'];
 
     /**
