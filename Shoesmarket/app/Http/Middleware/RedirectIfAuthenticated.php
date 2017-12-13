@@ -17,7 +17,6 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        dd($guard);
         switch ($guard) {
             case 'admin':
                 if (Auth::guard($guard)->check()) {
@@ -25,7 +24,6 @@ class RedirectIfAuthenticated
                 }
                 break;
             case 'seller':
-             dd(Auth::guard($guard)->user()->name);
                 if (Auth::guard($guard)->check()) {
                     return redirect()->route('seller.dashboard');
                 }

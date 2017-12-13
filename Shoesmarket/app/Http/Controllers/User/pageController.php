@@ -4,20 +4,20 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\news;
+use App\New as news;
 
 class pageController extends Controller
 {
     public function getIndex()
     {
-        $listnews = news::all();
+        $listnews =news::all();
         $counter =  count($listnews);
         $n = CEIL($counter/4);
         $listnew =  array();
         $j=0;
         for($i = 0 ;$i < $counter ; $i++)
         {
-            for($x=0;$x<6;$x++)
+            for($x=0;$x<6;$x++) // cho t chut xem lai cua t da
             {
                 if($i<$counter)
                 {

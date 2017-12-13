@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Seller;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\RegisterRequest;
 use App\Http\Controllers\Controller;
+use App\Seller;
 use Auth;
 use Hash;
 
@@ -38,10 +40,21 @@ class SellerLoginController extends Controller{
     	}
     }
     public function getRegister(){
-
+        return view('seller.auth.register');
     }
-    public function postRegister(){
-
+    public function postRegister(RegisterRequest $request){
+        $seller = new Seller;
+        $seller->name=$request->name;
+        $seller->username=$request->username;
+        $seller->email=$request->email;
+        $seller->password=Hash::make($request->password);
+        $seller->address=$request->address;
+        $seller->phone=$request->phone;
+        $seller->sex=$request->optradiosex;
+        $seller->identification=$request->cmnd;
+        $seller->remember_token=$request->_token;
+        $seller->save();
+        return redirect()->route('seller.login');
     }
     public function logout()
     { 

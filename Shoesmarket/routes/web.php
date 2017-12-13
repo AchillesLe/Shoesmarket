@@ -42,9 +42,17 @@
 // Phần của Khang -- Seller ( Tạo nhóm Route)
 		Route::get('sellercenter/login', ['as' => 'seller.login', 'uses' => 'seller\SellerLoginController@getLogin']);
 		Route::post('sellercenter/login', ['as' => 'seller.login.post', 'uses' => 'seller\SellerLoginController@postLogin']);
+		Route::get('sellercenter/register', ['as' => 'seller.register', 'uses' => 'seller\SellerLoginController@getRegister']);
+		Route::post('sellercenter/register', ['as' => 'seller.register.post', 'uses' => 'seller\SellerLoginController@postRegister']);
+
+
+		Route::get('sellercenter/password/reset', 'seller\SellerForgotPasswordController@showLinkRequestForm')->name('seller.password.request');
+		Route::post('sellercenter/password/email', 'seller\SellerForgotPasswordController@sendResetLinkEmail')->name('seller.password.email');
+		Route::get('sellercenter/password/reset/{token}', 'seller\SellerResetPasswordController@showResetForm')->name('seller.password.reset');
+		Route::post('sellercenter/password/reset', 'seller\SellerResetPasswordController@reset');
+
 	Route::group(['prefix'=>'sellercenter','middleware'=>'auth:seller'],function(){
-		Route::get('/register', ['as' => 'seller.register', 'uses' => 'seller\SellerAuthController@getRegister']);
-		Route::post('/register', ['as' => 'seller.register.post', 'uses' => 'seller\SellerAuthController@postRegister']);
+		
 		Route::get('/logout', ['as' => 'seller.logout', 'uses' => 'seller\SellerLoginController@logout']);
 
 		Route::get('/','seller\pageController@getDashboard');

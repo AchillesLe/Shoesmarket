@@ -2,8 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\ResetPasswordNotification;
 
 /**
  * @property int $id
@@ -31,6 +32,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  */
 class Seller extends Authenticatable
 {
+    // This trait has notify() method defined
+    use Notifiable;
     /**
      * The table associated with the model.
      * 
@@ -89,5 +92,10 @@ class Seller extends Authenticatable
     public function shipfeesellers()
     {
         return $this->hasMany('App\Shipfeeseller', 'idseller');
+    }
+    //Send password reset notification
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
     }
 }
