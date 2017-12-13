@@ -10,8 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Bill[] $bills
  * @property Shipfeeseller[] $shipfeesellers
  */
-class C
-ounty extends Model
+class County extends Model
 {
     /**
      * The table associated with the model.
