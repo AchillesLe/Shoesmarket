@@ -67,7 +67,7 @@
 												<div class="item">
 													<div class="single-item">
 														<div class="single-item-header">
-															<a href="{{url('/detailproduct',$listnew[$i][$j]->product->name_meta)}}"><img src="{{asset('source/Upload/')}}/{{$listnew[$i][$j]->product->image}}" alt="" ></a>
+															<a href="{{url('detail',$listnew[$i][$j]->product->id)}}"><img src="{{asset('source/Upload/')}}/{{$listnew[$i][$j]->product->image}}" alt="" ></a>
 														</div>
 														<div class="single-item-body">
 															<p class="single-item-title">{{$listnew[$i][$j]->product->name}}</p>

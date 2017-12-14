@@ -11,130 +11,51 @@
 							<th class="product-name">Product</th>
 							<th class="product-price">Price</th>
 							<th class="product-status">Status</th>
-							<th class="product-quantity">Qty.</th>
+							<th class="product-quantity">Quantity</th>
 							<th class="product-subtotal">Total</th>
 							<th class="product-remove">Remove</th>
 						</tr>
 					</thead>
 					<tbody>
-						
-						<tr class="cart_item">
-							<td class="product-name">
-								<div class="media">
-									<img class="pull-left" src="assets/dest/images/shoping1.jpg" alt="">
-									<div class="media-body">
-										<p class="font-large table-title">Men’s Belt</p>
-										<p class="table-option">Color: Red</p>
-										<p class="table-option">Size: M</p>
-										<a class="table-edit" href="#">Edit</a>
+						@foreach( $content as $item)
+							<tr class="cart_item">
+								<td class="product-name">
+									<div class="media">
+										<img class="pull-left" src="{{asset('source/Upload')}}/{{$item->options->image}}" alt="Đây là ảnh">
+										<div class="media-body">
+											<p class="font-large table-title">{{$item->name}}</p>
+											<br>
+											<p class="table-option">Color: {{$item->options->color}}</p>
+											<br>
+											<p class="table-option">Size: {{$item->options->size}}</p>
+											<br>
+											<a class="table-edit" href="{{url('detail/',$item->options->id)}}">Edit</a>
+										</div>
 									</div>
-								</div>
-							</td>
+								</td>
 
-							<td class="product-price">
-								<span class="amount">$235.00</span>
-							</td>
+								<td class="product-price">
+									<span class="price" id="price">{{number_format($item->price,0,",",".")}}</span>
+								</td>
 
-							<td class="product-status">
-								In Stock
-							</td>
+								<td class="product-status">
+									In Stock
+								</td>
 
-							<td class="product-quantity">
-								<select name="product-qty" id="product-qty">
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-								</select>
-							</td>
+								<td class="product-quantity">
+										<input class="form-control" type="number" id="qty"  name="qty" value="{{$item->qty}}" min="1" max="{{$item->options->qty}}">
+								</td>
 
-							<td class="product-subtotal">
-								<span class="amount">$235.00</span>
-							</td>
+								<td class="product-subtotal">
+									<span id="subtotal">{{number_format(($item->price*$item->qty),0,",",".")}}</span>
+								</td>
 
-							<td class="product-remove">
-								<a href="#" class="remove" title="Remove this item"><i class="fa fa-trash-o"></i></a>
-							</td>
-						</tr>
-						<tr class="cart_item">
-							<td class="product-name">
-								<div class="media">
-									<img class="pull-left" src="assets/dest/images/shoping2.jpg" alt="">
-									<div class="media-body">
-										<p class="font-large table-title">Men’s Belt</p>
-										<p class="table-option">Color: Red</p>
-										<p class="table-option">Size: M</p>
-										<a class="table-edit" href="#">Edit</a>
-									</div>
-								</div>
-							</td>
+								<td class="product-remove" data-id="$item->rowid">
+									<a href="{{url('removerorder',$item->rowId)}}" class="remove" title="Remove this item" id="removeorder" ><i class="fa fa-trash-o"></i></a>
+								</td>
+							</tr>
+					    @endforeach
 
-							<td class="product-price">
-								<span class="amount">$235.00</span>
-							</td>
-
-							<td class="product-status">
-								In Stock
-							</td>
-
-							<td class="product-quantity">
-								<select name="product-qty" id="product-qty">
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-								</select>
-							</td>
-
-							<td class="product-subtotal">
-								<span class="amount">$235.00</span>
-							</td>
-
-							<td class="product-remove">
-								<a href="#" class="remove" title="Remove this item"><i class="fa fa-trash-o"></i></a>
-							</td>
-						</tr>
-						<tr class="cart_item">
-							<td class="product-name">
-								<div class="media">
-									<img class="pull-left" src="assets/dest/images/shoping3.jpg" alt="">
-									<div class="media-body">
-										<p class="font-large table-title">Men’s Belt</p>
-										<p class="table-option">Color: Red</p>
-										<p class="table-option">Size: M</p>
-										<a class="table-edit" href="#">Edit</a>
-									</div>
-								</div>
-							</td>
-
-							<td class="product-price">
-								<span class="amount">$235.00</span>
-							</td>
-
-							<td class="product-status">
-								In Stock
-							</td>
-
-							<td class="product-quantity">
-								<select name="product-qty" id="product-qty">
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-								</select>
-							</td>
-
-							<td class="product-subtotal">
-								<span class="amount">$235.00</span>
-							</td>
-
-							<td class="product-remove">
-								<a href="#" class="remove" title="Remove this item"><i class="fa fa-trash-o"></i></a>
-							</td>
-						</tr>
 					</tbody>
 
 					{{-- <tfoot>
@@ -208,6 +129,7 @@
 				$(this).parents('li').addClass('parent-active');
             }
         });
+
     });   
 
 
@@ -215,10 +137,6 @@
 <script>
 	 jQuery(document).ready(function($) {
                 'use strict';
-				
-// color box
-
-//color
       jQuery('#style-selector').animate({
       left: '-213px'
     });
@@ -240,6 +158,15 @@
         jQuery(this).addClass('icon-angle-left');
       }
     });
-				});
+	    jQuery('.beta-shopping-cart-table').on('change','#qty',function(event) {
+	    	var row=jQuery(this).closest("tr"); 
+	    	var price =row.find("td:eq(1)").text();
+	    		price = price.replace('.','');
+	    	var qty = jQuery(this).val();
+	    	var subtotal = price*qty;
+	    	row.find("td:eq(4)").text(subtotal);
+	    });
+
+	});
 	</script>
 @endsection

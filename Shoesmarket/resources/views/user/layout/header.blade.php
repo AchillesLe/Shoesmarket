@@ -10,8 +10,8 @@
 				<div class="pull-right auto-width-right">
 					<ul class="top-details menu-beta l-inline">
 						@if(Auth::check())
-							<li><a href="#"><i class="fa fa-user"></i>{{Auth::user()->name}}</a></li>
-							<li><a href="{{url('/logout')}}"><i class="fa fa-sign-out"></i>Đăng xuất</a></li>
+							<li><a href="#" ><i class="fa fa-user"></i>{{Auth::user()->name}}</a></li>
+							<li><a data-toggle="modal" href="#modalogaout"><i class="fa fa-sign-out"></i>Đăng xuất</a></li>
 						@else
 							<li><a href="{{url('/register')}}">Đăng kí</a></li>
 							<li><a href="{{url('/login')}}">Đăng nhập</a></li>
@@ -22,6 +22,28 @@
 				<div class="clearfix"></div>
 			</div> <!-- .container -->
 		</div> <!-- .header-top -->
+		<div class="modal fade" id="modalogaout" tabindex="-1" role="dialog">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">Bạn muốn rời khỏi ?</h5>
+{{-- 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button> --}}
+		      </div>
+		      <div class="modal-body">
+		      	@if(Cart::count()>0)
+		        	<p>Nếu bạn chọn "Thoát" thì những món hàng bạn đã chọn trong giỏ hàng sẽ không được tính ! </p>
+		        @endif
+		        <p>Bạn chắc bạn muốn rời khỏi ?</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <a type="button" href="{{url('/logout')}}" class="btn btn-primary">Thoát</a>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 		<div class="header-body">
 			<div class="container beta-relative">
 				<div class="pull-left">
@@ -38,51 +60,33 @@
 
 					<div class="beta-comp">
 						<div class="cart">
-							<div class="beta-select"><i class="fa fa-shopping-cart"></i> Giỏ hàng (Trống) <i class="fa fa-chevron-down"></i></div>
+							<div class="beta-select"><i class="fa fa-shopping-cart"></i> Giỏ hàng @if(count(Cart::content())== 0) (Trống)@endif<i class="fa fa-chevron-down"></i></div>
+							@if(Auth::check()&&count(Cart::content())>0)
 							<div class="beta-dropdown cart-body">
-								<div class="cart-item">
-									<div class="media">
-										<a class="pull-left" href="#"><img src="source/assets/dest/images/products/cart/1.png" alt=""></a>
-										<div class="media-body">
-											<span class="cart-item-title">Sample Woman Top</span>
-											<span class="cart-item-options">Size: XS; Colar: Navy</span>
-											<span class="cart-item-amount">1*<span>$49.50</span></span>
+								@foreach( Cart::content() as $item)
+									<div class="cart-item">
+										<div class="media">
+											<a class="pull-left" href="{{url('detail',$item->options->id)}}"><img src="{{asset('source/Upload/')}}/{{$item->options->image}}" alt="Ảnh"></a>
+											<div class="media-body">
+												<span class="cart-item-title">{{$item->name}}</span>
+												<span class="cart-item-options">Color: {{$item->options->color}}&nbsp;--&nbsp;Size :{{$item->options->size}}</span>
+												<span class="cart-item-amount">{{$item->qty}}*<span>{{$item->price}}</span>
+											</div>
 										</div>
 									</div>
-								</div>
-
-								<div class="cart-item">
-									<div class="media">
-										<a class="pull-left" href="#"><img src="source/assets/dest/images/products/cart/2.png" alt=""></a>
-										<div class="media-body">
-											<span class="cart-item-title">Sample Woman Top</span>
-											<span class="cart-item-options">Size: XS; Colar: Navy</span>
-											<span class="cart-item-amount">1*<span>$49.50</span></span>
-										</div>
-									</div>
-								</div>
-
-								<div class="cart-item">
-									<div class="media">
-										<a class="pull-left" href="#"><img src="source/assets/dest/images/products/cart/3.png" alt=""></a>
-										<div class="media-body">
-											<span class="cart-item-title">Sample Woman Top</span>
-											<span class="cart-item-options">Size: XS; Colar: Navy</span>
-											<span class="cart-item-amount">1*<span>$49.50</span></span>
-										</div>
-									</div>
-								</div>
-
+								@endforeach
 								<div class="cart-caption">
 									<div class="cart-total text-right">Tổng tiền: <span class="cart-total-value">$34.55</span></div>
 									<div class="clearfix"></div>
 
 									<div class="center">
 										<div class="space10">&nbsp;</div>
-										<a href="checkout.html" class="beta-btn primary text-center">Đặt hàng <i class="fa fa-chevron-right"></i></a>
+										<a href="{{route('list.order')}}" class="beta-btn primary text-center">Đặt hàng<i class="fa fa-chevron-right"></i></a>
 									</div>
 								</div>
 							</div>
+
+							@endif
 						</div> <!-- .cart -->
 					</div>
 				</div>

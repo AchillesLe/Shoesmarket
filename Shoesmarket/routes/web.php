@@ -20,9 +20,7 @@
 
 	Route::get('/home','User\pageController@getIndex')->name('home');
 	Route::get('/productType','User\pageController@getProductType');
-	Route::get('/detailproduct/{name}','User\pageController@DetailProduct');
-	Route::get('/productType','User\pageController@getProductType');//loại sản phẩm
-	Route::get('/detailproduct','User\pageController@getDetailProduct');//chi tiết sản phẩm
+	Route::get('/detail/{id}','User\pageController@getdetailProduct');
 	Route::get('/contacts','User\pageController@getContacts');
 	Route::get('/abouts','User\pageController@getAbouts');
 
@@ -39,6 +37,9 @@
 	Route::group(['middleware'=>'auth'],function(){
 		Route::get('logout','User\LoginController@logout');
 		Route::get('order/{id}','User\OrdersController@Order');
+		Route::get('list/order','User\OrdersController@ListOrder')->name('list.order');
+		Route::get('updateOrder/{rowId}','User\OrdersController@UpdateOrder');
+		Route::get('removerorder/{rowId}','User\OrdersController@removerorder');
 	});
 //bao-  phần tin tức.
 	

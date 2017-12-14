@@ -8,7 +8,7 @@
 	<link href='source/assets/dest/css/css_1.css' rel='stylesheet' type='text/css'>
 	<link href='source/assets/dest/css/css_2.css' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="source/assets/dest/css/bootstrap.min.css">
-	<link rel="stylesheet" href="source/assets/dest/css/custom_3_2.css">
+
 	<link rel="stylesheet" href="source/assets/dest/css/font-awesome.min.css">
 	<link rel="stylesheet" href="source/assets/dest/vendors/colorbox/example3/colorbox.css">
 	<link rel="stylesheet" href="source/assets/dest/rs-plugin/css/settings.css">
@@ -16,6 +16,7 @@
 	<link rel="stylesheet" title="style" href="source/assets/dest/css/style.css">
 	<link rel="stylesheet" href="source/assets/dest/css/animate.css">
 	<link rel="stylesheet" title="style" href="source/assets/dest/css/huong-style.css">
+   <link rel="stylesheet" href="source/assets/dest/css/custom_style.css">
 	<script src="source/assets/dest/js/jquery.js"></script>
 	<script src="source/assets/dest/js/scripts.min.js"></script>
 	<script src="source/assets/dest/js/bootstrap.min.js"></script>

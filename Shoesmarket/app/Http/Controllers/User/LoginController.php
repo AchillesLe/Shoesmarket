@@ -9,7 +9,7 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 use App\Mail\AdminMailShipped;
-
+use App\Http\Controllers\User\OrdersController;
 class LoginController extends Controller
 {
     public function __construct()
@@ -36,8 +36,8 @@ class LoginController extends Controller
     }
     public function logout()
     {
-         
         Auth::logout();
+        (new OrdersController)->deleteorder();
         return redirect()->route('home');
     }
     public function register()

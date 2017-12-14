@@ -5,6 +5,9 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\News as news;
+use App\Product;
+use App\Productcolor;
+
 class pageController extends Controller
 {
     public function getIndex()
@@ -36,5 +39,11 @@ class pageController extends Controller
      public function getAbouts()
     {
         return view('user.page.abouts');
+    }
+    public function getdetailProduct($id)
+    {
+            $product = Product::find($id);
+            $productcolor = Productcolor::where('idproduct',$id)->get();
+        return view('user.page.detailproduct',['product'=>$product,'productcolor'=>$productcolor]);
     }
 }
