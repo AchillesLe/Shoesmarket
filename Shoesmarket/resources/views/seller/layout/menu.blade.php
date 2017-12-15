@@ -47,13 +47,10 @@
 	      </a>
 	      <ul class="sidenav-second-level collapse" id="collapseExamplePages">
 	        <li>
-	          <a href="">Danh sách sản phẩm</a>
+	          <a href="{!! route('getListProduct') !!}">Danh sách sản phẩm</a>
 	        </li>
 	        <li>
 	          <a href="{!! route('getListProduct') !!}">Bảng sản phẩm</a>
-	        </li>
-	        <li>
-	          <a href="{!! route('getEditNews') !!}">Sửa sản phẩm</a>
 	        </li>
 	        <li>
 	          <a href="blank.html">Blank Page</a>

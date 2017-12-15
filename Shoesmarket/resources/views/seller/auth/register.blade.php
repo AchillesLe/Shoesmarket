@@ -28,8 +28,8 @@
                         <div class="form-group{{ $errors->has('optradiosex') ? ' has-error' : '' }}">
                             <label for="optradiosex" class="col-md-4 control-label">Giới tính</label>
                             <div class="col-md-6">
-                                <label class="col-md-3 radio-inline"><input type="radio" name="optradiosex" value="0"> Nam </label>
-                                <label class="col-md-3 radio-inline"><input type="radio" name="optradiosex" value="1"> Nữ </label>
+                                <label for="optradiosex" class="col-md-3 radio-inline"><input type="radio" name="optradiosex" value="0"> Nam </label>
+                                <label for="optradiosex" class="col-md-3 radio-inline"><input type="radio" name="optradiosex" value="1"> Nữ </label>
                             </div>
                              @if ($errors->has('optradiosex'))
                                     <span class="help-block">

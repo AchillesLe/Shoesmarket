@@ -19,9 +19,11 @@
   <!-- Custom styles for this template-->
   <link href="sourceAdmin/css/sb-admin.css" rel="stylesheet">
   <link href="sourceAdmin/css/custom-admin.css" rel="stylesheet">
+  <link href="sourceAdmin/css/custom-seller.css" rel="stylesheet">
   <script src="sourceAdmin/vendor/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="sourceAdmin/ckeditor/ckeditor.js"></script>
-  <script type="text/javascript" src="js/myscript.js"></script>
+  <script type="text/javascript" src="sourceAdmin/js/seller-script.js"></script>
+
 
 </head>
 

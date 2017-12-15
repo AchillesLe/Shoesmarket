@@ -65,8 +65,8 @@
 		Route::group(['prefix'=>'news'],function(){
 			Route::get('buypackage',['as' => 'getBuyPackage', 'uses' => 'seller\NewsController@getBuyPackage']);
 			Route::get('add',['as' => 'getAddNews', 'uses' => 'seller\NewsController@getAddNews']);
-			Route::get('post-add',['as' => 'postAddNews', 'uses' => 'seller\NewsController@postAddNews']);
-			Route::get('edit',['as' => 'getEditNews', 'uses' => 'seller\NewsController@getEditNews']);
+			Route::post('add',['as' => 'postAddNews', 'uses' => 'seller\NewsController@postAddNews']);
+			Route::get('edit/{id}',['as' => 'getEditNews', 'uses' => 'seller\NewsController@getEditNews']);
 			Route::get('newsorder',['as' => 'getListOrderNews', 'uses' => 'seller\NewsController@getListOrderNews']);
 	});
 	Route::group(['prefix'=>'orders'],function(){

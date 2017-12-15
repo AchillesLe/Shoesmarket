@@ -24,6 +24,7 @@ class Productcolor extends Model
     /**
      * @var array
      */
+    public $timestamps = false;
     protected $fillable = ['idproduct', 'color', 'size', 'quantity'];
 
     /**

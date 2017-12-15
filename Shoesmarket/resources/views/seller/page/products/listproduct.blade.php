@@ -15,6 +15,7 @@
                   <th>Số lượng</th>
                   <th>Gía</th>
                   <th>Trạng thái</th>
+                  <!--<th>Mô tả</th>-->
                   <th>Thao tác</th>
                 </tr>
               </thead>
@@ -26,6 +27,7 @@
                   <th>Số lượng</th>
                   <th>Gía</th>
                   <th>Trạng thái</th>
+                  <!--<th>Mô tả</th>-->
                   <th>Thao tác</th>
                 </tr>
               </tfoot>
@@ -39,7 +41,7 @@
                   <td>{!! $product->price !!}</td>
                   <th class="alert alert-danger" style="text-align:center;">{!! $product->status !!}</th>
                   <td>
-                    <button type="submit" class="btn btn-primary"> Sửa </button>
+                    <a href="{!! route('getEditNews',$product->id) !!}" class="btn btn-primary"> Sửa </a>
                     <button type="submit" class="btn btn-success"> Ẩn/Hiện </button>
                   </td>
                 </tr>
