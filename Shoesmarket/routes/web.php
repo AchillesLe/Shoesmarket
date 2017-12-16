@@ -67,10 +67,18 @@
 			Route::get('add',['as' => 'getAddNews', 'uses' => 'seller\NewsController@getAddNews']);
 			Route::post('add',['as' => 'postAddNews', 'uses' => 'seller\NewsController@postAddNews']);
 			Route::get('edit/{id}',['as' => 'getEditNews', 'uses' => 'seller\NewsController@getEditNews']);
+			Route::post('edit/{id}',['as' => 'postEditNews', 'uses' => 'seller\NewsController@postEditNews']);
+			Route::get('status/{id}',['as' => 'changeStatus', 'uses' => 'seller\ProductController@changeStatus']);
 			Route::get('newsorder',['as' => 'getListOrderNews', 'uses' => 'seller\NewsController@getListOrderNews']);
 	});
 	Route::group(['prefix'=>'orders'],function(){
 		Route::get('listorder',['as' => 'getListOrder', 'uses' => 'seller\OrderController@getListOrder']);
+		Route::get('completebill/{id}',['as' => 'completeBill', 'uses' => 'seller\OrderController@completeBill']);
+		Route::get('cancelbill/{id}',['as' => 'cancelBill', 'uses' => 'seller\OrderController@cancelBill']);
+		Route::get('detail/{id}',['as' => 'getDetailBill', 'uses' => 'seller\OrderController@getDetailBill']);
+		Route::get('detail/completebill/{id}',['as' => 'completeDetailBill', 'uses' => 'seller\OrderController@completeDetailBill']);
+		Route::get('detail/cancelbill/{id}',['as' => 'cancelDetailBill', 'uses' => 'seller\OrderController@cancelDetailBill']);
+		Route::get('statistics',['as' => 'getStatistics', 'uses' => 'seller\OrderController@getStatistics']);
 	});
 	//---------------------------
 	// route for view/blade file

@@ -1,7 +1,9 @@
 @extends('Seller.master')
 @section('content')
       <!-- Example DataTables Card-->
-
+  @if($seller->isblock == 1)
+  <h2>Tài khoản đã bị khóa, không thể truy cập</h2>
+  @else
       <div class="col-md-12 feeshipconfig">
         <div class="card col-md-12">
           <div class="card-header card bg-primary text-white">Cài đặt phí giao hàng</div>
@@ -9,47 +11,34 @@
             <ul class="list-group">
               <li class="list-group-item"> 
                         <a class="card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                          <i class="fa fa-building" style="font-size:30px;color:red"></i> Nội thành HCM
+                          <i class="fa fa-building" style="font-size:30px;color:red"></i> Danh sách quận huyện
                         </a>
                       <div id="collapseOne" class="collapse show">
 
                         <div class="col-md-12">
-                            <form class="form-inline">
-                              @for($i=1;$i<=12;$i++)
-                              <div class="col-md-4">
-                                <span> <?php echo 'Q '.$i.':' ?> </span>
-                                <input type="number" class="form-control" id="<?php echo 'district'.$i ?>" placeholder="Nhập phí giao hàng">
+                              @foreach($listcounty as $key => $county)
+                              <div class="col-md-3 card" style="float: left; margin-bottom: 15px">
+                                <div class="card-header" style="text-align:center">{{ $county->name }}</div>
+
+                                <div class="card-body">
+                                    
+                                    <input type="number" class="form-control" name="feeshipOld" disabled></input>
+                                  <input type="number" class="form-control" name="feeshipNew[]" placeholder="Nhập phí giao hàng mới">
+                                </div>
+                                 <div class="card-footer" style="text-align:center">
+                                    <button type="submit" class="btn btn-primary">Lưu</button>
+                                   <a href="" class="btn btn-primary">Thay đổi</a>
+                                 </div>
                               </div>
-                              @endfor
-                              <div class="col-md-12" style="margin-top: 15px;">
-                                <button type="submit" class="col-md-2 btn btn-danger">Sửa</button>
-                                <button type="submit" class="col-md-2 btn btn-primary">Lưu</button>
-                              </div>
-                            </form>  
+                              @endforeach
                             
                         </div>
                         
-                      </div>
-              </li>
-              <li class="list-group-item"> 
-                        <a class="card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                          <i class="fa fa-building" style="font-size:30px;color:red"></i> Ngoại thành
-                        </a>
-                      <div id="collapseTwo" class="collapse show">
-                        <form class="form-inline">
-                          <div class="col-md-6">
-                            <span> Phí giao hàng </span>
-                            <input type="number" class="form-control" id="feeshipngoaithanh" placeholder="Nhập phí giao hàng">
-                          </div>
-                          <div class="col-md-6" style="margin-top: 15px;">
-                            <button type="submit" class="col-md-2 btn btn-danger">Sửa</button>
-                            <button type="submit" class="col-md-2 btn btn-primary">Lưu</button>
-                          </div>
-                        </form>
                       </div>
               </li>
             </ul>
           </div>
         </div>
       </div>
+    @endif
 @endsection

@@ -1,6 +1,68 @@
 @extends('Seller.master')
 @section('content')
       <!-- Example DataTables Card-->
+  @if($seller->isblock == 1)
+  <h3>Tài khoản đã bị khóa, chỉ xem không thể thao tác</h3>
+  <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i> Danh sách sản phẩm </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Mã sản phẩm</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Dành cho</th>
+                  <th>Số lượng</th>
+                  <th>Gía</th>
+                  <th>Trạng thái</th>
+                  <!--<th>Mô tả</th>-->
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th>Mã sản phẩm</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Dành cho</th>
+                  <th>Số lượng</th>
+                  <th>Gía</th>
+                  <th>Trạng thái</th>
+                  <!--<th>Mô tả</th>-->
+                </tr>
+              </tfoot>
+              <tbody>
+              @foreach($listproduct as $product)
+                <tr>
+                  <td>{!! $product->id !!}</td>
+                  <td>{!! $product->name !!}</td>
+                  <td>
+                    @if($product->sex == 1)
+                      Nam
+                    @elseif($product->sex == 2)
+                      Nữ
+                    @else
+                      Cả Nam và Nữ
+                    @endif
+                  </td>
+                  <td>{!! $product->quantity !!}</td>
+                  <td>{!! $product->price !!}</td>
+                  
+                  <td style="text-align:center">
+                    @if($product->status == 0)
+                      <div class="btn btn-success">Hiện</div>
+                    @else
+                      <div class="btn btn-danger">Ẩn</div>
+                    @endif
+                  </td>
+                </tr>
+              @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+  @else
       <div class="card mb-3">
         <div class="card-header">
           <i class="fa fa-table"></i> Danh sách sản phẩm </div>
@@ -36,13 +98,29 @@
                 <tr>
                   <td>{!! $product->id !!}</td>
                   <td>{!! $product->name !!}</td>
-                  <td>{!! $product->sex !!}</td>
+                  <td>
+                    @if($product->sex == 1)
+                      Nam
+                    @elseif($product->sex == 2)
+                      Nữ
+                    @else
+                      Cả Nam và Nữ
+                    @endif
+                  </td>
                   <td>{!! $product->quantity !!}</td>
                   <td>{!! $product->price !!}</td>
-                  <th class="alert alert-danger" style="text-align:center;">{!! $product->status !!}</th>
+                  
+                  <td style="text-align:center">
+                    @if($product->status == 0)
+                      <div class="btn btn-success">Hiện</div>
+                    @else
+                      <div class="btn btn-danger">Ẩn</div>
+                    @endif
+                  </td>
                   <td>
                     <a href="{!! route('getEditNews',$product->id) !!}" class="btn btn-primary"> Sửa </a>
-                    <button type="submit" class="btn btn-success"> Ẩn/Hiện </button>
+                    <a href="{!! route('changeStatus',$product->id) !!}" class="btn btn-success"> Ẩn/Hiện </a>
+                    <!--<button type="submit" class="btn btn-success">Ân/Hiện</button>-->
                   </td>
                 </tr>
               @endforeach
@@ -50,6 +128,6 @@
             </table>
           </div>
         </div>
-        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
       </div>
+    @endif
 @endsection

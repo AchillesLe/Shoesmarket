@@ -10,42 +10,32 @@
               <thead>
                 <tr>
                   <th>Gói tin</th>
+                  <th>Số lượng tin 1 gói</th>
                   <th>Gía tiền</th>
-                  <th>Số lượng</th>
+                  <th>Số lượng gói</th>
                   <th>Thành tiền</th>
                   <th>Hình thức thanh toán</th>
                   <th>Ngày mua</th>
-                  <th>Ngày nhận</th>
                 </tr>
               </thead>
               <tbody>
+              @foreach($listordernews as $ordernews)
                 <tr>
-                  <td>Shad Decker</td>
-                  <td>Regional Director</td>
-                  <td>Edinburgh</td>
-                  <td>51</td>
-                  <td>Hình thức thanh toán</td>
-                  <td>2008/11/13</td>
-                  <td>$183,000</td>
+                  <td>{!! $ordernews->namepackage !!}</td>
+                  <td>{!! $ordernews->newquantity !!}</td>
+                  <td>{!! $ordernews->money !!}</td>
+                  <td>{!! $ordernews->packagequantity !!}</td>
+                  <td>{!! $ordernews->totalmoney !!}</td>
+                  <td>
+                    @if($ordernews->idemployee == 1)
+                    <div class="btn btn-primary">Paypal</div>
+                    @else
+                    <div class="btn btn-success">Tiền mặt</div>
+                    @endif
+                  </td>
+                  <td>{!! $ordernews->created_at !!}</td>
                 </tr>
-                <tr>
-                  <td>Michael Bruce</td>
-                  <td>Javascript Developer</td>
-                  <td>Singapore</td>
-                  <td>29</td>
-                  <td>Hình thức thanh toán</td>
-                  <td>2011/06/27</td>
-                  <td>$183,000</td>
-                </tr>
-                <tr>
-                  <td>Donna Snider</td>
-                  <td>Customer Support</td>
-                  <td>New York</td>
-                  <td>27</td>
-                  <td>Hình thức thanh toán</td>
-                  <td>2011/01/25</td>
-                  <td>$112,000</td>
-                </tr>
+              @endforeach
               </tbody>
             </table>
           </div>

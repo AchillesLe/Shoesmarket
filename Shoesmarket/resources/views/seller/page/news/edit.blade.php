@@ -1,7 +1,8 @@
 @extends('Seller.master')
 @section('content')
       <!-- Example DataTables Card-->
-    <form class="form-inline" action="{{ route('postAddNews') }}" method="POST">
+    <form class="form-inline" action="{!! route('postEditNews',$product->id) !!}" method="POST">
+      {{ csrf_field() }}
     <div class="col-md-12">
       <div class="col-md-12">
         <div class="card-header">Sửa tin đăng</div>
@@ -38,7 +39,7 @@
               <label for="txtNewPrice" class="col-md-3">Gía mới</label>
 
               <div class="col-md-7">
-                <input id="txtNewPrice" type="number" class="col-md-12 form-control" name="txtNewPrice" value="{{ old('txtNewPrice') }}" required autofocus>
+                <input id="txtNewPrice" type="number" class="col-md-12 form-control" name="txtNewPrice" value="{{ old('txtNewPrice') }}">
 
                 @if ($errors->has('txtNewPrice'))
                   <span class="help-block">
@@ -51,11 +52,17 @@
           <div class="card-header">Nội dung tin đăng</div>
           <div class="card-body">
             <div style="margin-bottom: 15px">
-                  <textarea class="col-md-7" rows="7" cols="100" name="txtNoiDungTin">{!! $news->note !!}</textarea>
+                  
+                    @if(empty($news->note))
+                      <textarea class="col-md-7" rows="7" cols="100" name="txtNoiDungTin"></textarea>
+                    @else
+                       <textarea class="col-md-7" rows="7" cols="100" name="txtNoiDungTin">{!! $news->note !!}</textarea>
+                    @endif
             </div>       
           </div>
-          <div class="col-md-4">
-              <button type="submit" class="btn btn-primary"> Sửa tin </button>
+          <div class="col-md-6 btn-group">
+              <button type="submit" class="col-md-3 btn btn-primary"> Sửa tin </button>
+              <a href="{!! route('getListProduct') !!}" class="col-md-3 btn btn-warning"> Hủy </a>
           </div>
         </div> 
 

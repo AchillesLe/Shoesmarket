@@ -1,6 +1,9 @@
 @extends('Seller.master')
 @section('content')
       <!-- Example DataTables Card-->
+  @if($seller->isblock == 1)
+  <h2>Tài khoản đã bị khóa, không thể truy cập</h2>
+  @else
   <form class="form-inline" action="{{ route('postAddNews') }}" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="col-md-12">
@@ -52,6 +55,7 @@
                 <div class="col-md-7 input-group">
                     <label for="optradioSexProduct" class="col-md-2 radio-inline"><input type="radio" name="optradioSexProduct" value="1"> Nam </label>
                     <label for="optradioSexProduct" class="col-md-2 radio-inline"><input type="radio" name="optradioSexProduct" value="2"> Nữ </label>
+                    <label for="optradioSexProduct" class="col-md-2 radio-inline"><input type="radio" name="optradioSexProduct" value="3"> Cả 2 </label>
                 </div>
                 @if ($errors->has('optradioSexProduct'))
                     <span class="help-block">
@@ -127,5 +131,5 @@
     </div>
     
   </form>
-      
+  @endif
 @endsection

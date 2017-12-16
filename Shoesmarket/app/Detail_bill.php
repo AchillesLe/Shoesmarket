@@ -24,7 +24,7 @@ class Detail_bill extends Model
      * @var string
      */
     protected $table = 'detail_bills';
-
+    public $timestamps = false;
     /**
      * @var array
      */

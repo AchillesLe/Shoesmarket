@@ -22,10 +22,10 @@ class NewsController extends Controller
     }
     public function getAddNews()
     {
-        $user=Auth::guard('seller')->user();
+        $seller=Auth::guard('seller')->user();
         $list_typeProduct=DB::table('types')->get();
-        $quantity_news=DB::table('sellers')->where('id',$user->id)->first();
-    	return view('seller.page.news.add',['list_typeProduct' => $list_typeProduct],compact('quantity_news'));
+        $quantity_news=DB::table('sellers')->where('id',$seller->id)->first();
+    	return view('seller.page.news.add',['list_typeProduct' => $list_typeProduct],compact('quantity_news','seller'));
     }
     public function postAddNews(AddNewsRequest $request){
         $seller=Auth::guard('seller')->user();
@@ -85,9 +85,23 @@ class NewsController extends Controller
     {
         $product=DB::table('products')->where('id',$id)->first();
         $news=DB::table('news')->where('idproduct',$id)->first();
-        return view('seller.page.news.edit',compact(['news','product']));
+        return view('seller.page.news.edit',compact('news','product'));
+    }
+    public function postEditNews(Request $request, $id)
+    {
+        $product=Product::find($id);
+        $product->price=$request->txtNewPrice;
+        $product->save();
+
+        $news=News::where('idproduct',$id)->first();
+        $news->note=$request->txtNoiDungTin;
+        $news->save();
+
+        return redirect()->route('getListProduct');
     }
     public function getListOrderNews(){
-    	return view('seller.page.news.newsorder');
+        $seller=Auth::guard('seller')->user();
+        $listordernews=DB::table('receipts')->where('idseller',$seller->id)->get();
+    	return view('seller.page.news.newsorder',['listordernews'=> $listordernews]);
     }
 }
