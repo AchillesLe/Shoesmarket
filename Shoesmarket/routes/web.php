@@ -19,10 +19,11 @@
 // Phần của Vân đom -- user
 
 	Route::get('/home','User\pageController@getIndex')->name('home');
-	Route::get('/productType','User\pageController@getProductType');
 	Route::get('/detail/{id}','User\pageController@getdetailProduct');
-	Route::get('/contacts','User\pageController@getContacts');
-	Route::get('/abouts','User\pageController@getAbouts');
+	Route::get('/productType/{name}','User\pageController@getProductType');
+	Route::get('/product/{sex}/{name}','User\pageController@getProductbysexandtype');
+	// Route::get('/contacts','User\pageController@getContacts');
+	// Route::get('/abouts','User\pageController@getAbouts');
 
 
 	Route::get('login','User\LoginController@getlogin')->name('login');

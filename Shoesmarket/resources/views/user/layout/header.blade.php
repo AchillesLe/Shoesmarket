@@ -3,8 +3,7 @@
 			<div class="container">
 				<div class="pull-left auto-width-left">
 					<ul class="top-menu menu-beta l-inline">
-						<li><a href=""><i class="fa fa-home"></i></a></li>
-						<li><a href=""><i class="fa fa-phone"></i></a></li>
+						<li><a href="{{url('/')}}"><i class="fa fa-home"></i></a></li>
 					</ul>
 				</div>
 				<div class="pull-right auto-width-right">
@@ -47,7 +46,7 @@
 		<div class="header-body">
 			<div class="container beta-relative">
 				<div class="pull-left">
-					<a href="index.html" id="logo"><img src="source/assets/dest/images/logo-cake.png" width="200px" alt=""></a>
+					<a href="{{url('/')}}" id="logo"><span style="color:blue; font-size: 35px;font-weight: bold; ">Shoes Market</span></a>
 				</div>
 				<div class="pull-right beta-components space-left ov">
 					<div class="space10">&nbsp;</div>
@@ -101,15 +100,8 @@
 				<nav class="main-menu">
 					<ul class="l-inline ov">
 						<li><a href="{{url('/')}}">Trang chủ</a></li>
-						<li><a href="#">Sản phẩm</a>
-							<ul class="sub-menu">
-								<li><a href="product_type.html">Sản phẩm 1</a></li>
-								<li><a href="product_type.html">Sản phẩm 2</a></li>
-								<li><a href="product_type.html">Sản phẩm 4</a></li>
-							</ul>
-						</li>
-						<li><a href="{{url('/abouts')}}">Giới thiệu</a></li>
-						<li><a href="{{url('/contacts')}}">Liên hệ</a></li>
+						<li><a href="{{url('productType/Nam')}}">Giày Nam</a></li>
+						<li><a href="{{url('productType/Nu')}}">Giày Nữ</a></li>
 					</ul>
 					<div class="clearfix"></div>
 				</nav>

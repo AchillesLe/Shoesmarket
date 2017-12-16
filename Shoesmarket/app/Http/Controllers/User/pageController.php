@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\News as news;
 use App\Product;
 use App\Productcolor;
+use App\Type;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
 
 class pageController extends Controller
@@ -46,5 +48,29 @@ class pageController extends Controller
             $product = Product::find($id);
             $productcolor = Productcolor::where('idproduct',$id)->get();
         return view('user.page.detailproduct',['product'=>$product,'productcolor'=>$productcolor]);
+    }
+    public function getProductType($name)
+    {
+        if($name=='Nam') $sex =1;
+        if($name=='Nu') $sex =2;
+        $listtype = Type::all();
+        $listnews = news::whereIn('idproduct',function($q) use ($sex){
+            $q->from('products')->where('sex',$sex)->orWhere('sex','3')->select('id')->get();
+        })->paginate(12);
+
+        return view('user.page.product_type',['listnews'=>$listnews,'sex'=>$name,'listtype'=>$listtype]);
+    }
+    public function getProductbysexandtype($sex,$name)
+    {
+        if($sex=='Nam') $Newsex = 1;
+        if($sex=='Nu') $Newsex = 2;
+        $listtype = Type::all();
+        $listnews = news::whereIn('idproduct',function($q) use ($Newsex,$name){
+            $q->from('products')->whereIn('sex',[$Newsex,'3'])->where('idtype',function($z) use ($name){
+                            $z->from('types')->where('namemeta',$name)->select('id')->get();
+                        })->select('id')->get();
+                    })->paginate(12);
+
+        return view('user.page.product_type',['listnews'=>$listnews,'sex'=>$sex,'listtype'=>$listtype]);
     }
 }
