@@ -76,7 +76,8 @@
 									</div>
 								@endforeach
 								<div class="cart-caption">
-									<div class="cart-total text-right">Tổng tiền: <span class="cart-total-value">$34.55</span></div>
+									@php($total=str_replace(",","",Cart::total())/(float)1.21)
+									<div class="cart-total text-right">Tổng tiền: <span class="cart-total-value">{{number_format($total,0,",",".")}}</span></div>
 									<div class="clearfix"></div>
 
 									<div class="center">

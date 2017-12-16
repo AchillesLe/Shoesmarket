@@ -12,7 +12,8 @@ class OrdersController extends Controller
 	public function ListOrder()
 	{
 		$content = Cart::content();
-		return view('user.page.Order',['content'=>$content]);
+		$total=str_replace(",","",Cart::total());
+		return view('user.page.Order',['content'=>$content,'total'=>$total/(float)1.21]);
 	}
 
 	public function Order($id)
@@ -34,7 +35,7 @@ class OrdersController extends Controller
 									'color'=>$productcolor[0]->color,
 									'image'=>$productcolor[0]->image,
 									'qty'=>$productcolor[0]->quantity,
-									'idpro'=>$id
+									'idsubpro'=>$productcolor[0]->id
 								)
 				));
 			}

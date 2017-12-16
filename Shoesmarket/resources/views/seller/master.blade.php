@@ -21,7 +21,6 @@
   <link href="sourceAdmin/css/custom-admin.css" rel="stylesheet">
   <script src="sourceAdmin/vendor/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="sourceAdmin/ckeditor/ckeditor.js"></script>
-  <script type="text/javascript" src="js/myscript.js"></script>
 
 </head>
 
@@ -78,6 +77,5 @@
     <script src="sourceAdmin/js/sb-admin.min.js"></script>
     <!-- Custom scripts for this page-->
     <script src="sourceAdmin/js/sb-admin-datatables.min.js"></script>
-    <script src="sourceAdmin/js/sb-admin-charts.min.js"></script>
 </body>
 </html>

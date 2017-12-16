@@ -39,6 +39,7 @@
 		Route::get('order/{id}','User\OrdersController@Order');
 		Route::get('list/order','User\OrdersController@ListOrder')->name('list.order');
 		Route::get('updateOrder/{rowId}','User\OrdersController@UpdateOrder');
+		//Route::get('updateOrder/{rowId}','User\OrdersController@UpdateOrder');
 		Route::get('removerorder/{rowId}','User\OrdersController@removerorder');
 	});
 //bao-  phần tin tức.
@@ -73,23 +74,25 @@
 			Route::get('post-add',['as' => 'postAddNews', 'uses' => 'seller\NewsController@postAddNews']);
 			Route::get('edit',['as' => 'getEditNews', 'uses' => 'seller\NewsController@getEditNews']);
 			Route::get('newsorder',['as' => 'getListOrderNews', 'uses' => 'seller\NewsController@getListOrderNews']);
+
+			//---------------------------
+		});
+		Route::group(['prefix'=>'orders'],function(){
+			Route::get('listorder',['as' => 'getListOrder', 'uses' => 'seller\OrderController@getListOrder']);
+		});
+		// route for view/blade file
+		//---------------------------
+		Route::get('cart/{id}',['as' => 'getCart', 'uses' => 'seller\PaypalController@getCart']);
+		//-------------------------
+		// route for post request
+		//-------------------------
+		Route::post('paypal', 'seller\PaypalController@postPaymentWithpaypal')->name('seller.paypal');
+		//---------------------------------
+		// route for check status responce
+		//---------------------------------
+		Route::get('paypal','seller\PaypalController@getPaymentStatus')->name('status');
+	
 	});
-	Route::group(['prefix'=>'orders'],function(){
-		Route::get('listorder',['as' => 'getListOrder', 'uses' => 'seller\OrderController@getListOrder']);
-	});
-	//---------------------------
-	// route for view/blade file
-	//---------------------------
-	Route::get('cart/{id}',['as' => 'getCart', 'uses' => 'seller\PaymentController@getCart']);
-	//-------------------------
-	// route for post request
-	//-------------------------
-	Route::post('paypal', 'seller\PaymentController@postPaymentWithpaypal')->name('paypal');
-	//---------------------------------
-	// route for check status responce
-	//---------------------------------
-	Route::get('paypal','seller\PaymentController@getPaymentStatus')->name('status');
-});
 // Phần của Bảo -- Admin ( Tạo nhóm Route)
 
 	Route::group(['prefix'=>'admin'],function(){

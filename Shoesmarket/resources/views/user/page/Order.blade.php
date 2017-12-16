@@ -29,7 +29,7 @@
 											<br>
 											<p class="table-option">Size: {{$item->options->size}}</p>
 											<br>
-											<a class="table-edit" href="{{url('detail/',$item->options->id)}}">Edit</a>
+											<a class="table-edit" href="{{url('/detail',['id'=>$item->id])}}">Edit</a>
 										</div>
 									</div>
 								</td>
@@ -105,9 +105,9 @@
 
 				<div class="cart-totals pull-right">
 					<div class="cart-totals-row"><h5 class="cart-total-title">Cart Totals</h5></div>
-					<div class="cart-totals-row"><span>Cart Subtotal:</span> <span>$188.00</span></div>
+					<div class="cart-totals-row"><span>Cart Subtotal:</span> <span>{{number_format($total,0,",",".")}}</span></div>
 					<div class="cart-totals-row"><span>Shipping:</span> <span>Free Shipping</span></div>
-					<div class="cart-totals-row"><span>Order Total:</span> <span>$188.00</span></div>
+					<div class="cart-totals-row"><span>Order Total:</span> <span>{{number_format($total,0,",",".")}}</span></div>
 				</div>
 
 				<div class="clearfix"></div>
@@ -165,6 +165,12 @@
 	    	var qty = jQuery(this).val();
 	    	var subtotal = price*qty;
 	    	row.find("td:eq(4)").text(subtotal);
+
+	    	// jQuery.get('/orders/update/file', {param1: 'value1'}, function(data, textStatus, xhr) {
+	    	//   //optional stuff to do after success
+	    	// });
+	    	
+
 	    });
 
 	});

@@ -1895,6 +1895,7 @@ word-wrap: break-word;*/
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
+    width: 165px;
 }
 
 .single-item-price {
