@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
-use Illuminate\Http\Request;
+use Request;
 use App\Http\Controllers\Controller;
 use App\News as news;
 use App\Product;
@@ -43,11 +43,26 @@ class pageController extends Controller
     {
         return view('user.page.abouts');
     }
+    public function Search($keyword='')
+    {
+        $news = news::where('',$id)->first();
+        $productcolor = Productcolor::where('idproduct',$id)->get();
+        return view('user.page.abouts');
+    }
     public function getdetailProduct($id)
     {
-            $product = Product::find($id);
+
+            $news = news::where('idproduct',$id)->first();
             $productcolor = Productcolor::where('idproduct',$id)->get();
-        return view('user.page.detailproduct',['product'=>$product,'productcolor'=>$productcolor]);
+            $idtype = $news->product->idtype;
+            $listnews = news::latest()->take(8)->get();   
+            $related = news::whereIn('idproduct',function($q) use ($idtype){
+            $q->from('products')->where('idtype',$idtype)->select('id')->get();
+                    });
+            $count = $related->count() >3 ? 4 : $related->count();  
+                    $listrelated = $related->orderBy(DB::raw('RAND()'))->take($count)->get();
+                       
+            return view('user.page.detailproduct',['news'=>$news,'productcolor'=>$productcolor,'related'=>$listrelated,'listnews'=>$listnews,'id'=>""]);
     }
     public function getProductType($name)
     {
@@ -72,5 +87,24 @@ class pageController extends Controller
                     })->paginate(12);
 
         return view('user.page.product_type',['listnews'=>$listnews,'sex'=>$sex,'listtype'=>$listtype]);
+    }
+    public function checkquantity(Request $request)
+    {
+        if(Request::ajax())
+        {
+            $idpro=Request::get('idpro');
+            $color=Request::get('color');
+            $size=Request::get('size');
+            $qty=Request::get('qty');
+            if($idpro > 0 && $color != null && $size > 0 && $qty > 0 )
+            {
+                $productcolor = Productcolor::where('idproduct',$idpro)
+                                            ->where('color',$color)
+                                            ->where('size',$size)->first();
+                if($productcolor->quantity > $qty) return 'true';
+                return 'false';
+            }
+        }
+        return 'NaN';
     }
 }

@@ -21,6 +21,8 @@ class Productcolor extends Model
      */
     protected $table = 'productcolors';
 
+    public $timestamps = false;
+
     /**
      * @var array
      */

@@ -66,6 +66,7 @@ class PaypalController extends Controller
         $item_list = new ItemList();
         $item_list->setItems(array($item_1));
 
+        $tigia = "22680";
         $amount = new Amount();
         $amount->setCurrency('USD')
             ->setTotal($request->get('tong_tien'));

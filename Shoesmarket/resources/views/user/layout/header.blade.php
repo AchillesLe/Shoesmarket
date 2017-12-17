@@ -46,13 +46,13 @@
 		<div class="header-body">
 			<div class="container beta-relative">
 				<div class="pull-left">
-					<a href="{{url('/')}}" id="logo"><span style="color:blue; font-size: 35px;font-weight: bold; ">Shoes Market</span></a>
+					<a href="{{url('/')}}" id="logo">{{-- <img src="{{asset('source/Upload/Slide/avater.jpg')}}" style="border:0px;width: 150px;height: 90px;" > --}}<span style="font-size:26px; ">Shoes Market</span></a>
 				</div>
-				<div class="pull-right beta-components space-left ov">
+				<div class="pull-right beta-components space-left ov"  id="header-right">
 					<div class="space10">&nbsp;</div>
 					<div class="beta-comp">
-						<form role="search" method="get" id="searchform" action="/">
-					        <input type="text" value="" name="s" id="s" placeholder="Nhập từ khóa..." />
+						<form role="search" method="get" id="searchform" action="{{url('search')}}">
+					        <input type="text" value="" name="search" id="search" placeholder="Tìm giày , loại giày , người bán ." />
 					        <button class="fa fa-search" type="submit" id="searchsubmit"></button>
 						</form>
 					</div>

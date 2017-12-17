@@ -31,7 +31,7 @@
 
 							<div class="row">
 								@foreach($listnews as $item)
-									<div class="col-md-4">
+									<div class="col-md-3">
 										<div class="item">
 											<div class="single-item">
 												<div class="single-item-header">
@@ -45,7 +45,7 @@
 												</div>
 												<div class="single-item-caption">
 													<a class="add-to-cart pull-left" href="{{url('order',$item->product->id)}}"><i class="fa fa-shopping-cart"></i></a>
-													<a class="beta-btn primary" href="{{url('/detailproduct',$item->product->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
+													<a class="beta-btn primary" href="{{url('/detail',$item->product->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
 													<div class="clearfix"></div>
 												</div>
 											</div>

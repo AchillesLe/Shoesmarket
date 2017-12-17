@@ -5,11 +5,11 @@
 			<div class="pull-left">
 				<h6 class="inner-title">Product</h6>
 			</div>
-			<div class="pull-right">
+{{-- 			<div class="pull-right">
 				<div class="beta-breadcrumb font-large">
 					<a href="index.html">Home</a> / <span>Product</span>
 				</div>
-			</div>
+			</div> --}}
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -20,14 +20,18 @@
 				<div class="col-sm-9">
 
 					<div class="row">
+						
 						<div class="col-sm-4">
-							<img src="source/assets/dest/images/products/6.jpg" alt="">
+
+							<img src="{{asset('source/Upload/')}}/{{$news->product->image}}" alt="Hình ảnh" width="150" height="200">
+							<div id="shop"> {{$news->product->seller->name}}</div>
 						</div>
 						<div class="col-sm-8">
 							<div class="single-item-body">
-								<p class="single-item-title">Sample Woman Top</p>
+								
+								<p class="single-item-title" style="width: 500px;font-size: 22px;">{{$news->product->name}}</p>
 								<p class="single-item-price">
-									<span>$34.55</span>
+									<span>{{$news->product->price}} VNĐ</span>
 								</p>
 							</div>
 
@@ -35,42 +39,41 @@
 							<div class="space20">&nbsp;</div>
 
 							<div class="single-item-desc">
-								<p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo ms id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe.</p>
+								<p>{{$news->name}}</p>
 							</div>
 							<div class="space20">&nbsp;</div>
-
-							<p>Options:</p>
+<form action="{{url('updateOrder')}}" method="POST">
+	{{csrf_field()}}
+	<p hidden><input type="text" name="idpro" value="{{$news->product->id}}"></p>
+	<p hidden><input type="text" name="idcart" value="{{$id}}"></p>
+							<p >Options:</p>
+							<br>
 							<div class="single-item-options">
-								<select class="wc-select" name="size">
-									<option>Size</option>
-									<option value="XS">XS</option>
-									<option value="S">S</option>
-									<option value="M">M</option>
-									<option value="L">L</option>
-									<option value="XL">XL</option>
-								</select>
-								<select class="wc-select" name="color">
-									<option>Color</option>
-									<option value="Red">Red</option>
-									<option value="Green">Green</option>
-									<option value="Yellow">Yellow</option>
-									<option value="Black">Black</option>
-									<option value="White">White</option>
-								</select>
-								<select class="wc-select" name="color">
-									<option>Qty</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-								</select>
-								<a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i></a>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-					</div>
+								@foreach($productcolor as $item)
+									@if($item->quantity > 0)
+										<div style="width: 150px;overflow: auto;float: left;">
+											<div class="form-check">
+												<label class="form-check-label">
+											    <input class="form-check-input" type="radio" name="chbxsize" id="chbxsize" value="{{$item->color}}-{{$item->size}}" checked >
+											   	{{$item->color}}-{{$item->size}}
+											  	</label>
+											</div>
+										</div>
+									@endif
+								@endforeach
 
+							</div>
+						<div style="margin-top: 50px;">
+							<input type="number" style="border: 1px solid black;border-radius: 3px ;width: 100px;line-height:30px; text-align: center;" name="qty" min="1"  value="1" required  >
+							&nbsp;&nbsp;&nbsp;
+						<button type="submit" style="width: 42px;border: 1px solid #4d4dff;border-radius: 1px;"><a class="add-to-cart" id="cartdetail"{{-- href="{{url('updateOrder')}}" --}} ><i class="fa fa-shopping-cart" id="_cart"></i></a></button>
+						
+						</div>
+								<div class="clearfix"></div>
+						</div>
+						
+					</div>
+</form>
 					<div class="space40">&nbsp;</div>
 					<div class="woocommerce-tabs">
 						<ul class="tabs">
@@ -79,8 +82,7 @@
 						</ul>
 
 						<div class="panel" id="tab-description">
-							<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
-							<p>Consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequaturuis autem vel eum iure reprehenderit qui in ea voluptate velit es quam nihil molestiae consequr, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? </p>
+							<p>{{$news->note}}</p>
 						</div>
 						<div class="panel" id="tab-reviews">
 							<p>No Reviews</p>
@@ -88,143 +90,96 @@
 					</div>
 					<div class="space50">&nbsp;</div>
 					<div class="beta-products-list">
-						<h4>Related Products</h4>
-
+						<h4>Các sản phẩm liên quan</h4>
+						<br>
+						<hr>
 						<div class="row">
-							<div class="col-sm-4">
-								<div class="single-item">
-									<div class="single-item-header">
-										<a href="product.html"><img src="source/assets/dest/images/products/4.jpg" alt=""></a>
+							@foreach($related as $item)
+									<div class="col-md-3">
+										<div class="item">
+											<div class="single-item">
+												<div class="single-item-header">
+													<a href="{{url('detail',$item->product->id)}}"><img src="{{asset('source/Upload/')}}/{{$item->product->image}}" alt="" ></a>
+												</div>
+												<div class="single-item-body">
+													<p class="single-item-title">{{$item->product->name}}</p>
+													<p class="single-item-price">
+														<span>{{$item->product->price}} VNĐ</span>
+													</p>
+												</div>
+											</div>
+										</div>
 									</div>
-									<div class="single-item-body">
-										<p class="single-item-title">Sample Woman Top</p>
-										<p class="single-item-price">
-											<span>$34.55</span>
-										</p>
-									</div>
-									<div class="single-item-caption">
-										<a class="add-to-cart pull-left" href="product.html"><i class="fa fa-shopping-cart"></i></a>
-										<a class="beta-btn primary" href="product.html">Details <i class="fa fa-chevron-right"></i></a>
-										<div class="clearfix"></div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-4">
-								<div class="single-item">
-									<div class="single-item-header">
-										<a href="product.html"><img src="source/assets/dest/images/products/5.jpg" alt=""></a>
-									</div>
-									<div class="single-item-body">
-										<p class="single-item-title">Sample Woman Top</p>
-										<p class="single-item-price">
-											<span>$34.55</span>
-										</p>
-									</div>
-									<div class="single-item-caption">
-										<a class="add-to-cart pull-left" href="product.html"><i class="fa fa-shopping-cart"></i></a>
-										<a class="beta-btn primary" href="product.html">Details <i class="fa fa-chevron-right"></i></a>
-										<div class="clearfix"></div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-4">
-								<div class="single-item">
-									<div class="ribbon-wrapper"><div class="ribbon sale">Sale</div></div>
-
-									<div class="single-item-header">
-										<a href="#"><img src="source/assets/dest/images/products/6.jpg" alt=""></a>
-									</div>
-									<div class="single-item-body">
-										<p class="single-item-title">Sample Woman Top</p>
-										<p class="single-item-price">
-											<span class="flash-del">$34.55</span>
-											<span class="flash-sale">$33.55</span>
-										</p>
-									</div>
-									<div class="single-item-caption">
-										<a class="add-to-cart pull-left" href="#"><i class="fa fa-shopping-cart"></i></a>
-										<a class="beta-btn primary" href="#">Details <i class="fa fa-chevron-right"></i></a>
-										<div class="clearfix"></div>
-									</div>
-								</div>
-							</div>
+							@endforeach
 						</div>
 					</div> <!-- .beta-products-list -->
 				</div>
 				<div class="col-sm-3 aside">
 					<div class="widget">
-						<h3 class="widget-title">Best Sellers</h3>
+						<h3 class="widget-title">Các sản phẩm gần đây</h3>
 						<div class="widget-body">
-							<div class="beta-sales beta-lists">
-								<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="source/assets/dest/images/products/sales/1.png" alt=""></a>
-									<div class="media-body">
-										Sample Woman Top
-										<span class="beta-sales-price">$34.55</span>
+							@foreach($listnews as $item)
+								<a class="pull-left" href="{{url('/detailproduct',$item->product->id)}}">
+									<div class="beta-sales beta-lists">
+										<div class="media beta-sales-item">
+											<img src="{{asset('source/Upload')}}/{{$item->product->image}}" alt="" style="float: left;">
+											<div class="media-body" style="float: left;">
+												<p style="width: 165px;overflow: hidden;word-wrap: break-word;">{{$item->product->name}}</p>
+												<p><span class="beta-sales-price">{{$item->product->price}} VNĐ</span></p>
+											</div>
+										</div>
 									</div>
-								</div>
-								<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="source/assets/dest/images/products/sales/2.png" alt=""></a>
-									<div class="media-body">
-										Sample Woman Top
-										<span class="beta-sales-price">$34.55</span>
-									</div>
-								</div>
-								<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="source/assets/dest/images/products/sales/3.png" alt=""></a>
-									<div class="media-body">
-										Sample Woman Top
-										<span class="beta-sales-price">$34.55</span>
-									</div>
-								</div>
-								<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="source/assets/dest/images/products/sales/4.png" alt=""></a>
-									<div class="media-body">
-										Sample Woman Top
-										<span class="beta-sales-price">$34.55</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div> <!-- best sellers widget -->
-					<div class="widget">
-						<h3 class="widget-title">New Products</h3>
-						<div class="widget-body">
-							<div class="beta-sales beta-lists">
-								<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="source/assets/dest/images/products/sales/1.png" alt=""></a>
-									<div class="media-body">
-										Sample Woman Top
-										<span class="beta-sales-price">$34.55</span>
-									</div>
-								</div>
-								<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="source/assets/dest/images/products/sales/2.png" alt=""></a>
-									<div class="media-body">
-										Sample Woman Top
-										<span class="beta-sales-price">$34.55</span>
-									</div>
-								</div>
-								<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="source/assets/dest/images/products/sales/3.png" alt=""></a>
-									<div class="media-body">
-										Sample Woman Top
-										<span class="beta-sales-price">$34.55</span>
-									</div>
-								</div>
-								<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="source/assets/dest/images/products/sales/4.png" alt=""></a>
-									<div class="media-body">
-										Sample Woman Top
-										<span class="beta-sales-price">$34.55</span>
-									</div>
-								</div>
-							</div>
+								</a>
+							@endforeach
 						</div>
 					</div> <!-- best sellers widget -->
 				</div>
 			</div>
 		</div> <!-- #content -->
 	</div> <!-- .container -->
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		jQuery('input[name=quantity]').change(function(event) {
+			event.preventDefault();
+			$idpro = jQuery('input[name=idpro]').val();
+			$size_color = jQuery('input[name=chbxsize]:checked').val();
+			$color = ($size_color.split('-'))[0];
+			$size = ($size_color.split('-'))[1];
+			$qty = jQuery(this).val();
+			$_token=jQuery('input[name="_token"]').val();
+			jQuery.ajax({
+			  url: 'product/checkquantity',
+			  type: 'POST',
+			  dataType: 'json',
+			  cache:false,
+			  data: {_token:$_token,idpro:$idpro,color: $color,size : $size,qty:$qty},
+			  success: function(data, textStatus, xhr) {
+			  	$newdata=JSON.parse(data);
+			   if($newdata==false)
+			   {
+			    	alert(" Số lượng không đủ vui lòng chọn ít hơn .");
+			    	jQuery('input[name=quantity]').val('1');
+			   }
+			    
+			  }
+			});
+		});
 
+		// jQuery('a #_cart').click(function(event) {
+		// 			event.preventDefault();
+		// 			$idpro = jQuery('input[name=idpro]').val();
+		// 			$size_color = jQuery('input[name=chbxsize]:checked').val();
+		// 			$color = ($size_color.split('-'))[0];
+		// 			$size = ($size_color.split('-'))[1];
+		// 			$qty = jQuery('input[name=quantity]').val();
+		// 			$_token = jQuery('input[name="_token"]').val();
+		// 			jQuery.post('updateOrder', {_token: $_token , idpro : $idpro , color : $color, size : $size , qty : $qty} , function( data, textStatus, xhr){
+		// 				window.location.href = "list/order";
+		// 			});
+					
+		// 		});
+
+		});
+	
+</script>
 @endsection

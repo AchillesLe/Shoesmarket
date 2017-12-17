@@ -1896,6 +1896,7 @@ word-wrap: break-word;*/
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     width: 165px;
+    font-size:14px;
 }
 
 .single-item-price {
@@ -5221,3 +5222,6 @@ border:none;}
 .beta-rotator canvas{width:100%;}
 .beta-rotator {font-family: "Open Sans",sans-serif;}
 .history-slider span {font-family: "Open Sans",sans-serif;}
+a#cartdetail:hover{background: #f90;}
+a .fa-shopping-cart:hover{cursor:pointer;background: #f90;}
+#header-right{position: absolute;right: 0;bottom: 3px;}

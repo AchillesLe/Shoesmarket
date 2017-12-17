@@ -37,32 +37,6 @@
 				<!--slider-->
 </div>
 
-{{-- <div id="carouselHeader" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#slide1" data-slide-to="0" class="active"></li>
-    <li data-target="#slide2" data-slide-to="1"></li>
-    <li data-target="#slide3" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner" role="listbox">
-    <div class="carousel-item active">
-      <img class="d-block img-fluid" src="{{asset('source/Upload/Slide/baner_slide_1.jpg')}}" alt="First slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block img-fluid" src="{{asset('source/Upload/Slide/baner_slide_2.jpg')}}" alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block img-fluid" src="{{asset('source/Upload/Slide/baner_slide_3.jpg')}}" alt="Third slide">
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselHeader" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div> --}}
 	
 <div class="container">
 		<div id="content" class="space-top-none">
@@ -117,8 +91,8 @@
 													</p>
 												</div>
 												<div class="single-item-caption">
-													<a class="add-to-cart pull-left" href="{{url('order',$item->product->id)}}"><i class="fa fa-shopping-cart"></i></a>
-													<a class="beta-btn primary" href="{{url('/detailproduct',$item->product->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
+													<a class="add-to-cart pull-left" href="{{url('order',$item->product->id)}}"><i class="fa fa-shopping-cart" id="_cart" data-id="{{$item->product->id}}"></i></a>
+													<a class="beta-btn primary" href="{{url('/detail',$item->product->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
 													<div class="clearfix"></div>
 												</div>
 											</div>
@@ -137,4 +111,33 @@
 		</div> 
 </div> 
 </div>
+<script type="text/javascript">
+	// jQuery(document).ready(function($) {
+	// 	jQuery('a #_cart').click(function(event) {
+	// 		event.preventDefault();
+	// 		$id = jQuery(this).data('id');
+	// 		jQuery.ajax({
+	// 		  url: 'order/'+$id,
+	// 		  type: 'GET',
+	// 		  cache:false,
+	// 		  success: function(data, textStatus, xhr) {
+	// 			   if(data=="success")
+	// 			   {
+	// 			    	alert(" Thêm vào giỏ hàng thành công .");
+	// 			   }
+	// 			   else if(data=="false")
+	// 			   {
+	// 			   	alert(" Thêm vào giỏ hàng thất bại .");
+	// 			   }
+	// 			    else{
+	// 			    	window.location.href = "/login";
+	// 			    }
+	// 		  },error:(function(a,b,c) {
+	// 		  	alert(a);
+	// 		  })
+	// 		});
+			
+	// 	});
+	// });
+</script>
 @endsection

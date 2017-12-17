@@ -19,9 +19,12 @@
 // Phần của Vân đom -- user
 
 	Route::get('/home','User\pageController@getIndex')->name('home');
-	Route::get('/detail/{id}','User\pageController@getdetailProduct');
+	Route::get('/detail/{id}','User\pageController@getdetailProduct')->name('detail.product');
 	Route::get('/productType/{name}','User\pageController@getProductType');
 	Route::get('/product/{sex}/{name}','User\pageController@getProductbysexandtype');
+	Route::post('product/checkquantity','User\pageController@checkquantity');
+	Route::get('search/{keyword}','User\pageController@Search');
+
 	// Route::get('/contacts','User\pageController@getContacts');
 	// Route::get('/abouts','User\pageController@getAbouts');
 
@@ -39,8 +42,8 @@
 		Route::get('logout','User\LoginController@logout');
 		Route::get('order/{id}','User\OrdersController@Order');
 		Route::get('list/order','User\OrdersController@ListOrder')->name('list.order');
-		Route::get('updateOrder/{rowId}','User\OrdersController@UpdateOrder');
-		//Route::get('updateOrder/{rowId}','User\OrdersController@UpdateOrder');
+		Route::post('updateOrder','User\OrdersController@UpdateOrder');
+		Route::get('edit/{rowId}','User\OrdersController@getedit');
 		Route::get('removerorder/{rowId}','User\OrdersController@removerorder');
 	});
 //bao-  phần tin tức.
