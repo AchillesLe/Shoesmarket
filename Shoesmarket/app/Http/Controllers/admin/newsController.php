@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\New  as news;
+use App\News  as news;
 use App\Product;
 use App\Seller;
 use Illuminate\Support\facades\Hash;

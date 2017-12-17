@@ -70,7 +70,9 @@
 		Route::group(['prefix'=>'seller'],function(){
 			Route::get('list','admin\sellerController@getlist')->name('admin.listseller');
 			Route::get('updatestatus/{id}','admin\sellerController@updatestatus');
-			Route::get('sellpackage','admin\sellerController@sellpackage')->name('sellpackage');
+			Route::get('sellpackage/{id}','admin\sellerController@sellpackage')->name('sellpackage');
+			Route::post('sellpackage','admin\sellerController@postsellpackage')->name('post.sellpackage');
+
 		});
 		Route::group(['prefix'=>'penalize'],function(){
 			Route::get('list','admin\penalizeController@index')->name('admin.penalize');

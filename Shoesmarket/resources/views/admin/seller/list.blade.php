@@ -54,7 +54,7 @@
                               <button class="btn btn-outline-info" id="view"  type="button"  data-toggle="modal" data-target="#sellerinfo" >Xem</button>
                             </li>
                             <li >
-                              <a href="{!!url('admin/seller/sellpackage')!!}"><button class="btn btn-outline-info" name="addpackage" >Nạp tin</button></a>
+                              <a href="{!!url('admin/seller/sellpackage',$seller->id)!!}"><button class="btn btn-outline-info" name="addpackage" >Nạp tin</button></a>
                             </li>
                             <li >
                               <a href="{!!url('admin/mail/create',$seller->id)!!}"><button class="btn btn-outline-info" name="addmail" >Gửi mail</button></a>

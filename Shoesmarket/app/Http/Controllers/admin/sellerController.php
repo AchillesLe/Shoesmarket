@@ -34,13 +34,20 @@ class sellerController extends Controller
         return redirect()->route('admin.listseller');
     }
 
-    public function sellpackage()
+    public function sellpackage($id)
     {
-        return view('admin.seller.sellpackage');
+        $Seller = Seller::find($id);
+
+        return view('admin.seller.sellpackage',['seller'=>$seller]);
     }
     public function penalize()
     {
         return view('admin.seller.penalize');
     }
     
+    public function postsellpackage(Request $request)
+    {
+
+        return view('admin.seller.sellpackage');
+    }
 }
