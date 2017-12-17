@@ -24,6 +24,12 @@
               </thead>
               <tbody>
               @foreach($listproduct as $product)
+              <?php $listproductcolor=App\Productcolor::where('idproduct',$product->id)->get();
+                    $totalquantity=0;
+                    foreach ($listproductcolor as $productcolor) {
+                      $totalquantity+=$productcolor->quantity;
+                    }
+               ?>
                 <tr>
                   <td>{!! $product->id !!}</td>
                   <td>{!! $product->name !!}</td>
@@ -36,7 +42,7 @@
                       Cả Nam và Nữ
                     @endif
                   </td>
-                  <td>{!! $product->quantity !!}</td>
+                  <td>{!! $totalquantity !!}</td>
                   <td>{!! $product->price !!}</td>
                   <td>{!! $product->created_at !!}</td>
                   <td style="text-align:center">
@@ -80,6 +86,12 @@
               </thead>
               <tbody>
               @foreach($listproduct as $product)
+              <?php $listproductcolor=App\Productcolor::where('idproduct',$product->id)->get();
+                    $totalquantity=0;
+                    foreach ($listproductcolor as $productcolor) {
+                      $totalquantity+=$productcolor->quantity;
+                    }
+               ?>
                 <tr>
                   <td>{!! $product->id !!}</td>
                   <td>{!! $product->name !!}</td>
@@ -92,7 +104,7 @@
                       Cả Nam và Nữ
                     @endif
                   </td>
-                  <td>{!! $product->quantity !!}</td>
+                  <td>{!! $totalquantity !!}</td>
                   <td>{!! $product->price !!}</td>
                   <td>{!! $product->created_at !!}</td>
                   <td style="text-align:center">

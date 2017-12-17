@@ -28,7 +28,7 @@ class Detail_bill extends Model
     /**
      * @var array
      */
-    protected $fillable = ['idbill_seller', 'idproduct', 'cost', 'quantity', 'total', 'status', 'israting'];
+    protected $fillable = ['idbill_seller', 'idproductcolor', 'quantity', 'total', 'status', 'israting'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -41,8 +41,9 @@ class Detail_bill extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function product()
+
+    public function productcolor()
     {
-        return $this->belongsTo('App\Product', 'idproduct');
+        return $this->belongsTo('App\Productcolor', 'idproductcolor');
     }
 }

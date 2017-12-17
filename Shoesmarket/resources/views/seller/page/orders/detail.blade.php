@@ -11,6 +11,8 @@
                 <tr>
                   <th>Mã sản phẩm</th>
                   <th>Tên sản phẩm</th>
+                  <th>Màu sắc</th>
+                  <th>Kích thước</th>
                   <th>Gía tiền</th>
                   <th>Số lượng</th>
                   <th>Thành tiền</th>
@@ -21,11 +23,16 @@
               </thead>
               <tbody>
               @foreach($listdetailbill as $detailbill)
-              <?php $productdetail=App\Product::findOrFail($detailbill->idproduct); ?>
+              <?php 
+                    $productdetail=App\Product::findOrFail($detailbill->idproductcolor);
+                    $productdetailcolor=App\Productcolor::findOrFail($detailbill->idproductcolor);
+               ?>
                 <tr>
-                  <td>{!! $detailbill->idproduct !!}</td>
+                  <td>{!! $productdetail->id !!}</td>
                   <td>{!! $productdetail->name !!}</td>
-                  <td>{!! $detailbill->cost !!}</td>
+                  <td>{!! $productdetailcolor->color !!}</td>
+                  <td>{!! $productdetailcolor->size !!}</td>
+                  <td>{!! $productdetail->price !!}</td>
                   <td>{!! $detailbill->quantity !!}</td>
                   <td>{!! $detailbill->total !!}</td>
                   <td style="text-align:center">
