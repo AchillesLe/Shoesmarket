@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use App\Notifications\ResetPasswordNotification;
 /**
  * @property int $id
  * @property string $name
@@ -24,6 +24,7 @@ class User extends Authenticatable
      * 
      * @var string
      */
+    use Notifiable;
     protected $table = 'users';
 
     /**
