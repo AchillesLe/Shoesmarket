@@ -25,7 +25,6 @@
 						<div class="col-sm-4">
 
 							<img src="{{asset('source/Upload/')}}/{{$news->product->image}}" alt="Hình ảnh" width="150" height="200">
-							<div id="shop"> {{$news->product->seller->name}}</div>
 						</div>
 						<div class="col-sm-8">
 							<div class="single-item-body">
@@ -50,12 +49,13 @@
 							<p >Options:</p>
 							<br>
 							<div class="single-item-options">
+								{{-- @php( if($id!='') $cart = Cart::get($id) else $cart="1"; ) --}}
 								@foreach($productcolor as $item)
 									@if($item->quantity > 0)
 										<div style="width: 150px;overflow: auto;float: left;">
 											<div class="form-check">
 												<label class="form-check-label">
-											    <input class="form-check-input" type="radio" name="chbxsize" id="chbxsize" value="{{$item->color}}-{{$item->size}}" checked >
+											    <input class="form-check-input" type="radio" name="chbxsize" id="chbxsize" value="{{$item->color}}-{{$item->size}}" @if($id!=''&&(Cart::get($id))->options->color==$item->color&&(Cart::get($id))->options->size==$item->size)  checked @endif >
 											   	{{$item->color}}-{{$item->size}}
 											  	</label>
 											</div>
@@ -65,7 +65,7 @@
 
 							</div>
 						<div style="margin-top: 50px;">
-							<input type="number" style="border: 1px solid black;border-radius: 3px ;width: 100px;line-height:30px; text-align: center;" name="qty" min="1"  value="1" required  >
+							<input type="number" style="border: 1px solid black;border-radius: 3px ;width: 100px;line-height:30px; text-align: center;" name="qty" min="1" @if($id!=''&&(Cart::get($id))->qty!=null) value="{{(Cart::get($id))->qty}}" @else value="1" @endif required  >
 							&nbsp;&nbsp;&nbsp;
 						<button type="submit" style="width: 42px;border: 1px solid #4d4dff;border-radius: 1px;"><a class="add-to-cart" id="cartdetail"{{-- href="{{url('updateOrder')}}" --}} ><i class="fa fa-shopping-cart" id="_cart"></i></a></button>
 						

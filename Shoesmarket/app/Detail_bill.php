@@ -24,7 +24,7 @@ class Detail_bill extends Model
      * @var string
      */
     protected $table = 'detail_bills';
-
+    public $timestamps  = false;
     /**
      * @var array
      */
@@ -41,8 +41,8 @@ class Detail_bill extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function product()
+    public function productcolor()
     {
-        return $this->belongsTo('App\Product', 'idproduct');
+        return $this->belongsTo('App\Productcolor', 'idproductcolor');
     }
 }

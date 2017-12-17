@@ -25,7 +25,7 @@
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <h5 class="modal-title">Bạn muốn rời khỏi ?</h5>
+		        <h5 class="modal-title">Bạn muốn  rời khỏi ?</h5>
 {{-- 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button> --}}
@@ -34,7 +34,7 @@
 		      	@if(Cart::count()>0)
 		        	<p>Nếu bạn chọn "Thoát" thì những món hàng bạn đã chọn trong giỏ hàng sẽ không được tính ! </p>
 		        @endif
-		        <p>Bạn chắc bạn muốn rời khỏi ?</p>
+		        <p> Chọn "Thoát" để rời khỏi ?</p>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -65,7 +65,7 @@
 								@foreach( Cart::content() as $item)
 									<div class="cart-item">
 										<div class="media">
-											<a class="pull-left" href="{{url('detail',$item->id)}}"><img src="{{asset('source/Upload/')}}/{{$item->options->image}}" alt="Ảnh"></a>
+											<a class="pull-left" href="{{url('detail',$item->options->namemeta)}}"><img src="{{asset('source/Upload/')}}/{{$item->options->image}}" alt="Ảnh"></a>
 											<div class="media-body">
 												<span class="cart-item-title">{{$item->name}}</span>
 												<span class="cart-item-options">Color: {{$item->options->color}}&nbsp;--&nbsp;Size :{{$item->options->size}}</span>

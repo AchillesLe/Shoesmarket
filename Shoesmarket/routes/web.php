@@ -45,7 +45,7 @@
 		Route::post('updateOrder','User\OrdersController@UpdateOrder');
 		Route::get('edit/{rowId}','User\OrdersController@getedit');
 		Route::get('removerorder/{rowId}','User\OrdersController@removerorder');
-		Route::get('payment','User\OrdersController@payment');
+		Route::post('payment','User\OrdersController@payment');
 
 	});
 //bao-  phần tin tức.
