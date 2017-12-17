@@ -49,13 +49,12 @@
 							<p >Options:</p>
 							<br>
 							<div class="single-item-options">
-								{{-- @php( if($id!='') $cart = Cart::get($id) else $cart="1"; ) --}}
 								@foreach($productcolor as $item)
 									@if($item->quantity > 0)
 										<div style="width: 150px;overflow: auto;float: left;">
 											<div class="form-check">
 												<label class="form-check-label">
-											    <input class="form-check-input" type="radio" name="chbxsize" id="chbxsize" value="{{$item->color}}-{{$item->size}}" @if($id!=''&&(Cart::get($id))->options->color==$item->color&&(Cart::get($id))->options->size==$item->size)  checked @endif >
+											    <input class="form-check-input" type="radio" name="chbxsize" id="chbxsize" value="{{$item->color}}-{{$item->size}}" @if($id!=''&&(Cart::get($id))->options->color==$item->color&&(Cart::get($id))->options->size==$item->size)  checked @endif required>
 											   	{{$item->color}}-{{$item->size}}
 											  	</label>
 											</div>

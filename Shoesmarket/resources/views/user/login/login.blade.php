@@ -1,6 +1,17 @@
 @extends('user.master')
 @section('content')
-<div class="content" style="overflow: auto;">		
+<div class="content" style="overflow: auto;">
+					@if(count($errors)>0)
+                        <div class="alert alert-danger" id="noti">
+                            @foreach($errors->all() as $err)
+                               {{$err}}<br>
+                            @endforeach
+                        </div>
+                    @endif
+
+                    @if(session('thongbao'))
+                        <div  class="alert alert-danger" id="noti" style="margin-top: 5px;">{{session('thongbao')}}</div>
+                    @endif		
 			<form action="{{url('/login')}}" method="post" class="beta-form-checkout">
 				{{csrf_field()}}
 				<div class="row">

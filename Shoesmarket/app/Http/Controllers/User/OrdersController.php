@@ -82,6 +82,14 @@ class OrdersController extends Controller
 	}
 	public function UpdateOrder(Request $request)
     {	
+    	$this->validate($request,
+            [
+                'sizecolor'=>'required',
+
+            ],
+            [
+                'sizecolor.required'=>'Bạn chưa chọn màu sắc và size ! .',
+            ]);
     		$sizecolor = $request->chbxsize;
             $idpro = $request->idpro;
             $color = (explode('-',$sizecolor))[0];

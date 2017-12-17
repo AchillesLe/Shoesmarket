@@ -26,13 +26,16 @@ class LoginController extends Controller
         $this->validate($request,[
             'email'=>'required|email',
             'password'=>'required|min:6|max:32'
+        ],[
+            'email.required'=>'Bạn chưa nhập email .',
+            'password.required'=>'Bạn chưa nhập password .',
         ]);
         if(Auth::attempt(['email'=>$request->email,'password'=>$request->password],null))
         {
            
             return redirect()->route('home');
         }
-        return redirect()->back();
+        return redirect()->back()->with('thongbao',' Email hoặc mật khẩu không đúng . Vui lòng kiểm tra lại !');
     }
     public function logout()
     {
@@ -48,9 +51,9 @@ class LoginController extends Controller
     {
          $this->validate($request,
             [
-                'email'=>'required|min:10|unique:user,email',
-                'name'=>'required|min:4|max:24|unique:user,name',
-                'phone'=>'required|min:10|max:11|unique:user,phone',
+                'email'=>'required|min:10|unique:users,email',
+                'name'=>'required|min:4|max:24|unique:users,name',
+                'phone'=>'required|min:10|max:11|unique:users,phone',
                 'password'=>'required|min:3|max:50',
                 'password_2'=>'required|min:3|max:50',
             ],
@@ -86,10 +89,11 @@ class LoginController extends Controller
             $account->email= $email;
             $account->password = Hash::make($password);
             $account->save();
+            
             Auth::login($account);
             return redirect()->route('home');
         }
         else
-            return redirect()->route('register');
+            return redirect()->route('register')->with('thongbao','Có lỗi xảy ra trong quá trình đăng kí . Chúng tôi xinlỗi về sự cố này !');
     }
 }

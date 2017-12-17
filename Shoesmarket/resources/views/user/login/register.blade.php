@@ -11,8 +11,9 @@
                     @endif
 
                     @if(session('thongbao'))
-                        <div  class="alert alert-success" id="noti" style="margin-top: 5px;">{{session('thongbao')}}</div>
+                        <div  class="alert alert-danger" id="noti" style="margin-top: 5px;"><center>{{session('thongbao')}}</center></div>
                     @endif
+
 			<form action="{{url('/register')}}" method="post" class="beta-form-checkout">
 				{{csrf_field()}}
 					<div class="col-sm-3"></div>
