@@ -115,10 +115,25 @@
           <a id="addKhohang" class="btn btn-success text-white">Thêm kho hàng</a>
 
           </div>
-          <div class="card-header">Nội dung tin đăng</div>
+          <div class="card-header">Bản tin</div>
           <div class="card-body">
-            <div style="margin-bottom: 15px">
-                  <textarea class="col-md-7" rows="7" cols="100" name="txtNoiDung"></textarea>
+
+            <div class="form-group{{ $errors->has('txtNameNews') ? ' has-error' : '' }}" style="margin-bottom: 15px">
+              <span class="col-md-2">Tiêu đề bản tin </span>
+              <!--<label for="txtNameNews" class="col-md-3">Tiêu đề bản tin</label>-->
+                <input id="txtNameNews" type="text" class="col-md-5 form-control" name="txtNameNews" value="{{ old('txtNameNews') }}" required autofocus>
+
+                @if ($errors->has('txtNameNews'))
+                  <span class="help-block">
+                    <strong>{{ $errors->first('txtNameNews') }}</strong>
+                  </span>
+                @endif
+            </div>
+
+            <div class="col-md-12" style="margin-bottom: 15px">
+              <span class="col-md-2" style="float: left">Nội dung</span>
+              <!--<label for="txtNoiDung" class="col-md-3">Nội dung bản tin</label>-->
+              <textarea class="col-md-7" rows="7" cols="100" name="txtNoiDung"></textarea>
             </div>       
           </div>
           <div class="col-md-4">

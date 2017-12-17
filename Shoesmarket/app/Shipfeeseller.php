@@ -26,7 +26,8 @@ class Shipfeeseller extends Model
      * 
      * @var bool
      */
-    protected $incrementing = false;
+    public $incrementing = false;
+    public $timestamps = false;
 
     /**
      * @var array

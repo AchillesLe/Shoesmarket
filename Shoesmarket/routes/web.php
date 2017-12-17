@@ -57,29 +57,37 @@
 
 		Route::get('/','seller\pageController@getDashboard');
 		Route::get('/dashboard','seller\pageController@getDashboard')->name('seller.dashboard');
-		Route::get('feeship-config',['as' => 'getFeeshipConfig', 'uses' => 'seller\FeeshipController@getFeeshipConfig']);
+		Route::group(['prefix'=>'news'],function(){
+			Route::get('/',['as' => 'getFeeshipConfig', 'uses' => 'seller\FeeshipController@getFeeshipConfig']);
 
+			Route::post('save',['as' => 'postSettingShipfee', 'uses' => 'seller\FeeshipController@postSettingShipfee']);
+
+			Route::get('delete/{id}',['as' => 'deleteShipfee', 'uses' => 'seller\FeeshipController@deleteShipfee']);
+		});
 		Route::group(['prefix'=>'products'],function(){
 			Route::get('listproduct',['as' => 'getListProduct', 'uses' => 'seller\ProductController@getListProduct']);
+			Route::get('status/{id}',['as' => 'changeStatusProduct', 'uses' => 'seller\ProductController@changeStatusProduct']);
+			Route::get('detail/{id}',['as' => 'detailProduct', 'uses' => 'seller\ProductController@detailProduct']);
 		});
 		Route::group(['prefix'=>'news'],function(){
+			Route::get('listnews',['as' => 'getListNews', 'uses' => 'seller\NewsController@getListNews']);
 			Route::get('buypackage',['as' => 'getBuyPackage', 'uses' => 'seller\NewsController@getBuyPackage']);
 			Route::get('add',['as' => 'getAddNews', 'uses' => 'seller\NewsController@getAddNews']);
 			Route::post('add',['as' => 'postAddNews', 'uses' => 'seller\NewsController@postAddNews']);
 			Route::get('edit/{id}',['as' => 'getEditNews', 'uses' => 'seller\NewsController@getEditNews']);
 			Route::post('edit/{id}',['as' => 'postEditNews', 'uses' => 'seller\NewsController@postEditNews']);
-			Route::get('status/{id}',['as' => 'changeStatus', 'uses' => 'seller\ProductController@changeStatus']);
+			Route::get('status/{id}',['as' => 'changeStatusNews', 'uses' => 'seller\NewsController@changeStatusNews']);
 			Route::get('newsorder',['as' => 'getListOrderNews', 'uses' => 'seller\NewsController@getListOrderNews']);
-	});
-	Route::group(['prefix'=>'orders'],function(){
-		Route::get('listorder',['as' => 'getListOrder', 'uses' => 'seller\OrderController@getListOrder']);
-		Route::get('completebill/{id}',['as' => 'completeBill', 'uses' => 'seller\OrderController@completeBill']);
-		Route::get('cancelbill/{id}',['as' => 'cancelBill', 'uses' => 'seller\OrderController@cancelBill']);
-		Route::get('detail/{id}',['as' => 'getDetailBill', 'uses' => 'seller\OrderController@getDetailBill']);
-		Route::get('detail/completebill/{id}',['as' => 'completeDetailBill', 'uses' => 'seller\OrderController@completeDetailBill']);
-		Route::get('detail/cancelbill/{id}',['as' => 'cancelDetailBill', 'uses' => 'seller\OrderController@cancelDetailBill']);
-		Route::get('statistics',['as' => 'getStatistics', 'uses' => 'seller\OrderController@getStatistics']);
-	});
+		});
+		Route::group(['prefix'=>'orders'],function(){
+			Route::get('listorder',['as' => 'getListOrder', 'uses' => 'seller\OrderController@getListOrder']);
+			Route::get('completebill/{id}',['as' => 'completeBill', 'uses' => 'seller\OrderController@completeBill']);
+			Route::get('cancelbill/{id}',['as' => 'cancelBill', 'uses' => 'seller\OrderController@cancelBill']);
+			Route::get('detail/{id}',['as' => 'getDetailBill', 'uses' => 'seller\OrderController@getDetailBill']);
+			Route::get('detail/completebill/{id}',['as' => 'completeDetailBill', 'uses' => 'seller\OrderController@completeDetailBill']);
+			Route::get('detail/cancelbill/{id}',['as' => 'cancelDetailBill', 'uses' => 'seller\OrderController@cancelDetailBill']);
+			Route::get('statistics',['as' => 'getStatistics', 'uses' => 'seller\OrderController@getStatistics']);
+		});
 	//---------------------------
 	// route for view/blade file
 	//---------------------------

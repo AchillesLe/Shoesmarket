@@ -11,22 +11,30 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>Mã sản phẩm</th>
-                  <th>Tên sản phẩm</th>
+                  <th>Mã tin</th>
+                  <th>Tên bản tin</th>
                   <th>Dành cho</th>
-                  <th>Số lượng</th>
-                  <th>Gía</th>
-                  <th>Ngày tạo</th>
+                  <th>Đăng ngày</th>
                   <th>Trạng thái</th>
-                  <th></th>
                   <!--<th>Mô tả</th>-->
                 </tr>
               </thead>
+              <tfoot>
+                <tr>
+                  <th>Mã tin</th>
+                  <th>Tên bản tin</th>
+                  <th>Dành cho</th>
+                  <th>Đăng ngày</th>
+                  <th>Trạng thái</th>
+                  <!--<th>Mô tả</th>-->
+                </tr>
+              </tfoot>
               <tbody>
               @foreach($listproduct as $product)
+              <?php $news=App\News::where('idproduct',$product->id)->first(); ?>
                 <tr>
-                  <td>{!! $product->id !!}</td>
-                  <td>{!! $product->name !!}</td>
+                  <td>{!! $news->id !!}</td>
+                  <td>{!! $news->name !!}</td>
                   <td>
                     @if($product->sex == 1)
                       Nam
@@ -36,19 +44,14 @@
                       Cả Nam và Nữ
                     @endif
                   </td>
-                  <td>{!! $product->quantity !!}</td>
-                  <td>{!! $product->price !!}</td>
-                  <td>{!! $product->created_at !!}</td>
+                  <td>{!! $news->created_at !!}</td>
+                  
                   <td style="text-align:center">
-                    @if($product->status == 0)
-                      <div class="btn btn-success">Hiện</div>
+                    @if($news->status == 0)
+                      <div class="btn btn-success">Active</div>
                     @else
-                      <div class="btn btn-danger">Ẩn</div>
+                      <div class="btn btn-danger">Block</div>
                     @endif
-                  </td>
-                  <td>
-                    <a href="{!! route('detailProduct',$product->id) !!}" class="btn btn-info"><i class="fa fa-info-circle" aria-hidden="true"></i> Chi tiết</a> 
-                    <!--<button type="submit" class="btn btn-success">Ân/Hiện</button>-->
                   </td>
                 </tr>
               @endforeach
@@ -66,23 +69,32 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>Mã sản phẩm</th>
-                  <th>Tên sản phẩm</th>
+                  <th>Mã tin</th>
+                  <th>Tên bản tin</th>
                   <th>Dành cho</th>
-                  <th>Số lượng</th>
-                  <th>Gía</th>
-                  <th>Ngày tạo</th>
+                  <th>Đăng ngày</th>
                   <th>Trạng thái</th>
                   <!--<th>Mô tả</th>-->
-                  <th></th>
-                  <th></th>
+                  <th>Thao tác</th>
                 </tr>
               </thead>
+              <tfoot>
+                <tr>
+                  <th>Mã tin</th>
+                  <th>Tên bản tin</th>
+                  <th>Dành cho</th>
+                  <th>Đăng ngày</th>
+                  <th>Trạng thái</th>
+                  <!--<th>Mô tả</th>-->
+                  <th>Thao tác</th>
+                </tr>
+              </tfoot>
               <tbody>
               @foreach($listproduct as $product)
+              <?php $news=App\News::where('idproduct',$product->id)->first(); ?>
                 <tr>
-                  <td>{!! $product->id !!}</td>
-                  <td>{!! $product->name !!}</td>
+                  <td>{!! $news->id !!}</td>
+                  <td>{!! $news->name !!}</td>
                   <td>
                     @if($product->sex == 1)
                       Nam
@@ -92,22 +104,19 @@
                       Cả Nam và Nữ
                     @endif
                   </td>
-                  <td>{!! $product->quantity !!}</td>
-                  <td>{!! $product->price !!}</td>
-                  <td>{!! $product->created_at !!}</td>
+                  <td>{!! $news->created_at !!}</td>
+                  
                   <td style="text-align:center">
-                    @if($product->status == 0)
-                      <div class="btn btn-success">Hiện</div>
+                    @if($news->status == 0)
+                      <div class="btn btn-success">Active</div>
                     @else
-                      <div class="btn btn-danger">Ẩn</div>
+                      <div class="btn btn-danger">Block</div>
                     @endif
                   </td>
                   <td>
-                    <a href="{!! route('detailProduct',$product->id) !!}" class="btn btn-info"><i class="fa fa-info-circle" aria-hidden="true"></i> Chi tiết</a>               
+                    <a href="{!! route('getEditNews',$news->id) !!}" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa tin </a>
+                    <a href="{!! route('changeStatusNews',$news->id) !!}" class="btn btn-primary"><i class="fa fa-power-off" aria-hidden="true"></i> Active/Block </a>
                     <!--<button type="submit" class="btn btn-success">Ân/Hiện</button>-->
-                  </td>
-                  <td>
-                    <a href="{!! route('changeStatusProduct',$product->id) !!}" class="btn btn-primary"><i class="fa fa-power-off" aria-hidden="true"></i> Ẩn/Hiện </a>
                   </td>
                 </tr>
               @endforeach

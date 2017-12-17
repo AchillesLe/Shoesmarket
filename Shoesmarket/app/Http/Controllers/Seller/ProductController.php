@@ -7,17 +7,18 @@ use App\Http\Controllers\Controller;
 use DB;
 use Auth;
 use App\Product;
+use App\Productcolor;
 //use App\News;
 class ProductController extends Controller
 {
     public function getListProduct()
     {
     	$seller=Auth::guard('seller')->user();
-    	$listproduct=DB::table("products")->where('idseller',$seller->id)->get();
+    	$listproduct=DB::table('products')->where('idseller',$seller->id)->get();
     	//$news= News::with('product')->get();
     	return view('seller.page.products.listproduct',['listproduct'=>$listproduct],compact('seller'));
     }
-    public function changeStatus($id)
+    public function changeStatusProduct($id)
     {	
     	$product=Product::find($id);
     	if($product->status==0)
@@ -30,5 +31,10 @@ class ProductController extends Controller
     	}
     	$product->save();
     	return redirect()->route('getListProduct');
+    }
+    public function detailProduct($id)
+    {
+        $listdetailproduct=Productcolor::where('idproduct',$id)->get();
+        return view('seller.page.products.detail',['listdetailproduct'=>$listdetailproduct]);
     }
 }

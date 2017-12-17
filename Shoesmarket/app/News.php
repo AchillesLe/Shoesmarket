@@ -20,7 +20,7 @@ class News extends Model
      * @var array
      */
     protected $table = "news";
-    protected $fillable = ['idproduct', 'name_meta', 'note', 'status', 'created_at', 'updated_at'];
+    protected $fillable = ['idproduct', 'name', 'name_meta', 'note', 'status', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

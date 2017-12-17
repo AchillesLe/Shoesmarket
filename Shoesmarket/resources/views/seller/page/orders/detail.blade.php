@@ -10,6 +10,7 @@
               <thead>
                 <tr>
                   <th>Mã sản phẩm</th>
+                  <th>Tên sản phẩm</th>
                   <th>Gía tiền</th>
                   <th>Số lượng</th>
                   <th>Thành tiền</th>
@@ -20,8 +21,10 @@
               </thead>
               <tbody>
               @foreach($listdetailbill as $detailbill)
+              <?php $productdetail=App\Product::findOrFail($detailbill->idproduct); ?>
                 <tr>
                   <td>{!! $detailbill->idproduct !!}</td>
+                  <td>{!! $productdetail->name !!}</td>
                   <td>{!! $detailbill->cost !!}</td>
                   <td>{!! $detailbill->quantity !!}</td>
                   <td>{!! $detailbill->total !!}</td>
@@ -43,8 +46,8 @@
                   </td>
                   <td> 
                     @if($detailbill->status == 0)
-                    <a href="{!! route('completeDetailBill',$detailbill->id) !!}" class="btn btn-success"> Xác nhận </a>
-                    <a href="{!! route('cancelDetailBill',$detailbill->id) !!}" class="btn btn-danger"> Hủy bỏ </a>
+                    <a href="{!! route('completeDetailBill',$detailbill->id) !!}" class="btn btn-success"><i class="fa fa-check-circle" aria-hidden="true"></i> Xác nhận </a>
+                    <a href="{!! route('cancelDetailBill',$detailbill->id) !!}" class="btn btn-danger"><i class="fa fa-ban" aria-hidden="true"></i> Hủy bỏ </a>
                     @endif
                     <!--<button type="submit" class="btn btn-success">Ân/Hiện</button>-->
                   </td>
@@ -68,7 +71,7 @@
               <label for="txtPhoneClient" class="col-md-3">Số điện thoại</label>
 
               <div class="col-md-7">
-                <input id="txtPhoneClient" type="number" class="col-md-12 form-control" name="txtPhoneClient" value="{!! $infoclient->phone !!}" disabled>
+                <input id="txtPhoneClient" type="number" class="col-md-12 form-control" name="txtPhoneClient" value="{!! $infobill->phone !!}" disabled>
               </div>
             </div>
 
@@ -105,6 +108,14 @@
             </div>
 
             <div class="col-md-12">
+              <label for="txtCityName" class="col-md-3">Thành phố</label>
+
+              <div class="col-md-7">
+                <input id="txtCityName" type="text" class="col-md-12 form-control" name="txtCityName" value="{!! $infobill->city !!}" disabled>
+              </div>
+            </div>
+
+            <div class="col-md-12">
               <label for="txtDateBuy" class="col-md-3">Ngày mua</label>
 
               <div class="col-md-7">
@@ -121,6 +132,6 @@
             </div>
 
           </div>
-          <a href="{!! route('getListOrder') !!}" class="btn btn-primary">Trở về</a>
+          <a href="{!! route('getListOrder') !!}" class="btn btn-primary"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Trở về</a>
         </div>
 @endsection

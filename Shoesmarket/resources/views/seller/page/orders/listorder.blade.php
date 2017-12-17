@@ -71,10 +71,10 @@
                     @endif
                   </td>
                   <td> 
-                    <a href="{!! route('getDetailBill',$billseller->id) !!}" class="btn btn-info"> Xem chi tiết </a>
+                    <a href="{!! route('getDetailBill',$billseller->id) !!}" class="btn btn-info"><i class="fa fa-info-circle" aria-hidden="true"></i> Chi tiết</a>
                     @if($billseller->status == 0)
-                    <a href="{!! route('completeBill',$billseller->id) !!}" class="btn btn-success"> Xác nhận </a>
-                    <a href="{!! route('cancelBill',$billseller->id) !!}" class="btn btn-danger"> Hủy bỏ </a>
+                    <a href="{!! route('completeBill',$billseller->id) !!}" class="btn btn-success"><i class="fa fa-check-circle" aria-hidden="true"></i> Xác nhận </a>
+                    <a href="{!! route('cancelBill',$billseller->id) !!}" class="btn btn-danger"><i class="fa fa-ban" aria-hidden="true"></i> Hủy bỏ </a>
                     @endif
                     <!--<button type="submit" class="btn btn-success">Ân/Hiện</button>-->
                   </td>

@@ -29,7 +29,7 @@ class Bill extends Model
     /**
      * @var array
      */
-    protected $fillable = ['iduser', 'countyname', 'housenumber', 'streetname', 'total', 'created_at', 'note'];
+    protected $fillable = ['iduser', 'countyname', 'city', 'phone', 'housenumber', 'streetname', 'total', 'created_at', 'note'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

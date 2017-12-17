@@ -24,13 +24,16 @@
 	      </a>
 	      <ul class="sidenav-second-level collapse" id="collapseComponents">
 	        <li>
-	          <a href="{!! route('getBuyPackage') !!}">Mua gói tin</a>
+	          <a href="{!! route('getBuyPackage') !!}"><i class="fa fa-usd" aria-hidden="true"></i> Mua gói tin</a>
 	        </li>
 	        <li>
-	          <a href="{!! route('getAddNews') !!}">Đăng tin</a>
+	          <a href="{!! route('getAddNews') !!}"><i class="fa fa-plus-square" aria-hidden="true"></i> Đăng tin</a>
 	        </li>
 	        <li>
-	          <a href="{!! route('getListOrderNews') !!}">Lịch sử giao dịch</a>
+	          <a href="{!! route('getListNews') !!}"><i class="fa fa-list-alt" aria-hidden="true"></i> Danh sách bản tin</a>
+	        </li>
+	        <li>
+	          <a href="{!! route('getListOrderNews') !!}"><i class="fa fa-history" aria-hidden="true"></i> Lịch sử giao dịch</a>
 	        </li>
 	      </ul>
 	    </li>
@@ -47,10 +50,10 @@
 	      </a>
 	      <ul class="sidenav-second-level collapse" id="collapseMulti">
 	        <li>
-	          <a href="{!! route('getListOrder') !!}">Quản lý đơn hàng</a>
+	          <a href="{!! route('getListOrder') !!}"><i class="fa fa-list-alt" aria-hidden="true"></i> Quản lý đơn hàng</a>
 	        </li>
 	        <li>
-	          <a href="{!! route('getStatistics') !!}">Thống kê</a>
+	          <a href="{!! route('getStatistics') !!}"><i class="fa fa-pie-chart" aria-hidden="true"></i> Thống kê</a>
 	        </li>
 	      </ul>
 	    </li>

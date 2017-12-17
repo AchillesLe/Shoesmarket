@@ -13,8 +13,21 @@ use App\News;
 use App\Seller;
 use Auth;
 use Input;
+use DateTime;
 class NewsController extends Controller
 {
+    public function getListNews()
+    {
+        $seller=Auth::guard('seller')->user();
+        $listproduct=DB::table('products')->where('idseller',$seller->id)->get();
+        //$news= News::with('product')->get();
+        return view('seller.page.news.listnews',['listproduct'=>$listproduct],compact('seller'));
+    }
+    public function getListOrderNews(){
+        $seller=Auth::guard('seller')->user();
+        $listordernews=DB::table('receipts')->where('idseller',$seller->id)->get();
+        return view('seller.page.news.newsorder',['listordernews'=> $listordernews]);
+    }
     public function getBuyPackage()
     {
         $list_newspackage= DB::table('packages')->get();
@@ -36,12 +49,18 @@ class NewsController extends Controller
         $product->price=$request->txtPriceProduct;
         $product->idtype=$request->cbLoaiSP;
         $product->idseller=$seller->id;
-        $product->image=$file_name;
+        $now = new DateTime();
+        $datestring=$now->format('dmYHis');
+        $hinh=$datestring."-".$file_name;
+        $product->image=$hinh;
         if($request->optradioSexProduct==1){
-            $request->file('imgProduct')->move('source/Upload/NAM/',$file_name);
+            $request->file('imgProduct')->move('source/Upload/NAM',$hinh);
+        }
+        else if($request->optradioSexProduct==2){
+            $request->file('imgProduct')->move('source/Upload/NU',$hinh);
         }
         else{
-            $request->file('imgProduct')->move('source/Upload/NU/',$file_name);
+            $request->file('imgProduct')->move('source/Upload',$hinh);
         }
         $product->save();
 
@@ -66,7 +85,8 @@ class NewsController extends Controller
 
         $news = new News;
         $news->idproduct=$product_id;
-        $news->name_meta=changeTitle($request->txtNameProduct).".".$seller->id.".".$product_id;
+        $news->name=$request->txtNameNews;
+        $news->name_meta=changeTitle($request->txtNameNews)."-".$seller->id.$product_id;
         $news->note=$request->txtNoiDung;
         $news->save();
 
@@ -78,7 +98,7 @@ class NewsController extends Controller
         $selleredit->newsquantity-=1;
         $selleredit->save();
         //}
-        return redirect()->route('getListProduct');
+        return redirect()->route('getListNews');
 
     }
     public function getEditNews($id)
@@ -94,14 +114,24 @@ class NewsController extends Controller
         $product->save();
 
         $news=News::where('idproduct',$id)->first();
+        $news->name=$request->txtTitleNews;
         $news->note=$request->txtNoiDungTin;
         $news->save();
 
-        return redirect()->route('getListProduct');
+        return redirect()->route('getListNews');
     }
-    public function getListOrderNews(){
-        $seller=Auth::guard('seller')->user();
-        $listordernews=DB::table('receipts')->where('idseller',$seller->id)->get();
-    	return view('seller.page.news.newsorder',['listordernews'=> $listordernews]);
+    public function changeStatusNews($id)
+    {   
+        $news=News::find($id);
+        if($news->status==0)
+        {
+            $news->status=1;
+        }
+        else
+        {
+            $news->status=0;
+        }
+        $news->save();
+        return redirect()->route('getListNews');
     }
 }

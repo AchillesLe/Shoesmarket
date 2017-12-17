@@ -52,7 +52,11 @@
           <div class="card-header">Nội dung tin đăng</div>
           <div class="card-body">
             <div style="margin-bottom: 15px">
-                  
+                    <span style="float: left; margin-right: 5px">Tiêu đề bản tin </span>
+                    <input class="col-md-5" type="text" name="txtTitleNews" value="{!! $news->name !!}">
+            </div>
+            <div style="margin-bottom: 15px">
+                    <span style="float: left; margin-right: 5px">Nội dung</span>
                     @if(empty($news->note))
                       <textarea class="col-md-7" rows="7" cols="100" name="txtNoiDungTin"></textarea>
                     @else
@@ -62,7 +66,7 @@
           </div>
           <div class="col-md-6 btn-group">
               <button type="submit" class="col-md-3 btn btn-primary"> Sửa tin </button>
-              <a href="{!! route('getListProduct') !!}" class="col-md-3 btn btn-warning"> Hủy </a>
+              <a href="{!! route('getListNews') !!}" class="col-md-3 btn btn-warning"> Hủy </a>
           </div>
         </div> 
 
