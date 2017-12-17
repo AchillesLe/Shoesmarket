@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Seller;
+use App\Package;
+use App\Receipt;
+use Auth;
 
 
 class sellerController extends Controller
@@ -36,9 +39,9 @@ class sellerController extends Controller
 
     public function sellpackage($id)
     {
-        $Seller = Seller::find($id);
-
-        return view('admin.seller.sellpackage',['seller'=>$seller]);
+        $seller = Seller::find($id);
+        $listpackage = Package::all();
+        return view('admin.seller.sellpackage',['seller'=>$seller,'listpackage'=>$listpackage]);
     }
     public function penalize()
     {
@@ -47,7 +50,33 @@ class sellerController extends Controller
     
     public function postsellpackage(Request $request)
     {
+         // $this->validate($request,
+         //    [
+         //        'sellername'=>'required|min:3|max:50'
+         //    ],
+         //    [
+         //        'name.required'=>'Bạn chưa nhập tên thể loại',
+         //        'name.min'=>'Tên  loại giày phải dài hơn 3 -> 50 kí tự ' ,
+         //        'name.max'=>'Tên  loại giày hơn 3 -> 50 kí tự ',
+         //    ]);
+        $data  = explode("-",$request->packagename);
+        $namepackage = $data[0];
+        $money = $data[1];
+        $quantity = $data[2];
 
-        return view('admin.seller.sellpackage');
+        $receipt = new Receipt();
+        $receipt->idseller = $request->seller;
+        $receipt->idemployee = Auth::guard('admin')->user()->id;
+        $receipt->namepackage = $namepackage;
+        $receipt->newquantity = $quantity;
+        $receipt->money = $money;
+        $receipt->packagequantity = $request->qty;
+        $receipt->totalmoney = $request->qty*$money;
+        $receipt->save();
+
+        $seller = Seller::find($request->seller);
+        $seller->newsquantity += $request->qty*$quantity;
+        $seller->save();
+        return redirect()->back()->with('thongbao','Nạp thành công !');
     }
 }

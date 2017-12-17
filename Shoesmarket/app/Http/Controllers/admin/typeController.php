@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Type;
+use App\Product;
 
 class typeController extends Controller
 {
@@ -17,7 +18,7 @@ class typeController extends Controller
     {
         $this->validate($request,
             [
-                'name'=>'required|min:3|max:50|unique:type,name'
+                'name'=>'required|min:3|max:50'
             ],
             [
                 'name.required'=>'Bạn chưa nhập tên thể loại',
@@ -34,7 +35,7 @@ class typeController extends Controller
         {
             $this->validate($request,
                 [
-                    'name'=>'unique:type,Name'
+                    'name'=>'unique:types,Name'
                 ],
                 [
                     'name.unique'=>'Tên thể loại giày đã có trong hệ thống .Vui lòng kiểm tra lại .',
@@ -51,7 +52,14 @@ class typeController extends Controller
     }
     public function updatestatus($id)
     {
-    	$type = Type::where('id',$id)->update(['isdelete'=>'1']);
+        $type = Type::find($id);
+        
+        if(count(Product::where('idtype',$id)->get())!=0)
+        {
+            $type = Type::where('id',$id)->update(['isdelete'=>'1']);
+        }
+    	else
+            $type->delete();
         return redirect('admin/type/list')->with('thongbao','Xoá thành công');
     }
 

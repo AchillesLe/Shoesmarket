@@ -95,6 +95,7 @@
 		});
 
 		Route::get('/revenue/interval','admin\revenueController@revenue');
+		Route::post('/revenue/interval','admin\revenueController@getrevenue');
 		Route::get('/receipt/index','admin\receiptController@index')->name('admin.receipt');
 		Route::get('/bill/index','admin\billController@index')->name('admin.bill');
 		Route::get('/bill/detail/{id}','admin\billController@detail')->name('admin.bill.detail');

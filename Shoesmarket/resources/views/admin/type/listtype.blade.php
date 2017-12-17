@@ -63,7 +63,7 @@
 	                  <td width="150px" >{{$type->name}}</td>
 	                  <td width="120px">
 	                  	<button class="btn btn-info" name="Edit"  id="edit">Sửa</button></a>
-	                  	{{-- <a href="{{url('admin/type/updatestatus',[$type->id])}}"><button class="btn btn-danger" name="delete"  id="delete" >Xoá</button><a> --}}
+	                  	<a href="{{url('admin/type/updatestatus',[$type->id])}}"><button class="btn btn-danger" name="delete"  id="delete" >Xoá</button><a>
 	                  	</td>
 	                </tr>
                 @endforeach
