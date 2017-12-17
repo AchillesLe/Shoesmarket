@@ -39,4 +39,8 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Bill', 'iduser');
     }
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
 }
