@@ -34,4 +34,9 @@ class Productcolor extends Model
     {
         return $this->belongsTo('App\Product', 'idproduct');
     }
+
+    public function detailBills()
+    {
+        return $this->hasMany('App\Product', 'idproductcolor');
+    }
 }

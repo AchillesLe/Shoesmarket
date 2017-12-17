@@ -42,7 +42,7 @@ class Detail_bill extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
 
-    public function productcolor()
+    public function productcolors()
     {
         return $this->belongsTo('App\Productcolor', 'idproductcolor');
     }
