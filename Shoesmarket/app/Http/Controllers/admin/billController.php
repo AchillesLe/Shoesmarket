@@ -16,9 +16,9 @@ class billController extends Controller
     }
  	public function detail($id)
     {
+        $Bill = Bill::find($id);
         $listbillseller = Bill_seller::where('idbill',$id)->get();
-        $idbillseller = $listbillseller[0]->id;
         $listdetailbill = Detail_bill::whereIn('idbill_seller',$listbillseller[0]->id)->get();
-        return view('admin.bill.detail',['list'=>$list]);
+        return view('admin.bill.detail',['Bill'=>$Bill,'listbillseller'=>$listbillseller,'listdetailbill'=>$listdetailbill]);
     }
 }
