@@ -91,8 +91,8 @@
 													</p>
 												</div>
 												<div class="single-item-caption">
-													<a class="add-to-cart pull-left" href="{{url('order',$item->product->id)}}"><i class="fa fa-shopping-cart" id="_cart" data-id="{{$item->product->id}}"></i></a>
-													<a class="beta-btn primary" href="{{url('detail',$item->name_meta)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
+													{{-- <a class="add-to-cart pull-left" href="{{url('order',$item->product->id)}}"><i class="fa fa-shopping-cart" id="_cart" data-id="{{$item->product->id}}"></i></a> --}}
+													<a class="beta-btn primary" style="width: 140px;text-align: center;" href="{{url('detail',$item->name_meta)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
 													<div class="clearfix"></div>
 												</div>
 											</div>
