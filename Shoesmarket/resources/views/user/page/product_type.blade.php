@@ -35,10 +35,10 @@
 										<div class="item">
 											<div class="single-item">
 												<div class="single-item-header">
-													<a href="{{url('detail',$item->product->id)}}"><img src="{{asset('source/Upload/')}}/{{$item->product->image}}" alt="" ></a>
+													<a href="{{url('detail',$item->name_meta)}}"><img src="{{asset('source/Upload/')}}/{{$item->product->image}}" alt="" ></a>
 												</div>
 												<div class="single-item-body">
-													<p class="single-item-title">{{$item->product->name}}</p>
+													<p class="single-item-title">{{$item->name}}</p>
 													<p class="single-item-price">
 														<span>{{$item->product->price}} VNĐ</span>
 													</p>

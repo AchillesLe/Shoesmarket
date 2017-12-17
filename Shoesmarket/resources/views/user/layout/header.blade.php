@@ -65,7 +65,7 @@
 								@foreach( Cart::content() as $item)
 									<div class="cart-item">
 										<div class="media">
-											<a class="pull-left" href="{{url('detail',$item->options->id)}}"><img src="{{asset('source/Upload/')}}/{{$item->options->image}}" alt="Ảnh"></a>
+											<a class="pull-left" href="{{url('detail',$item->id)}}"><img src="{{asset('source/Upload/')}}/{{$item->options->image}}" alt="Ảnh"></a>
 											<div class="media-body">
 												<span class="cart-item-title">{{$item->name}}</span>
 												<span class="cart-item-options">Color: {{$item->options->color}}&nbsp;--&nbsp;Size :{{$item->options->size}}</span>

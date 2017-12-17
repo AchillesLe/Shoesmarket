@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\DB;
 use App\Type;
 use Cart;
 use Auth;
+use App\Seller;
+use App\Bill;
+use App\Bill_seller;
+use App\Detail_seller;
+
 //use Request;
 class OrdersController extends Controller
 {
@@ -45,6 +50,7 @@ class OrdersController extends Controller
 		}
 		if($id > 0)
 		{
+			
 			$product_buy = Product::find($id);
 			$productcolor = Productcolor::where('idproduct',$id)->get();
 			if($product_buy!=null)
@@ -143,4 +149,14 @@ class OrdersController extends Controller
             Cart::destroy();
         }
 	}
+
+	public function payment()
+	{
+		$items = Cart::content();
+		foreach($items as $item)
+		{
+			$seller = Seller::where();
+		}
+	}
+
 }

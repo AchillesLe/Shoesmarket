@@ -15,7 +15,7 @@ class pageController extends Controller
 {
     public function getIndex()
     {
-        $listnews = news::paginate(18);
+        $listnews = news::latest()->paginate(18);
         $counter =  count($listnews);
         // $n = CEIL($counter/4);
         // $listnew =  array();
@@ -49,19 +49,22 @@ class pageController extends Controller
         $productcolor = Productcolor::where('idproduct',$id)->get();
         return view('user.page.abouts');
     }
-    public function getdetailProduct($id)
+    public function getdetailProduct($name_meta)
     {
 
-            $news = news::where('idproduct',$id)->first();
-            $productcolor = Productcolor::where('idproduct',$id)->get();
-            $idtype = $news->product->idtype;
-            $listnews = news::latest()->take(8)->get();   
-            $related = news::whereIn('idproduct',function($q) use ($idtype){
-            $q->from('products')->where('idtype',$idtype)->select('id')->get();
-                    });
-            $count = $related->count() >3 ? 4 : $related->count();  
-                    $listrelated = $related->orderBy(DB::raw('RAND()'))->take($count)->get();
-                       
+            $news = news::where('name_meta',$name_meta)->first();
+            if($news!=null)
+            {
+                $productcolor = Productcolor::where('idproduct',$news->idproduct)->get();
+                $idtype = $news->product->idtype;
+                $listnews = news::latest()->take(8)->get();   
+                $related = news::whereIn('idproduct',function($q) use ($idtype){
+                $q->from('products')->where('idtype',$idtype)->select('id')->get();
+                        });
+                $count = $related->count() >3 ? 4 : $related->count();  
+                        $listrelated = $related->orderBy(DB::raw('RAND()'))->take($count)->get();
+            }
+                         
             return view('user.page.detailproduct',['news'=>$news,'productcolor'=>$productcolor,'related'=>$listrelated,'listnews'=>$listnews,'id'=>""]);
     }
     public function getProductType($name)

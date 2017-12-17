@@ -82,17 +82,17 @@
 										<div class="item">
 											<div class="single-item">
 												<div class="single-item-header">
-													<a href="{{url('detail',$item->product->id)}}"><img src="{{asset('source/Upload/')}}/{{$item->product->image}}" alt="" ></a>
+													<a href="{{url('detail',$item->name_meta)}}"><img src="{{asset('source/Upload/')}}/{{$item->product->image}}" alt="" ></a>
 												</div>
 												<div class="single-item-body">
-													<p class="single-item-title">{{$item->product->name}}</p>
+													<p class="single-item-title">{{$item->name}}</p>
 													<p class="single-item-price">
 														<span>{{$item->product->price}} VNĐ</span>
 													</p>
 												</div>
 												<div class="single-item-caption">
 													<a class="add-to-cart pull-left" href="{{url('order',$item->product->id)}}"><i class="fa fa-shopping-cart" id="_cart" data-id="{{$item->product->id}}"></i></a>
-													<a class="beta-btn primary" href="{{url('/detail',$item->product->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
+													<a class="beta-btn primary" href="{{url('detail',$item->name_meta)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
 													<div class="clearfix"></div>
 												</div>
 											</div>

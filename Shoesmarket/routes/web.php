@@ -19,7 +19,7 @@
 // Phần của Vân đom -- user
 
 	Route::get('/home','User\pageController@getIndex')->name('home');
-	Route::get('/detail/{id}','User\pageController@getdetailProduct')->name('detail.product');
+	Route::get('/detail/{name_meta}','User\pageController@getdetailProduct')->name('detail.product');
 	Route::get('/productType/{name}','User\pageController@getProductType');
 	Route::get('/product/{sex}/{name}','User\pageController@getProductbysexandtype');
 	Route::post('product/checkquantity','User\pageController@checkquantity');
@@ -45,6 +45,8 @@
 		Route::post('updateOrder','User\OrdersController@UpdateOrder');
 		Route::get('edit/{rowId}','User\OrdersController@getedit');
 		Route::get('removerorder/{rowId}','User\OrdersController@removerorder');
+		Route::get('payment','User\OrdersController@payment');
+
 	});
 //bao-  phần tin tức.
 	

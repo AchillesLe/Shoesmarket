@@ -13,12 +13,13 @@
 			<div class="clearfix"></div>
 		</div>
 	</div>
-
+		<h5  style="margin-left: 13px;">{{$news->name}}</h5>
 	<div class="container">
 		<div id="content">
+
 			<div class="row">
 				<div class="col-sm-9">
-
+					
 					<div class="row">
 						
 						<div class="col-sm-4">
@@ -99,10 +100,10 @@
 										<div class="item">
 											<div class="single-item">
 												<div class="single-item-header">
-													<a href="{{url('detail',$item->product->id)}}"><img src="{{asset('source/Upload/')}}/{{$item->product->image}}" alt="" ></a>
+													<a href="{{url('detail',$item->name_meta)}}"><img src="{{asset('source/Upload/')}}/{{$item->product->image}}" alt="" ></a>
 												</div>
 												<div class="single-item-body">
-													<p class="single-item-title">{{$item->product->name}}</p>
+													<p class="single-item-title">{{$item->name}}</p>
 													<p class="single-item-price">
 														<span>{{$item->product->price}} VNĐ</span>
 													</p>
@@ -119,12 +120,12 @@
 						<h3 class="widget-title">Các sản phẩm gần đây</h3>
 						<div class="widget-body">
 							@foreach($listnews as $item)
-								<a class="pull-left" href="{{url('/detailproduct',$item->product->id)}}">
+								<a class="pull-left" href="{{url('detail',$item->name_meta)}}">
 									<div class="beta-sales beta-lists">
 										<div class="media beta-sales-item">
 											<img src="{{asset('source/Upload')}}/{{$item->product->image}}" alt="" style="float: left;">
 											<div class="media-body" style="float: left;">
-												<p style="width: 165px;overflow: hidden;word-wrap: break-word;">{{$item->product->name}}</p>
+												<p style="width: 165px;overflow: hidden;word-wrap: break-word;">{{$item->name}}</p>
 												<p><span class="beta-sales-price">{{$item->product->price}} VNĐ</span></p>
 											</div>
 										</div>
@@ -139,7 +140,7 @@
 	</div> <!-- .container -->
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
-		jQuery('input[name=quantity]').change(function(event) {
+		jQuery('input[name=qty]').change(function(event) {
 			event.preventDefault();
 			$idpro = jQuery('input[name=idpro]').val();
 			$size_color = jQuery('input[name=chbxsize]:checked').val();
@@ -158,7 +159,7 @@
 			   if($newdata==false)
 			   {
 			    	alert(" Số lượng không đủ vui lòng chọn ít hơn .");
-			    	jQuery('input[name=quantity]').val('1');
+			    	jQuery('input[name=qty]').val('1');
 			   }
 			    
 			  }
@@ -171,7 +172,7 @@
 		// 			$size_color = jQuery('input[name=chbxsize]:checked').val();
 		// 			$color = ($size_color.split('-'))[0];
 		// 			$size = ($size_color.split('-'))[1];
-		// 			$qty = jQuery('input[name=quantity]').val();
+		// 			$qty = jQuery('input[name=qty]').val();
 		// 			$_token = jQuery('input[name="_token"]').val();
 		// 			jQuery.post('updateOrder', {_token: $_token , idpro : $idpro , color : $color, size : $size , qty : $qty} , function( data, textStatus, xhr){
 		// 				window.location.href = "list/order";

@@ -50,7 +50,7 @@
 									<span id="subtotal">{{number_format(($item->price*$item->qty),0,",",".")}}</span>
 								</td>
 
-								<td class="product-remove" data-id="$item->rowid">
+								<td class="product-remove">
 									<a href="{{url('removerorder',$item->rowId)}}" class="remove" title="Remove this item" id="removeorder" ><i class="fa fa-trash-o"></i></a>
 								</td>
 							</tr>
@@ -71,9 +71,7 @@
 					<div class="cart-totals-row"><span>Cart Subtotal:</span> <span>{{number_format($total,0,",",".")}}</span></div>
 					<div class="cart-totals-row"><span>Shipping:</span> <span>Free Shipping</span></div>
 					<div class="cart-totals-row"><span>Order Total:</span> <span>{{number_format($total,0,",",".")}}</span></div>
-					<div class="cart-totals-row"><span style="margin-left: 50px"></span><button type="submit" class="btn btn-primary" style="width: 100px;height: 40px">
-						Mua Ngay 
-					</button></div>
+					<div class="cart-totals-row"><span style="margin-left: 50px"></span><a  class="btn btn-primary" style="width: 100px;height: 40px" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#modelpayment">Mua ngay</a></div>
 				</div>
 					
 				<div class="clearfix"></div>
@@ -83,10 +81,64 @@
 			<div class="clearfix"></div>
 
 		</div> 
-		<script type="text/javascript">  
-
-
-</script>
+		<div class="modal fade" id="modelpayment" tabindex="-1" role="dialog" aria-labelledby="modelpayment" aria-hidden="true">
+		  <div class="modal-dialog modal-lg">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title">Thông tin nhận hàng</h4>
+		      </div>
+		      <div class="modal-body">
+		        <div class="form-group row">
+				  <label for="example-tel-input" class="col-2 col-form-label">Địa chỉ giao hàng</label>
+				  <div class="col-3	">
+				    <input class="form-control" type="text" placeholder="Số nhà,phường/xã" name="homenumber">
+				  </div>
+				  {{-- <label for="example-tel-input" class="col-2 col-form-label">Số nhà </label> --}}
+				  <div class="col-2">
+				    <input class="form-control" type="text" placeholder="Tên đường" name="street">
+				  </div>
+				  {{-- <label for="example-tel-input" class="col-2 col-form-label">Quận/Huyện</label> --}}
+				  <div class="col-2">
+				    <input class="form-control" type="text" placeholder="Quận/Huyện" name="county">
+				  </div>
+				   {{-- <label for="example-tel-input" class="col-2 col-form-label">Tỉnh</label> --}}
+				  <div class="col-2">
+				    <input class="form-control" type="text" placeholder="Tỉnh/Thành" name="city">
+				  </div>
+				</div>
+				<div class="form-group row">
+				  <label for="example-password-input" class="col-2 col-form-label">Password</label>
+				  <div class="col-10">
+				    <input class="form-control" type="password" value="hunter2" id="example-password-input">
+				  </div>
+				</div>
+				<div class="form-group row">
+				  <label for="example-number-input" class="col-2 col-form-label">Number</label>
+				  <div class="col-10">
+				    <input class="form-control" type="number" value="42" id="example-number-input">
+				  </div>
+				</div>
+				<div class="form-group row">
+				  <label for="example-datetime-local-input" class="col-2 col-form-label">Date and time</label>
+				  <div class="col-10">
+				    <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+				  </div>
+				</div>
+				<div class="form-group row">
+				  <label for="example-date-input" class="col-2 col-form-label">Date</label>
+				  <div class="col-10">
+				    <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
+				  </div>
+				</div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary">Save changes</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 <script>
 	jQuery(document).ready(function($) {
  
