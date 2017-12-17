@@ -56,20 +56,20 @@ class PaypalController extends Controller
         Session::put('invoice', $request->all());
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
-
+        $tigia = 22680;
         $item_1 = new Item();
         $item_1->setName($request->get('ten_goi_tin').' --- '.$request->get('cost').' / '.$request->get('sotin')) 
             ->setCurrency('USD')
             ->setQuantity($request->get('so_luong_goi'))
-            ->setPrice($request->get('cost')); 
+            ->setPrice($request->get('cost')/$tigia); 
 
         $item_list = new ItemList();
         $item_list->setItems(array($item_1));
 
-        $tigia = "22680";
+       
         $amount = new Amount();
         $amount->setCurrency('USD')
-            ->setTotal($request->get('tong_tien'));
+            ->setTotal($request->get('tong_tien')/$tigia);
 
         $transaction = new Transaction();
         $transaction->setAmount($amount)
