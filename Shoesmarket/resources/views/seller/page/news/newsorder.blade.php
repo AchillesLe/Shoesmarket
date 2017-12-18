@@ -3,14 +3,14 @@
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i> Data Table Example</div>
+          <i class="fa fa-table"></i> Lịch sử mua gói tin</div>
         <div class="card-body">
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
                   <th>Gói tin</th>
-                  <th>Số lượng tin 1 gói</th>
+                  <th>Số lượng tin</th>
                   <th>Gía tiền</th>
                   <th>Số lượng gói</th>
                   <th>Thành tiền</th>
@@ -28,9 +28,9 @@
                   <td>{!! $ordernews->totalmoney !!}</td>
                   <td>
                     @if($ordernews->idemployee == 1)
-                    <div class="btn btn-primary">Paypal</div>
+                    <div class="btn btn-primary"><i class="fa fa-paypal" aria-hidden="true"></i> Paypal</div>
                     @else
-                    <div class="btn btn-success">Tiền mặt</div>
+                    <div class="btn btn-success"><i class="fa fa-money"></i> Tiền mặt</div>
                     @endif
                   </td>
                   <td>{!! $ordernews->created_at !!}</td>
@@ -40,6 +40,5 @@
             </table>
           </div>
         </div>
-        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
       </div>
 @endsection

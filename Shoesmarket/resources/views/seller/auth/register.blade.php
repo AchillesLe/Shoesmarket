@@ -126,7 +126,12 @@
                             <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirm" required>
+                                @if ($errors->has('password-confirm'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password-confirm') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 

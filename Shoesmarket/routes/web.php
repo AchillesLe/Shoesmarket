@@ -57,18 +57,27 @@
 
 		Route::get('/','seller\pageController@getDashboard');
 		Route::get('/dashboard','seller\pageController@getDashboard')->name('seller.dashboard');
-		Route::group(['prefix'=>'news'],function(){
+
+		Route::group(['prefix'=>'account'],function(){
+			Route::post('changeinfo',['as' => 'postChangeInfo', 'uses' => 'seller\pageController@postChangeInfo']);	
+			Route::get('changepassword',['as' => 'getChangePassword', 'uses' => 'seller\pageController@getChangePassword']);
+			Route::post('postchangepassword',['as' => 'postChangePassword', 'uses' => 'seller\pageController@postChangePassword']);
+		});
+		
+		Route::group(['prefix'=>'shipfee'],function(){
 			Route::get('/',['as' => 'getFeeshipConfig', 'uses' => 'seller\FeeshipController@getFeeshipConfig']);
 
 			Route::post('save',['as' => 'postSettingShipfee', 'uses' => 'seller\FeeshipController@postSettingShipfee']);
 
 			Route::get('delete/{id}',['as' => 'deleteShipfee', 'uses' => 'seller\FeeshipController@deleteShipfee']);
 		});
+
 		Route::group(['prefix'=>'products'],function(){
 			Route::get('listproduct',['as' => 'getListProduct', 'uses' => 'seller\ProductController@getListProduct']);
 			Route::get('status/{id}',['as' => 'changeStatusProduct', 'uses' => 'seller\ProductController@changeStatusProduct']);
 			Route::get('detail/{id}',['as' => 'detailProduct', 'uses' => 'seller\ProductController@detailProduct']);
 		});
+
 		Route::group(['prefix'=>'news'],function(){
 			Route::get('listnews',['as' => 'getListNews', 'uses' => 'seller\NewsController@getListNews']);
 			Route::get('buypackage',['as' => 'getBuyPackage', 'uses' => 'seller\NewsController@getBuyPackage']);
@@ -79,6 +88,7 @@
 			Route::get('status/{id}',['as' => 'changeStatusNews', 'uses' => 'seller\NewsController@changeStatusNews']);
 			Route::get('newsorder',['as' => 'getListOrderNews', 'uses' => 'seller\NewsController@getListOrderNews']);
 		});
+
 		Route::group(['prefix'=>'orders'],function(){
 			Route::get('listorder',['as' => 'getListOrder', 'uses' => 'seller\OrderController@getListOrder']);
 			Route::get('completebill/{id}',['as' => 'completeBill', 'uses' => 'seller\OrderController@completeBill']);

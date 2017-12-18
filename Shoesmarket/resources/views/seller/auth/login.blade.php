@@ -22,6 +22,11 @@
                                         <strong>{{ $errors->first('Email') }}</strong>
                                     </span>
                                 @endif
+                                @if(Session::has('flash_message'))
+                                    <span class="help-block">
+                                        <strong>{!! Session::get('flash_message') !!}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 

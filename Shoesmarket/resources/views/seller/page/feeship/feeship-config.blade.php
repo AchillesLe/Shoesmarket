@@ -50,7 +50,7 @@
                           </div>
                           
                           <div class="col-md-4">
-                              <button type="submit" class="col-md-4 btn btn-primary"> Lưu </button>
+                              <button type="submit" class="col-md-4 btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> Lưu </button>
                           </div>
                             
                         </div>

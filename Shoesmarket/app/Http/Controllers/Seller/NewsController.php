@@ -52,14 +52,16 @@ class NewsController extends Controller
         $now = new DateTime();
         $datestring=$now->format('dmYHis');
         $hinh=$datestring."-".$file_name;
-        $product->image=$hinh;
         if($request->optradioSexProduct==1){
+            $product->image='NAM/'.$hinh;
             $request->file('imgProduct')->move('source/Upload/NAM',$hinh);
         }
         else if($request->optradioSexProduct==2){
+            $product->image='NU/'.$hinh;
             $request->file('imgProduct')->move('source/Upload/NU',$hinh);
         }
         else{
+            $product->image=$hinh;
             $request->file('imgProduct')->move('source/Upload',$hinh);
         }
         $product->save();

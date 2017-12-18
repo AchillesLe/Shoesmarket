@@ -112,7 +112,7 @@
               <!--<a id="removeKhohang">Xóa dòng</a>-->
             </div>
           </div>
-          <a id="addKhohang" class="btn btn-success text-white">Thêm kho hàng</a>
+          <a id="addKhohang" class="btn btn-success text-white"><i class="fa fa-plus-square" aria-hidden="true"></i> Thêm kho hàng</a>
 
           </div>
           <div class="card-header">Bản tin</div>
@@ -137,7 +137,7 @@
             </div>       
           </div>
           <div class="col-md-4">
-              <button type="submit" class="btn btn-primary"> Đăng tin </button>
+              <button type="submit" class="btn btn-primary"><i class="fa fa-plus-square" aria-hidden="true"></i> Đăng tin </button>
           </div>
         </div> 
         

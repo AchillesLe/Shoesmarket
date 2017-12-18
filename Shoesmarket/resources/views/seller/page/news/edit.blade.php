@@ -65,8 +65,8 @@
             </div>       
           </div>
           <div class="col-md-6 btn-group">
-              <button type="submit" class="col-md-3 btn btn-primary"> Sửa tin </button>
-              <a href="{!! route('getListNews') !!}" class="col-md-3 btn btn-warning"> Hủy </a>
+              <a href="{!! route('getListNews') !!}" class="col-md-3 btn btn-warning"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Trở về </a>
+              <button type="submit" class="col-md-3 btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa tin </button>            
           </div>
         </div> 
 

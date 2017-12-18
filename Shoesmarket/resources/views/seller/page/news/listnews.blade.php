@@ -48,9 +48,9 @@
                   
                   <td style="text-align:center">
                     @if($news->status == 0)
-                      <div class="btn btn-success">Active</div>
+                      <div class="btn btn-success">Hiện</div>
                     @else
-                      <div class="btn btn-danger">Block</div>
+                      <div class="btn btn-danger">Ẩn</div>
                     @endif
                   </td>
                 </tr>
@@ -108,14 +108,14 @@
                   
                   <td style="text-align:center">
                     @if($news->status == 0)
-                      <div class="btn btn-success">Active</div>
+                      <div class="btn btn-success">Hiện</div>
                     @else
-                      <div class="btn btn-danger">Block</div>
+                      <div class="btn btn-danger">Ẩn</div>
                     @endif
                   </td>
                   <td>
                     <a href="{!! route('getEditNews',$news->id) !!}" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa tin </a>
-                    <a href="{!! route('changeStatusNews',$news->id) !!}" class="btn btn-primary"><i class="fa fa-power-off" aria-hidden="true"></i> Active/Block </a>
+                    <a href="{!! route('changeStatusNews',$news->id) !!}" class="btn btn-primary"><i class="fa fa-power-off" aria-hidden="true"></i> Ẩn/Hiện </a>
                     <!--<button type="submit" class="btn btn-success">Ân/Hiện</button>-->
                   </td>
                 </tr>
