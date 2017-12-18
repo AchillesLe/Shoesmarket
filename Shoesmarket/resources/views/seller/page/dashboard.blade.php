@@ -109,7 +109,7 @@
               <label for="txtPhoneSeller" class="col-md-3">Số điện thoại</label>
 
               <div class="col-md-7">
-                <input id="txtPhoneSeller" type="number" class="col-md-12 form-control" name="txtPhoneSeller" value="{!! $seller->phone !!}" disabled>
+                <input id="txtPhoneSeller" type="number" class="col-md-12 form-control" name="txtPhoneSeller" value="{!! $seller->phone !!}">
               </div>
             </div>
 
@@ -125,7 +125,7 @@
               <label for="txtAddressSeller" class="col-md-3">Địa chỉ</label>
 
               <div class="col-md-7">
-                <input id="txtAddressSeller" type="text" class="col-md-12 form-control" name="txtAddressSeller" value="{!! $seller->address !!}" disabled>
+                <input id="txtAddressSeller" type="text" class="col-md-12 form-control" name="txtAddressSeller" value="{!! $seller->address !!}">
               </div>
             </div>
 

@@ -52,7 +52,7 @@
 				<div class="pull-right beta-components space-left ov"  id="header-right">
 					<div class="space10">&nbsp;</div>
 					<div class="beta-comp">
-						<form role="search" method="get" id="searchform" action="{{url('search')}}">
+						<form role="search" method="get" id="searchform" action="">
 					        <input type="text" value="" name="search" id="search" placeholder="Tìm giày , loại giày , người bán ." />
 					        <button class="fa fa-search" type="submit" id="searchsubmit"></button>
 						</form>

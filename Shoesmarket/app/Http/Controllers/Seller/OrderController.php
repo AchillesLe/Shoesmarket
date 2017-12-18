@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\seller;
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
+use Request;
 use App\Http\Controllers\Controller;
 use DB;
 use Auth;
@@ -74,25 +75,14 @@ class OrderController extends Controller
     }
     public function statisticsBill(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-             'txtFromDate' => 'required|date_format:m/d/Y',
-             'txtToDate' => 'required|date_format:m/d/Y|after_or_equal:txtFromDate',
-         ]);
-
-         if ($validator->fails()) {
-             return redirect()->route('getStatistics')
-                         ->withErrors($validator)
-                         ->withInput();
-         }
-         else{
-            $format = 'd/m/Y';
-            $tu_ngay = Carbon::createFromFormat($format, $request->txtFromDate)->format('Y-m-d');
-            $den_ngay = Carbon::createFromFormat($format, $request->txtToDate)->format('Y-m-d');
-            $listbill=Bill::whereDate('created_at','>=',$tu_ngay)->whereDate('created_at','<=',$den_ngay)->get();
+        $datefrom = date("Y-m-d H:i:s",strtotime(Request::get('txtFromDate')));
+        $dateto = date("Y-m-d H:i:s",strtotime(Request::get('txtToDate')));
+        $listbill = DB::table('bills')->whereBetween('created_at',[$datefrom,$dateto])->get();
+            //$listbill=Bill::whereDate('created_at','>=',$tu_ngay)->whereDate('created_at','<=',$den_ngay)->get();
             //$fromdate=\Carbon\Carbon::parse($request->txtFromDate)->timestamp;
             //$todate=\Carbon\Carbon::parse($request->txtToDate)->timestamp;
             //$listbill=Bill::whereBetween('created_at', [$fromdate, $todate])->get();
-            return view('seller.page.orders.statistics',['listbill',$listbill]);
-        }
+        return view('seller.page.orders.statistics',['listbill',$listbill]);
     }
+
 }

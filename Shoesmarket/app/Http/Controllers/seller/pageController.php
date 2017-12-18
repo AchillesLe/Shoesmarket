@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use DB;
 use Hash;
+use Input;
 
 class pageController extends Controller
 {
@@ -46,6 +47,8 @@ class pageController extends Controller
         $hinh="seller".$seller->id."-".$file_name;
         $seller->image='Seller/'.$hinh;
         $request->file('imgSeller')->move('source/Upload/Seller',$hinh);
+        $seller->phone=$request->txtPhoneSeller;
+        $seller->address=$request->txtAddressSeller;
         $seller->save();
         return redirect()->route('seller.dashboard');
     }

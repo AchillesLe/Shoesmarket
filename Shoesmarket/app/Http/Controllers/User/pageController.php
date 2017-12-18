@@ -43,12 +43,12 @@ class pageController extends Controller
     {
         return view('user.page.abouts');
     }
-    public function Search($keyword='')
-    {
-        $news = news::where('',$id)->first();
-        $productcolor = Productcolor::where('idproduct',$id)->get();
-        return view('user.page.abouts');
-    }
+    // public function Search($keyword='')
+    // {
+    //     $news = news::where('',$id)->first();
+    //     $productcolor = Productcolor::where('idproduct',$id)->get();
+    //     return view('user.page.abouts');
+    // }
     public function getdetailProduct($name_meta)
     {
 
@@ -110,5 +110,19 @@ class pageController extends Controller
             }
         }
         return 'NaN';
+    }
+    public function Search($keyword="")
+    {
+            
+            
+            $news = news::where('status','0')->whereIn('idproduct',function($q) use ($keyword){
+                $q->from('product')->where('name','like',$keyword);
+            })->get();
+
+            $productcolor = Productcolor::where('idproduct',$idpro)
+                                        ->where('color',$color)
+                                        ->where('size',$size)->first();
+            if($productcolor->quantity > $qty) return 'true';
+
     }
 }

@@ -13,7 +13,7 @@
                   <label for="txtFromDate" class="col-md-3">Từ ngày</label>
 
                   <div class="col-md-9">
-                    <input id="txtFromDate" type="text" class="form-control" name="txtFromDate" required autofocus>
+                    <input id="txtFromDate" type="date" class="form-control" name="txtFromDate" required autofocus>
                   </div>
                   <!--<div class="form-group">
                     <div class='input-group date' id='datetimepicker1'>
@@ -27,7 +27,7 @@
                   <label for="txtToDate" class="col-md-3">Đến ngày</label>
 
                   <div class="col-md-9">
-                    <input id="txtToDate" type="text" class="form-control" name="txtToDate" required autofocus>
+                    <input id="txtToDate" type="date" class="form-control" name="txtToDate" required autofocus>
                   </div>
               </div>
               <button type="submit" class="btn btn-primary" style="margin-top: 15px">Thống kê</button>
@@ -52,6 +52,9 @@
                     @foreach($listbill as $bill)
                     <tr>
                       <td>{!! $bill->id !!}</td>
+                      <td>{!! $bill->id !!}</td>
+                      <td>{!! $bill->id !!}</td>
+                      <td>{!! $bill->id !!}</td>
                     </tr>
                     @endforeach
                   @endif
@@ -61,7 +64,6 @@
             </div>
           </div>
         </div>
-        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
       </div>
   </form>
 @endsection

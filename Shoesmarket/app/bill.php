@@ -25,6 +25,7 @@ class Bill extends Model
      * @var string
      */
     protected $table = 'bills';
+    public $timestamps = false;
     /**
      * @var array
      */

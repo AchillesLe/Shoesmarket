@@ -21,7 +21,7 @@
 	Route::get('/productType/{name}','User\pageController@getProductType');
 	Route::get('/product/{sex}/{name}','User\pageController@getProductbysexandtype');
 	Route::post('product/checkquantity','User\pageController@checkquantity');
-	Route::get('search/{keyword}','User\pageController@Search');
+	// Route::get('search','User\pageController@Search')->name('search');
 	
 
 	// Route::get('/contacts','User\pageController@getContacts');

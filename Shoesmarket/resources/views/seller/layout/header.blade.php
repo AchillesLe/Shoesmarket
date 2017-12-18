@@ -11,12 +11,25 @@
 	    </div>
 	  </form>
 	</li>-->
-	<li class="nav-item">
+	<!--<li class="nav-item">
 	  <a class="nav-link" href="{!! route('getChangePassword') !!}">
 	    <i class="fa fa-lock" aria-hidden="true"></i> Đổi mật khẩu</a>
 	</li>
+
 	<li class="nav-item">
 	  <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
 	    <i class="fa fa-fw fa-sign-out"></i>Đăng xuất</a>
+	</li>-->
+
+	<li class="nav-item" >
+	    <div class="btn-group" role="group" style="margin-right: 20px;">
+		    <button id="btngroupinfo" type="button" class="btn btn-outline-info dropdown-toggle" data-toggle="dropdown" >
+		      <i class="fa fa-fw fa-address-card-o "></i> Thông tin
+		    </button>
+		    <div class="dropdown-menu" aria-labelledby="btngroupinfo" >
+		      <a class="dropdown-item" href="{!! route('getChangePassword') !!}"><i class="fa fa-fw fa-edit"></i>Đổi mật khẩu</a>
+		      <a class="dropdown-item" href="{!! route('seller.logout') !!}"><i class="fa fa-fw fa-sign-out"></i>Logout</a>
+		    </div>
+  		</div>
 	</li>
 </ul>
