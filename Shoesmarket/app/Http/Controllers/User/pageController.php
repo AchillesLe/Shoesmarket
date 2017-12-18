@@ -15,7 +15,7 @@ class pageController extends Controller
 {
     public function getIndex()
     {
-        $listnews = news::latest()->paginate(18);
+        $listnews = news::where('status','0')->latest()->paginate(18);
         $counter =  count($listnews);
         // $n = CEIL($counter/4);
         // $listnew =  array();

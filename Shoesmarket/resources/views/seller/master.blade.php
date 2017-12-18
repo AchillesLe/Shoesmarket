@@ -73,7 +73,7 @@
     <!-- Core plugin JavaScript-->
     <script src="sourceAdmin/vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Page level plugin JavaScript-->
-    <script src="sourceAdmin/vendor/chart.js/Chart.min.js"></script>
+    {{-- <script src="sourceAdmin/vendor/chart.js/Chart.min.js"></script> --}}
     <script src="sourceAdmin/vendor/datatables/jquery.dataTables.js"></script>
     <script src="sourceAdmin/vendor/datatables/dataTables.bootstrap4.js"></script>
     <!-- Custom scripts for all pages-->
