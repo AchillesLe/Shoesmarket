@@ -11,9 +11,7 @@
 |
 */
  
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+
 	Route::get('/','User\pageController@getIndex');
 
 // Phần của Vân đom -- user
@@ -105,7 +103,7 @@
 		Route::post('admin/login','admin\AdminLoginController@postlogin');
 		Route::get('admin/changepass','admin\AdminChangePassWord@getchangePass')->name('admin.getchangepass');
 		Route::post('admin/changepass','admin\AdminChangePassWord@changePass');
-		
+
 	Route::group(['prefix'=>'admin','middleware'=>'auth:admin'],function(){
 
 		Route::get('logout','admin\AdminLoginController@logout')->name('admin.logout');

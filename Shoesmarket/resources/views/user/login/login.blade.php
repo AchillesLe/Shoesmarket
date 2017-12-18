@@ -8,7 +8,8 @@
                             @endforeach
                         </div>
                     @endif
-
+                  
+				    @php(session(['backUrl' => URL::previous()]))
                     @if(session('thongbao'))
                         <div  class="alert alert-danger" id="noti" style="margin-top: 5px;">{{session('thongbao')}}</div>
                     @endif		

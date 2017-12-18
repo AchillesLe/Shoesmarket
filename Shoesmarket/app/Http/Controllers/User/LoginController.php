@@ -23,6 +23,7 @@ class LoginController extends Controller
     }
     public function postlogin(Request $request)
     {
+
         $this->validate($request,[
             'email'=>'required|email',
             'password'=>'required|min:6|max:32'
@@ -33,7 +34,7 @@ class LoginController extends Controller
         if(Auth::attempt(['email'=>$request->email,'password'=>$request->password],null))
         {
            
-            return redirect()->route('home');
+            return redirect(session('backUrl'));
         }
         return redirect()->back()->with('thongbao',' Email hoặc mật khẩu không đúng . Vui lòng kiểm tra lại !');
     }
@@ -41,7 +42,9 @@ class LoginController extends Controller
     {
         Auth::logout();
         (new OrdersController)->deleteorder();
+
         return redirect()->route('home');
+
     }
     public function register()
     {
