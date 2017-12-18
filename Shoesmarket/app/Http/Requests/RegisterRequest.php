@@ -31,7 +31,8 @@ class RegisterRequest extends FormRequest
             'phone'=>'required',
             'username'=>'required',
             'email'=>'required|unique:sellers,email',
-            'password'=>'required|min:6|max:32|confirmed',
+            'password'=>'required|min:6|max:32',
+            'password_confirm'=>'required|min:6|max:32|same:password'
         ];
     }
     public function messages()
@@ -47,7 +48,11 @@ class RegisterRequest extends FormRequest
             'email.unique'=>'Email này đã đăng ký',
             'password.required'=>'Vui lòng nhập mật khẩu',
             'password.min'=>'Vui lòng nhập tối thiểu 6 ký tự',
-            'password.max'=>'Vui lòng chỉ nhập tối đa 32 ký tự'
+            'password.max'=>'Vui lòng chỉ nhập tối đa 32 ký tự',
+            'password_confirm.min'=>'Vui lòng nhập tối thiểu 6 ký tự',
+            'password_confirm.max'=>'Vui lòng chỉ nhập tối đa 32 ký tự',
+            'password_confirm.required'=>'Vui lòng nhập mật khẩu',
+            'password_confirm.same'=>'Nhập giống password'
         ];
     }
 }

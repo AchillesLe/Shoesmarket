@@ -83,6 +83,13 @@
 		});
 		Route::group(['prefix'=>'orders'],function(){
 			Route::get('listorder',['as' => 'getListOrder', 'uses' => 'seller\OrderController@getListOrder']);
+			Route::get('completebill/{id}',['as' => 'completeBill', 'uses' => 'seller\OrderController@completeBill']);
+			Route::get('cancelbill/{id}',['as' => 'cancelBill', 'uses' => 'seller\OrderController@cancelBill']);
+			Route::get('detail/{id}',['as' => 'getDetailBill', 'uses' => 'seller\OrderController@getDetailBill']);
+			Route::get('detail/completebill/{id}',['as' => 'completeDetailBill', 'uses' => 'seller\OrderController@completeDetailBill']);
+			Route::get('detail/cancelbill/{id}',['as' => 'cancelDetailBill', 'uses' => 'seller\OrderController@cancelDetailBill']);
+			Route::get('statistics',['as' => 'getStatistics', 'uses' => 'seller\OrderController@getStatistics']);
+			Route::get('statisticsbill',['as' => 'statisticsBill', 'uses' => 'seller\OrderController@statisticsBill']);
 		});
 		// route for view/blade file
 		//---------------------------

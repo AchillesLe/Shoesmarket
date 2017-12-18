@@ -1,19 +1,17 @@
 @extends('Seller.master')
 @section('content')
       <!-- Example DataTables Card-->
-      <form>
       <div class="col-md-12 pricing-table">
-        @foreach($list_newspackage as $newspackage)
         <div class="col-md-4 columns">
           <ul class="price">
-            <li class="header" style="background-color:#FFD42F">{!! $newspackage->name !!}</li>
-            <li class="grey">{!! $newspackage->money !!} VND</li>
-            <li>{!! $newspackage->newquantity !!} tin đăng sản phẩm</li>
-            <li class="grey"><a href="{!! url('sellercenter/cart',$newspackage->id) !!}" class="btn btn-primary">Sign Up</a></li>
+            <li class="header" style="background-color:#E0E0E0">Bạc</li>
+            <li class="grey">100000 VND</li>
+            <li>10 tin đăng sản phẩm</li>
+            <li class="grey"><a href="#" class="btn btn-primary">Sign Up</a></li>
           </ul>
         </div>
-        @endforeach
-        <!--<div class="col-md-4 columns">
+
+        <div class="col-md-4 columns">
           <ul class="price">
             <li class="header" style="background-color:#FFD42F">Vàng</li>
             <li class="grey">700000 VND</li>
@@ -29,7 +27,7 @@
             <li>100 tin đăng sản phẩm</li>
             <li class="grey"><a href="#" class="btn btn-primary">Sign Up</a></li>
           </ul>
-        </div>-->
+        </div>
 
       </div>
 
@@ -53,5 +51,4 @@
           </div>
         </div>
       </div>
-      </form>
 @endsection
