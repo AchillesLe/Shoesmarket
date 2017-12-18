@@ -29,7 +29,7 @@
 					<tbody>
 						@foreach( $content as $item)
 							<tr class="cart_item">
-								<td class="product-name" data-id="{{$item->id}}">
+								<td class="product-name" data-id="{{$item->id}}" data-rowid="{{$item->rowId}}">
 									<div class="media">
 										<img class="pull-left" src="{{asset('source/Upload')}}/{{$item->options->image}}" alt="Đây là ảnh">
 										<div class="media-body">
@@ -53,7 +53,7 @@
 								</td>
 
 								<td class="product-quantity">
-										<input class="form-control" type="number" id="qty"  name="qty" value="{{$item->qty}}" min="1" max="{{$item->options->qty}}">
+										<input class="form-control" type="number" id="qty"  name="qty" value="{{$item->qty}}" min="1" max="{{$item->options->qty}}" readonly style="text-align: center;">
 								</td>
 
 								<td class="product-subtotal">
@@ -76,11 +76,11 @@
 			<div class="cart-collaterals">
 
 				
-				<div class="cart-totals pull-right">
+				<div class="cart-totals pull-right" style="width: 400px;">
 					<div class="cart-totals-row"><h5 class="cart-total-title">Cart Totals</h5></div>
-					<div class="cart-totals-row"><span>Cart Subtotal:</span> <span>{{number_format($total,0,",",".")}}</span></div>
-					<div class="cart-totals-row"><span>Shipping:</span> <span>Free Shipping</span></div>
-					<div class="cart-totals-row"><span>Order Total:</span> <span>{{number_format($total,0,",",".")}}</span></div>
+					<div class="cart-totals-row"><span>Tổng tiền giỏ hàng:</span> <span id="subitem">{{number_format($total,0,",",".")}} VNĐ</span></div>
+					<div class="cart-totals-row"><span>Phí ship:</span> <span>Free Shipping</span></div>
+					<div class="cart-totals-row"><span>Order Total:</span> <span id="totalitem">{{number_format($total,0,",",".")}} VNĐ</span></div>
 					@if(Cart::count()>0)
 					<div class="cart-totals-row" ><span style="margin-left: 50px"></span><a  class="btn btn-primary" style="width: 100px;height: 40px" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#modelpayment">Mua ngay</a></div>
 					@endif
@@ -149,7 +149,7 @@
 				<div class="form-group row">
 				  <label for="example-datetime-local-input" class="col-2 col-form-label" >Tổng cộng</label>
 				  <div class="col-5">
-				    <input class="form-control" type="text" name="total" value="{{number_format($total,0,",",".")}}" readonly required>
+				    <input class="form-control" type="text" name="total" value="{{number_format($total,0,",",".")}} VNĐ" readonly required>
 				  </div>
 				</div>
 		      </div>
@@ -166,13 +166,15 @@
  
 	    jQuery('.beta-shopping-cart-table').on('change','#qty',function(event) {
 	    	$row=jQuery(this).closest("tr"); 
-	    	$price =$row.find("td:eq(1)").text();
+	    	$price = $row.find("td:eq(1)").text();
 	    	$price = $price.replace('.','');
 	    	$qty = jQuery(this).val();
-	    	// $color = $row.find("td:eq(0)").children('div').children('div').children('p[name=color]').val();
+	    	$subitem=$('span[id=subitem]').text();
+	    	$totalitem=$('span[id=totalitem]').text();
 	    	$color = jQuery('tr>td>div>div>p[name=color]').data('val');
 	    	$size =  jQuery('tr>td>div>div>p[name=size]').data('val');
 	    	$idpro =$row.find("td:eq(0)").data('id');
+	    	$rowId = $row.find("td:eq(0)").data('rowId');
 	    	$_token=jQuery('input[name="_token"]').val();
 	    	jQuery.ajax({
 			  url: 'product/checkquantity',
@@ -188,8 +190,14 @@
 			    	jQuery('input[name=qty]').val('1');
 			   }
 			   else
-			   	$subtotal = $price*$qty;
-			    $row.find("td:eq(4)").text($subtotal);
+			   {
+			   		$subtotal = $price*$qty;
+			   		$row.find("td:eq(4)").text($subtotal);
+			   		$newtotal={{Cart::total()}};
+			   		$('span[id=subitem]').text($newtotal);
+			   		$('span[id=totalitem]').text($newtotal);
+			   }
+			   
 			  }
 			});
 	    });

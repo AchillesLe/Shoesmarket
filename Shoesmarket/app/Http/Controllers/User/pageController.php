@@ -99,6 +99,7 @@ class pageController extends Controller
             $color=Request::get('color');
             $size=Request::get('size');
             $qty=Request::get('qty');
+            
             if($idpro > 0 && $color != null && $size > 0 && $qty > 0 )
             {
                 $productcolor = Productcolor::where('idproduct',$idpro)

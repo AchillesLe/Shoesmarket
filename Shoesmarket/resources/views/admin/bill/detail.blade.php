@@ -15,30 +15,28 @@
 	                  <th>Số lượng</th>
 	                  <th>Giá</th>
 	                  <th>Người bán</th>
-	                  <th>Hành động</th>
 	                </tr>
 	              </thead>
 	              <tbody>
 	              	@php($number=0)
-	              	 @foreach($list as $bill)
+	              	 @foreach($listdetailbill as $item)
 		              	<tr >
 		                  <td >{{++$number}}</td>
-		                  <td >{{$bill->user->name}}</td>
-		                  <td >{{$bill->user->name}}</td>
-		                  <td >{{$bill->user->name}}</td>
-		                  <td >{{$bill->user->name}}</td>
-	                      <td >{{$bill->housenumber}} {{$bill->streetname}} , {{$bill->county->name}} ,</td>
-		                  <td >{{number_format($bill->total,0,',','.')}}</td>
-		                  <td >{{$bill->created_at}}</td>
-		                  <td >
-							<a   href="{{url('admin//bill/detail/$bill->id')}}" >Xem chi tiết</a>
-		                  </td>
+		                  <td >{{$item->productcolor->product->name}}</td>
+		                  <td >{{$item->productcolor->color}}</td>
+		                  <td >{{$item->productcolor->size}}</td>
+		                  <td >{{$item->productcolor->quantity}}</td>
+		                  <td >{{number_format($item->productcolor->product->price,0,',','.')}}</td>
+		                  <td >{{$item->billSeller->seller->name}}</td>
 		                </tr>
 	                 @endforeach 
 	              </tbody>
 	            </table>
 	          </div>
 	        </div>
-	        <div class="card-footer small text-muted">Tổng cộng {{count($list)}} Đơn hàng</div>
+	        <div class="card-footer small text-muted">Tổng cộng {{count($listdetailbill)}} Chi tiết</div>
       </div>
+      <div class="col-md-2" >
+			<a  class="form-control btn btn-primary" href="{{route('admin.bill')}}">Quay lại</a>
+	</div>
 @endsection

@@ -33,7 +33,17 @@ class LoginController extends Controller
         ]);
         if(Auth::attempt(['email'=>$request->email,'password'=>$request->password],null))
         {
-           
+            if(Auth::user()->isblock==1) 
+            {
+                Auth::logout();
+                return redirect()->back()->with('thongbao',' Tài khoản của bạn đã bị khoá ! ');
+            }
+            else
+            {
+                $backUrl = session('backUrl');
+                if($backUrl==route('login'))  
+                    return redirect('/home');
+            }
             return redirect(session('backUrl'));
         }
         return redirect()->back()->with('thongbao',' Email hoặc mật khẩu không đúng . Vui lòng kiểm tra lại !');
