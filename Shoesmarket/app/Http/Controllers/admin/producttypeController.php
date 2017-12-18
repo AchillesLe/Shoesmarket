@@ -4,14 +4,14 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\producttype;
+use App\Producttype;
 use App\type;
 
 class producttypeController extends Controller
 {
     public function getlist()
     {
-    	$list =  producttype::all();
+    	$list =  Producttype::all()->where('isdelete','0');
         $listtype = type::all();
     	return view('admin/producttype/listproducttype',['list'=>$list,'listtype'=>$listtype]);
     }
@@ -28,7 +28,7 @@ class producttypeController extends Controller
             ]);
         if($request->has('edit'))
         {
-            producttype::where('id',$request->id)->update(['name'=>$request->name,'description'=>$request->des,'idtype'=>$request->type]);  
+            Producttype::where('id',$request->id)->update(['name'=>$request->name,'idtype'=>$request->type]);  
 
             return redirect('admin/producttype/list')->with('thongbao','Sửa thành công');      
         }
@@ -41,10 +41,9 @@ class producttypeController extends Controller
                 [
                     'name.unique'=>'Tên loại giày đã có trong hệ thống .Vui lòng kiểm tra lại .',
                 ]);
-            $newtype = new producttype;
+            $newtype = new Producttype;
             $newtype->name = $request->name;
             $newtype->namemeta = changeTitle($request->name);
-            $newtype->description = $request->des;
             $newtype->idtype = $request->type;
             $newtype->save();
             return redirect('admin/producttype/list')->with('thongbao','Thêm thành công');
@@ -52,9 +51,9 @@ class producttypeController extends Controller
        
         
     }
-    public function delete($id)
+    public function updatestatus($id)
     {
-    	$producttype = producttype::where('id',$id)->delete();
+    	$producttype = Producttype::where('id',$id)->update(['isdelete'=>'1']);
     	return redirect('admin/producttype/list')->with('thongbao','Xoá thành công');
     }
 

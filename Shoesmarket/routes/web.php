@@ -101,31 +101,37 @@
 	});
 // Phần của Bảo -- Admin ( Tạo nhóm Route)
 
-	Route::group(['prefix'=>'admin'],function(){
-		Route::get('/','admin\pageController@getDashboard');
-		Route::get('/dashboard','admin\pageController@getDashboard')->name('dashboard');
+Route::get('admin/login','admin\AdminLoginController@getlogin')->name('admin.login');
+		Route::post('admin/login','admin\AdminLoginController@postlogin');
+		Route::get('admin/changepass','admin\AdminChangePassWord@getchangePass')->name('admin.getchangepass');
+		Route::post('admin/changepass','admin\AdminChangePassWord@changePass');
+	Route::group(['prefix'=>'admin','middleware'=>'auth:admin'],function(){
+
+		Route::get('logout','admin\AdminLoginController@logout')->name('admin.logout');
+
+		
+		Route::get('/','admin\newsController@getDashboard')->name('admin.dashboard');
+		Route::group(['prefix'=>'news'],function(){
+			
+			Route::get('detail/{id}','admin\newsController@detailsnew');
+		});
 
 		Route::group(['prefix'=>'user'],function(){
 			Route::get('list','admin\userController@getlist');
-			Route::get('detail/{idtype}','admin\userController@getdetail');
-			Route::get('edit/{idtype}','admin\userController@editStatus');
-			Route::get('delete/{idtype}','admin\userController@delete');
+			Route::get('detail/{id}','admin\userController@getdetail');
+			Route::get('edit/{id}','admin\userController@editStatus');
+			Route::get('delete/{id}','admin\userController@delete');
 
 		});
 		Route::group(['prefix'=>'type'],function(){
 			Route::get('list','admin\typeController@getlist');
 			Route::post('update','admin\typeController@update');
-			Route::get('delete/{id}','admin\typeController@delete');
+			Route::get('updatestatus/{id}','admin\typeController@updatestatus');
 		});
 		Route::group(['prefix'=>'producttype'],function(){
 			Route::get('list','admin\producttypeController@getlist');
 			Route::post('update','admin\producttypeController@update');
-			Route::get('delete/{id}','admin\producttypeController@delete');
-		});
-		Route::group(['prefix'=>'discount'],function(){
-			Route::get('list','admin\discountController@getlist');
-			Route::post('update','admin\discountController@update');
-			Route::get('delete/{id}','admin\discountController@delete');
+			Route::get('updatestatus/{id}','admin\producttypeController@updatestatus');
 		});
 		Route::group(['prefix'=>'package'],function(){
 			Route::get('list','admin\packageController@getlist');
@@ -133,10 +139,39 @@
 			Route::get('delete/{id}','admin\packageController@delete');
 		});
 		Route::group(['prefix'=>'seller'],function(){
-			Route::get('list','admin\sellerController@getlist');
-			Route::post('update','admin\sellerController@update');
+			Route::get('list','admin\sellerController@getlist')->name('admin.listseller');
 			Route::get('updatestatus/{id}','admin\sellerController@updatestatus');
-			Route::get('delete/{id}','admin\sellerController@delete');
+			Route::get('sellpackage/{id}','admin\sellerController@sellpackage')->name('sellpackage');
+			Route::post('sellpackage','admin\sellerController@postsellpackage')->name('post.sellpackage');
+
 		});
+		Route::group(['prefix'=>'penalize'],function(){
+			Route::get('list','admin\penalizeController@index')->name('admin.penalize');
+			Route::get('create/{id}','admin\penalizeController@create')->name('admin.penalize.create');
+			Route::post('create/{id}','admin\penalizeController@createpost')->name('admin.penalize.post');
+		});
+		Route::group(['prefix'=>'employee'],function(){
+			Route::get('list','admin\employeeController@index')->name('admin.employee');
+			Route::post('update','admin\employeeController@update');
+			Route::get('edit/{id}','admin\employeeController@editStatus');
+			Route::get('create','admin\employeeController@create');
+		});
+		Route::group(['prefix'=>'mail'],function(){
+			Route::get('list','admin\mailController@index')->name('admin.mail');
+			Route::get('create/{id}','admin\mailController@create')->name('admin.mail.create');
+			Route::post('createsubmit','admin\mailController@createsubmit');
+			Route::get('getcontent/{id}','admin\mailController@getcontent')->name('admin.mail.get.content');
+			Route::get('mailtemplate','admin\mailController@listmailtemplate')->name('admin.mail.listmailTemplate');
+			Route::post('updatemailTemplate','admin\mailController@updatemailTemplate')->name('admin.mail.updatemailTemplate');
+			Route::get('mailtemplate/delete/{id}','admin\mailController@delete')->name('admin.mail.deletemailTemplate');
+		});
+
+		Route::get('/revenue/interval','admin\revenueController@revenue')->name('revenue');
+		Route::post('/revenue/interval','admin\revenueController@getrevenue')->name('revenue.interval');
+		Route::get('/receipt/index','admin\receiptController@index')->name('admin.receipt');
+		Route::get('/bill/index','admin\billController@index')->name('admin.bill');
+		Route::get('/bill/detail/{id}','admin\billController@detail')->name('admin.bill.detail');
+
+		
 	});
 

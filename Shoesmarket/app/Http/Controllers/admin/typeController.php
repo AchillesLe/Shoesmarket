@@ -4,13 +4,14 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\type;
+use App\Type;
+use App\Product;
 
 class typeController extends Controller
 {
     public function getlist()
     {
-    	$list = type::all();
+    	$list = Type::all()->where('isdelete','0');
     	return view('admin/type/listtype',['list'=>$list]);
     }
     public function update(Request $request)
@@ -26,7 +27,7 @@ class typeController extends Controller
             ]);
         if($request->has('edit'))
         {
-            type::where('name',$request->id)->update(['name'=>$request->name,'description'=>$request->des]);  
+            Type::where('id',$request->id)->update(['name'=>$request->name,'description'=>$request->des]);  
 
             return redirect('admin/type/list')->with('thongbao','Sửa thành công');      
         }
@@ -34,12 +35,12 @@ class typeController extends Controller
         {
             $this->validate($request,
                 [
-                    'name'=>'unique:type,Name'
+                    'name'=>'unique:types,Name'
                 ],
                 [
                     'name.unique'=>'Tên thể loại giày đã có trong hệ thống .Vui lòng kiểm tra lại .',
                 ]);
-            $newtype = new type;
+            $newtype = new Type;
             $newtype->name = $request->name;
             $newtype->namemeta = changeTitle($request->name);
             $newtype->description = $request->des;
@@ -49,9 +50,16 @@ class typeController extends Controller
        
         
     }
-    public function delete($id)
+    public function updatestatus($id)
     {
-    	$type = type::where('id',$id)->delete();
+        $type = Type::find($id);
+        
+        if(count(Product::where('idtype',$id)->get())!=0)
+        {
+            $type = Type::where('id',$id)->update(['isdelete'=>'1']);
+        }
+    	else
+            $type->delete();
         return redirect('admin/type/list')->with('thongbao','Xoá thành công');
     }
 

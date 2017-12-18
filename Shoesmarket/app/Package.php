@@ -19,6 +19,8 @@ class Package extends Model
      */
     protected $table = 'packages';
 
+    public $timestamps = false;
+
     /**
      * @var array
      */

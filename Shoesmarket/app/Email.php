@@ -19,6 +19,7 @@ class Email extends Model
     /**
      * @var array
      */
+    public $timestamps = false;
     protected $fillable = ['nameFrom', 'mailFrom', 'nameTo', 'mailTo', 'title', 'content', 'created_at'];
 
 }
