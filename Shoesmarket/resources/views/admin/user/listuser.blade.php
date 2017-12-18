@@ -2,13 +2,13 @@
 @section('content')
 	<ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href='{{url('admin/user/list')}}'>Nhóm Khách hàng</a>
+          <a >Nhóm người mua</a>
         </li>
         <li class="breadcrumb-item active">Danh sách</li>
 	</ol>
 	<div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i>Danh sách khách hàng</div>
+          <i class="fa fa-table"></i>Danh sách người mua</div>
         <div class="card-body">
                     @if(session('thongbao'))
                         <div  class="alert alert-success" id="noti" style="margin-top: 5px;">{{session('thongbao')}}</div>

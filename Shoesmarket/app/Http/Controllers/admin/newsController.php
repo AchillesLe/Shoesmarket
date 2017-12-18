@@ -4,9 +4,10 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\news;
-use App\product;
-use App\seller;
+use App\News  as news;
+use App\Product;
+use App\Seller;
+use App\Productcolor;
 use Illuminate\Support\facades\Hash;
 
 class newsController extends Controller
@@ -15,15 +16,16 @@ class newsController extends Controller
     {
 
     	$list = news::orderBy('created_at','DESC')->get();
-        $listseller = seller::where('isblock','1')->get();
+        $listseller = Seller::where('isblock','1')->get();
         $number = count($listseller);
     	return view('admin.page.dashboard',['list'=>$list,'number'=>$number]);
     }
     public function detailsnew($id)
     {
     	$news = news::where('id',$id)->get()->first();
+        $productcolor = Productcolor::where('idproduct',$id)->get();
     	
-    	return view('admin/page/detailsnew',['news'=>$news]);
+    	return view('admin/page/detailsnew',['news'=>$news,'listsubpro'=>$productcolor]);
     }
 
 }

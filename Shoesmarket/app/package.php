@@ -4,8 +4,24 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class package extends Model
+/**
+ * @property int $id
+ * @property string $name
+ * @property int $newquantity
+ * @property float $money
+ */
+class Package extends Model
 {
-     protected $table = "package"; 
-     public $timestamps = false;
+    /**
+     * The table associated with the model.
+     * 
+     * @var string
+     */
+    protected $table = 'packages';
+
+    /**
+     * @var array
+     */
+    protected $fillable = ['name', 'newquantity', 'money'];
+
 }

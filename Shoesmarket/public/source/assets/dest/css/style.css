@@ -1867,22 +1867,42 @@ font-size:13px
     11.1 SINGLE ITEM
 ============================================================================= */
 
+.item{
+	width: 192px;
+	height: 300px!important;
+	float: left;
+}
+
 .single-item {
 position:relative
 }
 
 .single-item-header {
-margin-bottom:20px
+margin-bottom:3px;
 }
 
 .single-item-title {
-font-size:15px;
-margin-bottom:5px
+/*font-size:13PX;
+margin-bottom:5px;
+overflow: hidden;
+word-wrap: break-word;*/
+	overflow: hidden;
+    word-wrap: break-word;
+    line-height: 15px;
+    line-height: 1.5rem;
+    height: 35px;
+    height: 3rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    width: 165px;
+    font-size:14px;
 }
 
 .single-item-price {
-font-size:20px;
-color:#000
+font-size:18px;
+color:#ff0000;
+margin-bottom: 5px;
 }
 
 .add-to-cart {
@@ -5202,3 +5222,6 @@ border:none;}
 .beta-rotator canvas{width:100%;}
 .beta-rotator {font-family: "Open Sans",sans-serif;}
 .history-slider span {font-family: "Open Sans",sans-serif;}
+a#cartdetail:hover{background: #f90;}
+a .fa-shopping-cart:hover{cursor:pointer;background: #f90;}
+#header-right{position: absolute;right: 0;bottom: 3px;}

@@ -2,9 +2,9 @@
 @section('content')
 	<ol class="breadcrumb">
         <li class="breadcrumb-item">
-          Nhóm người bán hàng
+          Nhóm người bán 
         </li>
-        <li class="breadcrumb-item active">danh sách người bán</li>
+        <li class="breadcrumb-item active">danh sách </li>
 	</ol>
 
 	<div class="card mb-3">
@@ -54,7 +54,10 @@
                               <button class="btn btn-outline-info" id="view"  type="button"  data-toggle="modal" data-target="#sellerinfo" >Xem</button>
                             </li>
                             <li >
-                              <a href="{!!url('admin/seller/sellpackage')!!}"><button class="btn btn-outline-info" name="addpackage" >Nạp tin</button></a>
+                              <a href="{!!url('admin/seller/sellpackage',$seller->id)!!}"><button class="btn btn-outline-info" name="addpackage" >Nạp tin</button></a>
+                            </li>
+                            <li >
+                              <a href="{!!url('admin/penalize/create',$seller->id)!!}"><button class="btn btn-outline-info" name="panalize">Phiếu phạt</button></a>
                             </li>
                             <li >
                               <a href="{!!url('admin/mail/create',$seller->id)!!}"><button class="btn btn-outline-info" name="addmail" >Gửi mail</button></a>

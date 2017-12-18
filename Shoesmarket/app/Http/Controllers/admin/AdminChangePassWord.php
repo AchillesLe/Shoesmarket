@@ -7,16 +7,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\facades\Hash;
 use App\Http\Controllers\admin\AdminLoginController as AdminLoginController;
 use Auth;
-use App\employees;
+use App\Employee;
 class 	AdminChangePassWord extends Controller
 {
 
     public function getchangePass()
     {
-    	// if(!empty(Auth::guard('admin')->user()->name))
         	return view('admin.changePassword');
-       	// else
-       	// 	return redirect()->back();
     }
     public function changePass(Request $request)
     {
@@ -45,17 +42,20 @@ class 	AdminChangePassWord extends Controller
         $oldpassword = $request->oldpassword;
         $comfirmpass = $request->comfirmpass;
         $newpassword = $request->newpassword;
-        $username = $request->username;
-        if($comfirmpass===$newpassword)
-        {
 
-            $employee = employees::where('email',$email)->where('password',Hash::make($oldpassword))->get();//->update(['password'=>Hash::make($newpassword)]);
-            // dd($employee);
-            (new AdminLoginController)->logout();
-            return redirect()->route('admin.getchangepass')->with('thongbao','Thay đổi password thành công');
+        if($comfirmpass==$newpassword)
+        {
+            $employee = Employee::where('email',$email)->first();
+            if(Hash::check($oldpassword, $employee->password))
+            {
+                $employee->update( ['password'=>Hash::make($newpassword)] );
+                    (new AdminLoginController)->logout();
+                    return redirect()->back()->with('thongbao','Thay đổi password thành công');
+            }
+            return redirect()->back()->with('thongbao','Thay đổi password thất bại !');
         }
         else
-            return redirect()->route('admin.getchangepass')->with('thongbao','Thay đổi password thất bại !');
+            return redirect()->back()->with('thongbao','Thay đổi password thất bại !');
     }
 
 }

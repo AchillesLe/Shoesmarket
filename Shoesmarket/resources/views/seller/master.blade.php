@@ -8,7 +8,9 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <title>SB Admin - Start Bootstrap Template</title>
+
   <!-- Bootstrap core CSS-->
+  <base href="{{asset('')}}">
   <link href="sourceAdmin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
   <link href="sourceAdmin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -16,12 +18,18 @@
   <link href="sourceAdmin/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="sourceAdmin/css/sb-admin.css" rel="stylesheet">
+  <link href="sourceAdmin/css/custom-admin.css" rel="stylesheet">
+  <link href="sourceAdmin/css/custom-seller.css" rel="stylesheet">
   <script src="sourceAdmin/vendor/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="sourceAdmin/ckeditor/ckeditor.js"></script>
+  <script type="text/javascript" src="sourceAdmin/js/seller-script.js"></script>
+
+
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
-  @include('admin.layout.menu')
+  @include('Seller.layout.menu')
   <div class="content-wrapper">
     <div class="container-fluid">
      	 @yield('content')
@@ -51,7 +59,7 @@
           <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <a class="btn btn-primary" href="{{route('seller.logout')}}">Logout</a>
           </div>
         </div>
       </div>

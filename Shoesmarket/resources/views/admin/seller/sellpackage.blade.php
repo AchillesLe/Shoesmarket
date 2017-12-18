@@ -7,40 +7,54 @@
         </li>
         <li class="breadcrumb-item active">Bán gói tin</li>
 	</ol>
+					@if(count($errors)>0)
+                        <div class="alert alert-danger" id="noti">
+                            @foreach($errors->all() as $err)
+                               {{$err}}<br>
+                            @endforeach
+                        </div>
+                    @endif
+
+                    @if(session('thongbao'))
+                        <div  class="alert alert-success" id="noti" style="margin-top: 5px;">{{session('thongbao')}}</div>
+                    @endif
 	<div class="card mb-3">
 		<div class="card">
 		  <h3 class="card-header">Phiếu bán gói tin</h3>
 		  <div class="card-block" style="padding: 10px;">
-		    	<form action="" method="POST" accept-charset="utf-8">
+		    	<form action="{{route('post.sellpackage')}}" method="POST" accept-charset="utf-8">
 		    		 {{  csrf_field() }}
 		    		<div class="form-group row">
 					  <label for="employeesName" class="col-2 col-form-label">Người Lập phiếu</label>
 					  <div class="col-9">
-					    <input class="form-control" type="text" value="AAA" name="employeesName" id="employeesName" disabled>
+					    <input class="form-control" type="text" value="{{Auth::guard('admin')->user()->name}}" name="employeesName" id="employeesName" readonly>
 					  </div>
 					</div>
+					<div class="col-1">
+					    <input class="form-control" type="text" value="{{$seller->id}}" name="idseller" hidden>
+					  </div>
 					<div class="form-group row">
 					  <label for="sellername" class="col-2 col-form-label">Tên người bán</label>
 					  <div class="col-9">
-					    <input class="form-control" type="text" value="Anh A" name="sellername" id="sellername" disabled>
+					    <input class="form-control" type="text" value="{{$seller->name}}" name="seller" id="sellername" readonly required>
 					  </div>
 					</div>
 					<div class="form-group row">
 					  <label for="packagename" class="col-2 col-form-label">Gói tin</label>
 					  <div class="col-9">
 					    <select class="form-control" name="packagename">
-					    	<option value="kimcuong-15000-15">kim cương - 150000 VNĐ / 15 tin</option>
-					    	<option value="vang-15000-15">Vàng - 100000 VNĐ / 12 tin</option>
-					    	<option value="bac-15000-15">bạc - 70000 VNĐ / 7 tin</option>
+					    	@foreach($listpackage as $item)
+					    		<option value="{{$item->name}}-{{$item->money}}-{{$item->newquantity}}">{{$item->name}}--{{$item->money}} VNĐ / {{$item->newquantity}} Tin</option>
+					    	@endforeach
 					    </select>
 					  </div>
 					</div>
-					{{-- <div class="form-group row">
-					  <label for="note" class="col-2 col-form-label">Ghi chú</label>
-					  <div class="col-9">
-					    <textarea class="form-control" name="note"></textarea> 
+					<div class="form-group row">
+					  <label for="qty" class="col-2 col-form-label">Số lượng gói tin</label>
+					  <div class="col-2">
+					    <input class="form-control" type="number" value="1" min="1" name="qty" required >
 					  </div>
-					</div> --}}
+					</div>
 					<div class="col-md-12" align="center">
 						<input type="submit" class="btn btn-primary" name="addreceipt" value="Lưu phiếu">
 					</div>

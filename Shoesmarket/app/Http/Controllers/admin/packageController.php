@@ -4,13 +4,13 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\package;
+use App\Package;
 
 class packageController extends Controller
 {
      public function getlist()
     {
-    	$list =  package::all();
+    	$list =  Package::all();
     	return view('admin/package/list',['list'=>$list]);
     }
     public function update(Request $request)
@@ -26,19 +26,19 @@ class packageController extends Controller
             ]);
         if($request->has('edit'))
         {
-            package::where('id',$request->id)->update(['name'=>$request->name,'newquantity'=>$request->quantity,'money'=>$request->money]);  
+            Package::where('id',$request->id)->update(['name'=>$request->name,'newquantity'=>$request->quantity,'money'=>$request->money]);  
             return redirect('admin/package/list')->with('thongbao','Sửa thành công');      
         }
         else
         {
             $this->validate($request,
                 [
-                    'name'=>'unique:package,name'
+                    'name'=>'unique:packages,name'
                 ],
                 [
                     'name.unique'=>'Tên gói tin đã có trong hệ thống .Vui lòng kiểm tra lại .',
                 ]);
-            $package = new package;
+            $package = new Package;
             $package->name = $request->name;
             $package->newquantity = $request->quantity;
             $package->money = $request->money;
@@ -50,7 +50,7 @@ class packageController extends Controller
     }
     public function delete($id)
     {
-    	$package = package::where('id',$id)->delete();
+    	$package = Package::where('id',$id)->delete();
     	return redirect('admin/package/list')->with('thongbao','Xoá thành công');
     }
 

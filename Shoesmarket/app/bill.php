@@ -4,20 +4,53 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class bill extends Model
+/**
+ * @property int $id
+ * @property int $iduser
+ * @property int $countyname
+ * @property string $housenumber
+ * @property string $streetname
+ * @property float $total
+ * @property string $created_at
+ * @property string $note
+ * @property County $county
+ * @property User $user
+ * @property BillSeller[] $billSellers
+ */
+class Bill extends Model
 {
-    protected $table = "bill";
-    protected $timestamp =false;
-    public function bill_seller()
-    {
-        return $this->hasMany('App\bill_seller','idbill','id');
-    }
-    public function users()
-    {
-    	return $this->belongsTo('App\user','iduser','id');
-    }
+    /**
+     * The table associated with the model.
+     * 
+     * @var string
+     */
+    protected $table = 'bills';
+    /**
+     * @var array
+     */
+    protected $fillable = ['iduser', 'countyname', 'city', 'phone', 'housenumber', 'streetname', 'total', 'created_at', 'note'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function county()
     {
-        return $this->belongsTo('App\county','countyname','id');
+        return $this->belongsTo('App\County', 'countyname');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'iduser');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function billSellers()
+    {
+        return $this->hasMany('App\BillSeller', 'idbill');
     }
 }

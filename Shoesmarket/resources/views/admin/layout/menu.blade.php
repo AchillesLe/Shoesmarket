@@ -46,7 +46,7 @@
 	    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Nhóm người dùng">
 	      <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseUser" data-parent="#exampleAccordion">
 	        <i class="fa fa-fw fa-users"></i>
-	        <span class="nav-link-text">Nhóm khách hàng</span>
+	        <span class="nav-link-text">Nhóm người mua</span>
 	      </a>
 	      <ul class="sidenav-second-level collapse" id="collapseUser">
 	        <li>

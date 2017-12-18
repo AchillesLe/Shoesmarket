@@ -26,15 +26,15 @@
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
   @include('admin.layout.menu')
-                      @if(count($errors)>0)
+                      {{-- @if(count($errors)>0)
                     <div class="alert alert-danger" id="noti">
                         @foreach($errors->all() as $err)
-                           {{$err}}<br>
+                           {{ $err }}<br>
                         @endforeach
                     </div>
                     @endif
 
-                   {{--  @if(session('thongbao'))
+                    @if(session('thongbao'))
                         <div  class="alert alert-success" id="noti" style="margin-top: 5px;">{{session('thongbao')}}</div>
                     @endif --}}
   <div class="content-wrapper">

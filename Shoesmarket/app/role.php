@@ -4,12 +4,30 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class role extends Model
+/**
+ * @property int $id
+ * @property string $name
+ * @property Employee[] $employees
+ */
+class Role extends Model
 {
-    protected $table = "role";
+    /**
+     * The table associated with the model.
+     * 
+     * @var string
+     */
+    protected $table = 'roles';
 
-    public function employee()
+    /**
+     * @var array
+     */
+    protected $fillable = ['name'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function employees()
     {
-    	return $this->hasMany('App\employee','idrole','idrole');
+        return $this->hasMany('App\Employee', 'idrole');
     }
 }

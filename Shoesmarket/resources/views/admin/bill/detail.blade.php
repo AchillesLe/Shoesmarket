@@ -8,8 +8,10 @@
 	            <table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
 	              <thead>
 	                <tr >
-	                  <th>Mã sản phẩm </th>
+	                  <th>#</th>
 	                  <th>Tên Sản phẩm</th>
+	                  <th>Màu sắc</th>
+	                  <th>Size</th>
 	                  <th>Số lượng</th>
 	                  <th>Giá</th>
 	                  <th>Người bán</th>
@@ -21,9 +23,12 @@
 	              	 @foreach($list as $bill)
 		              	<tr >
 		                  <td >{{++$number}}</td>
-		                  <td >{{$bill->users->name}}</td>
-	                      <td >{{$bill->housenumber}} {{$bill->streetname}} , {{$bill->county->name}}</td>
-		                  <td >{{$bill->total}}</td>
+		                  <td >{{$bill->user->name}}</td>
+		                  <td >{{$bill->user->name}}</td>
+		                  <td >{{$bill->user->name}}</td>
+		                  <td >{{$bill->user->name}}</td>
+	                      <td >{{$bill->housenumber}} {{$bill->streetname}} , {{$bill->county->name}} ,</td>
+		                  <td >{{number_format($bill->total,0,',','.')}}</td>
 		                  <td >{{$bill->created_at}}</td>
 		                  <td >
 							<a   href="{{url('admin//bill/detail/$bill->id')}}" >Xem chi tiết</a>

@@ -48,6 +48,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+
         $class = get_class($exception);
         switch($class) {
                 case 'Illuminate\Auth\AuthenticationException':
@@ -55,6 +56,9 @@ class Handler extends ExceptionHandler
                 switch ($guard) {
                     case 'admin':
                         $login = 'admin.login';
+                        break;
+                case 'seller':
+                        $login = 'seller.login';
                         break;
                     default:
                         $login = 'login';
@@ -65,5 +69,4 @@ class Handler extends ExceptionHandler
         }
         return parent::render($request, $exception);
     }
-
 }
