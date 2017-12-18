@@ -1,0 +1,98 @@
+
+.columns {
+    float: left;
+    width: 33.3%;
+    padding: 8px;
+}
+
+.price {
+    list-style-type: none;
+    border: 1px solid #eee;
+    margin: 0;
+    padding: 0;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.price:hover {
+    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
+}
+
+.price .header {
+    background-color: #111;
+    color: white;
+    font-size: 25px;
+}
+
+.price li {
+    border-bottom: 1px solid #eee;
+    padding: 20px;
+    text-align: center;
+}
+
+.price .grey {
+    background-color: #eee;
+    font-size: 20px;
+}
+
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+}
+.detailuser-table tbody tr td input{
+    margin-bottom: 10px;
+}
+#dataTable thead tr th ,td {
+    text-align: center;
+}
+.groupaction ul li{
+    padding:2px 0px 2px 16px;
+} 
+.div-modalnewsinfo div input , textarea{
+    margin-top: 10px;
+}
+.mailmodal div{
+    margin-top: 10px;
+}
+table.mailtemplatetable thead tr th.action{
+    width: 110px!important;
+}
+.formaddemployee div.form-inline {
+    margin-top: 10px;
+}
+/*.formaddemployee div.form-inline label text{
+    margin-left: 5px;
+}*/
+
+.infoEmploy div{
+    margin-top: 20px;
+}
+.infoEmploy div label{
+    text-align: left;
+    display: block;
+}
+.infonews{
+    margin:20px;
+}
+.infonews .image {
+    float: left;
+}
+.infonews .sub_content_info {
+    float: left;
+}
+.infonews .sub_content_info label{
+    text-align: left;
+    display: block;
+}
+.infonews .sub_content_info div{
+    margin-top: 15px;
+}
+.infonews div label  {
+    /*padding-left: 30px;*/
+    text-align: left;
+}
