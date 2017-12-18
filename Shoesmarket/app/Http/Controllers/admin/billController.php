@@ -15,10 +15,14 @@ class billController extends Controller
         return view('admin.bill.index',['list'=>$list]);
     }
  	public function detail($id)
-    {
+    {        
         $Bill = Bill::find($id);
         $listbillseller = Bill_seller::where('idbill',$id)->get();
-        $listdetailbill = Detail_bill::whereIn('idbill_seller',$listbillseller[0]->id)->get();
+        $idBill_seller = array( );
+        foreach ($listbillseller as $key => $value) {
+            $idBill_seller[]=$value->id;
+        }
+        $listdetailbill = Detail_bill::whereIn('idbill_seller',$idBill_seller)->get();
         return view('admin.bill.detail',['Bill'=>$Bill,'listbillseller'=>$listbillseller,'listdetailbill'=>$listdetailbill]);
     }
 }

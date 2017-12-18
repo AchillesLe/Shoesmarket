@@ -35,7 +35,7 @@ class Detail_bill extends Model
      */
     public function billSeller()
     {
-        return $this->belongsTo('App\BillSeller', 'idbill_seller');
+        return $this->belongsTo('App\Bill_seller', 'idbill_seller');
     }
 
     /**
