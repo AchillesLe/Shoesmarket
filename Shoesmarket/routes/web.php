@@ -87,6 +87,7 @@
 			Route::get('detail/completebill/{id}',['as' => 'completeDetailBill', 'uses' => 'seller\OrderController@completeDetailBill']);
 			Route::get('detail/cancelbill/{id}',['as' => 'cancelDetailBill', 'uses' => 'seller\OrderController@cancelDetailBill']);
 			Route::get('statistics',['as' => 'getStatistics', 'uses' => 'seller\OrderController@getStatistics']);
+			Route::get('statisticsbill',['as' => 'statisticsBill', 'uses' => 'seller\OrderController@statisticsBill']);
 		});
 	//---------------------------
 	// route for view/blade file

@@ -10,6 +10,7 @@ use App\Bill_seller;
 use App\Detail_bill;
 use App\Bill;
 use App\User;
+use DateTime;
 class OrderController extends Controller
 {
     public function getListOrder()
@@ -65,8 +66,18 @@ class OrderController extends Controller
     	$detailbill->save();
     	return redirect()->route('getDetailBill');
     }
-    public function getStatistics()
+    public function getStatistics(Request $request)
     {
-    	return view('seller.page.orders.statistics');
+        $fromdate=date('Y-m-d H:i:s', strtotime($request->txtFromDate));
+        $todate=date('Y-m-d H:i:s', strtotime($request->txtToDate));
+        $listbill=Bill::whereBetween('created_at', [$fromdate, $todate])->get();
+    	return view('seller.page.orders.statistics',['listbill',$listbill]);
+    }
+    public function statisticsBill(Request $request)
+    {
+        $fromdate=\Carbon\Carbon::parse($request->txtFromDate)->timestamp;
+        $todate=\Carbon\Carbon::parse($request->txtToDate)->timestamp;
+        $listbill=Bill::whereBetween('created_at', [$fromdate, $todate])->get();
+        return view('seller.page.orders.statistics',['listbill',$listbill]);
     }
 }
