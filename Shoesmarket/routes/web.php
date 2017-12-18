@@ -22,6 +22,7 @@
 	Route::get('/product/{sex}/{name}','User\pageController@getProductbysexandtype');
 	Route::post('product/checkquantity','User\pageController@checkquantity');
 	Route::get('search/{keyword}','User\pageController@Search');
+	
 
 	// Route::get('/contacts','User\pageController@getContacts');
 	// Route::get('/abouts','User\pageController@getAbouts');
@@ -44,6 +45,7 @@
 		Route::get('edit/{rowId}','User\OrdersController@getedit');
 		Route::get('removerorder/{rowId}','User\OrdersController@removerorder');
 		Route::post('payment','User\OrdersController@payment');
+		Route::get('user/listproduct','User\ProductController@index');
 
 	});
 //bao-  phần tin tức.

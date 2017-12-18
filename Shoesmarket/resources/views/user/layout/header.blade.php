@@ -4,6 +4,7 @@
 				<div class="pull-left auto-width-left">
 					<ul class="top-menu menu-beta l-inline">
 						<li><a href="{{url('/')}}"><i class="fa fa-home"></i></a></li>
+						<li><a href="{{url('/sellercenter')}}"><i class="fa fa-rouble">&nbsp;&nbsp;Tham gia bán hàng với chúng tôi</i></a></li>
 					</ul>
 				</div>
 				<div class="pull-right auto-width-right">
