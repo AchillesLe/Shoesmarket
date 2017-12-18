@@ -18,7 +18,7 @@ class County extends Model
      * @var string
      */
     protected $table = 'countys';
-
+    public $timestamps = false;
     /**
      * @var array
      */

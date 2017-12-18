@@ -16,6 +16,7 @@ class Emailtemplate extends Model
     /**
      * @var array
      */
+    public $timestamps = false;
     protected $fillable = ['title', 'content', 'created_at', 'updated_at'];
 
 }
