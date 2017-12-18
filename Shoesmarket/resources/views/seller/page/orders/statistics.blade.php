@@ -1,7 +1,7 @@
 @extends('Seller.master')
 @section('content')
       <!-- Example DataTables Card-->
-    <form action="{!! route('getStatistics') !!}" method="GET">
+    <form action="{!! route('statisticsBill') !!}" method="GET">
       <div class="card mb-3">
         <div class="card-header">
           <i class="fa fa-table"></i> Danh sách đơn hàng</div>
@@ -13,15 +13,21 @@
                   <label for="txtFromDate" class="col-md-3">Từ ngày</label>
 
                   <div class="col-md-9">
-                    <input id="txtFromDate" type="date" class="form-control" name="txtFromDate" required autofocus>
+                    <input id="txtFromDate" type="text" class="form-control" name="txtFromDate" required autofocus>
                   </div>
+                  <!--<div class="form-group">
+                    <div class='input-group date' id='datetimepicker1'>
+                      <input type='text' class="form-control" name="txtFromDate" />
+                      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                  </div>-->
               </div>
 
               <div class="col-md-6" style="float: left">
                   <label for="txtToDate" class="col-md-3">Đến ngày</label>
 
                   <div class="col-md-9">
-                    <input id="txtToDate" type="date" class="form-control" name="txtToDate" required autofocus>
+                    <input id="txtToDate" type="text" class="form-control" name="txtToDate" required autofocus>
                   </div>
               </div>
               <button type="submit" class="btn btn-primary" style="margin-top: 15px">Thống kê</button>
@@ -44,7 +50,9 @@
                   <tbody>
                   @if(!empty($listbill))
                     @foreach($listbill as $bill)
-                    <td>$bill->id</td>
+                    <tr>
+                      <td>{!! $bill->id !!}</td>
+                    </tr>
                     @endforeach
                   @endif
                   </tbody>

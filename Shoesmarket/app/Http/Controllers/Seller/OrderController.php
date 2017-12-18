@@ -10,7 +10,9 @@ use App\Bill_seller;
 use App\Detail_bill;
 use App\Bill;
 use App\User;
-use DateTime;
+use Carbon\Carbon;
+use Validator;
+
 class OrderController extends Controller
 {
     public function getListOrder()
@@ -68,16 +70,29 @@ class OrderController extends Controller
     }
     public function getStatistics(Request $request)
     {
-        $fromdate=date('Y-m-d H:i:s', strtotime($request->txtFromDate));
-        $todate=date('Y-m-d H:i:s', strtotime($request->txtToDate));
-        $listbill=Bill::whereBetween('created_at', [$fromdate, $todate])->get();
-    	return view('seller.page.orders.statistics',['listbill',$listbill]);
+        	return view('seller.page.orders.statistics'); 
     }
     public function statisticsBill(Request $request)
     {
-        $fromdate=\Carbon\Carbon::parse($request->txtFromDate)->timestamp;
-        $todate=\Carbon\Carbon::parse($request->txtToDate)->timestamp;
-        $listbill=Bill::whereBetween('created_at', [$fromdate, $todate])->get();
-        return view('seller.page.orders.statistics',['listbill',$listbill]);
+        $validator = Validator::make($request->all(), [
+             'txtFromDate' => 'required|date_format:m/d/Y',
+             'txtToDate' => 'required|date_format:m/d/Y|after_or_equal:txtFromDate',
+         ]);
+
+         if ($validator->fails()) {
+             return redirect()->route('getStatistics')
+                         ->withErrors($validator)
+                         ->withInput();
+         }
+         else{
+            $format = 'd/m/Y';
+            $tu_ngay = Carbon::createFromFormat($format, $request->txtFromDate)->format('Y-m-d');
+            $den_ngay = Carbon::createFromFormat($format, $request->txtToDate)->format('Y-m-d');
+            $listbill=Bill::whereDate('created_at','>=',$tu_ngay)->whereDate('created_at','<=',$den_ngay)->get();
+            //$fromdate=\Carbon\Carbon::parse($request->txtFromDate)->timestamp;
+            //$todate=\Carbon\Carbon::parse($request->txtToDate)->timestamp;
+            //$listbill=Bill::whereBetween('created_at', [$fromdate, $todate])->get();
+            return view('seller.page.orders.statistics',['listbill',$listbill]);
+        }
     }
 }

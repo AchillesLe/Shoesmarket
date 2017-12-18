@@ -25,7 +25,6 @@ class Bill extends Model
      * @var string
      */
     protected $table = 'bills';
-
     /**
      * @var array
      */
