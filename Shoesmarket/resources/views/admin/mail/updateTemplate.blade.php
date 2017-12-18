@@ -32,6 +32,7 @@
           <div class="table-responsive">
             <table class="table table-bordered mailtemplatetable" id="dataTable" width="100%" cellspacing="0">
               <thead>
+                @php($number = 0)
                 <tr>
                   <th>#</th>
                   <th>Tiêu đề</th>
@@ -42,7 +43,7 @@
               <tbody>
               	@foreach($list as $mail)
 	              	<tr>
-	                  <td width="80px;">{{$mail->id}}</td>
+	                  <td width="80px;" data-id="{{$mail->id}}">{{++$number}}</td>
 	                  <td width="130px;">{{$mail->title}}</td>
                       <td width="130px;" >{{$mail->content}}</td>
 	                  <td >
@@ -99,28 +100,36 @@
 </div>
       <script >
       	$(document).ready(function(){
+          // $(function() {
+            //     $('#content').ckeditor({
+            //         toolbar: 'Full',
+            //         enterMode : CKEDITOR.ENTER_BR,
+            //         shiftEnterMode: CKEDITOR.ENTER_P
+            //     });
+            // });
       		 $(".mailtemplatetable").on('click','#sua',function(){
       		 	var row=$(this).closest("tr"); 
-      		 	var id = row.find("td:eq(0)").text();
+      		 	var id = row.find("td:eq(0)").data('id');
       		 	var title = row.find("td:eq(1)").text();
       		 	var content = row.find("td:eq(2)").text();
       		 	$('#mailtemplateinfo').addClass('show');
       		 	$('#mailtemplateinfo').css('display','block');
       		 	$('input[name=title]').val(title);
+
             	CKEDITOR.instances.content.setData( content );		
-      			$('input[name=id]').val(id);
-      			$('input[name=edit]').show();
-      			$('input[name=add]').hide();
-            $('#noti').hide();
-      		 });
-           $('button.yess').click(function(event) {
-            $('#noti').hide();
-            $('input[name=title]').val("");
-            CKEDITOR.instances.content.setData("");		
-      		$('input[name=id]').val("");
-      		$('input[name=add]').show();
-      		$('input[name=edit]').hide();
-           });
+          			$('input[name=id]').val(id);
+          			$('input[name=edit]').show();
+          			$('input[name=add]').hide();
+                $('#noti').hide();
+          	});
+            $('button.yess').click(function(event) {
+                $('#noti').hide();
+                $('input[name=title]').val("");
+                CKEDITOR.instances.content.setData("");		
+          		$('input[name=id]').val("");
+          		$('input[name=add]').show();
+          		$('input[name=edit]').hide();
+            });
       	});
       </script>
 @endsection

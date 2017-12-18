@@ -24,8 +24,8 @@ CKEDITOR.editorConfig = function( config )
             ];
         
         config.entities = false;
+        config.enterMode =CKEDITOR.ENTER_BR;
         //config.entities_latin = false;
-        
 
         config.filebrowserBrowseUrl = 'http://localhost/fckeditor/ckfinder/ckfinder.html';
 

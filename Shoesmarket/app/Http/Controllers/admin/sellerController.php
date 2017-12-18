@@ -65,7 +65,7 @@ class sellerController extends Controller
         $quantity = $data[2];
 
         $receipt = new Receipt();
-        $receipt->idseller = $request->seller;
+        $receipt->idseller = $request->idseller;
         $receipt->idemployee = Auth::guard('admin')->user()->id;
         $receipt->namepackage = $namepackage;
         $receipt->newquantity = $quantity;
@@ -73,8 +73,7 @@ class sellerController extends Controller
         $receipt->packagequantity = $request->qty;
         $receipt->totalmoney = $request->qty*$money;
         $receipt->save();
-
-        $seller = Seller::find($request->seller);
+        $seller = Seller::find($request->idseller);
         $seller->newsquantity += $request->qty*$quantity;
         $seller->save();
         return redirect()->back()->with('thongbao','Nạp thành công !');

@@ -33,7 +33,7 @@ class packageController extends Controller
         {
             $this->validate($request,
                 [
-                    'name'=>'unique:package,name'
+                    'name'=>'unique:packages,name'
                 ],
                 [
                     'name.unique'=>'Tên gói tin đã có trong hệ thống .Vui lòng kiểm tra lại .',

@@ -8,17 +8,17 @@
 	</ol>
 	<div class="card mb-3">
     <div class="card">
-      <h3 class="card-header">Doanh thu</h3>
+      <h3 class="card-header">Điều kiện tìm</h3>
       <div class="card-block" style="padding: 10px;">
             <div class="row">
               {{csrf_field()}}
 	            <div class="form-group col-md-6 form-inline">
 	            	<label for="datestart" class="col-md-3"><trong>Ngày bắt đầu </trong> </label>
-	              	<input class="form-control col-md-7" type="date"  name="datestart" id="datestart" >
+	              	<input class="form-control col-md-7" type="date"  name="datestart" id="datestart" required>
 	            </div>
 	            <div class="form-group col-md-6 form-inline">
 	              <label for="datefinish" class="col-md-3"><trong>Ngày kết thúc </trong> </label>
-	              <input class="form-control col-md-7" type="date" name="datefinish" id="datefinish" >
+	              <input class="form-control col-md-7" type="date" name="datefinish" id="datefinish" required>
 	            </div>
           	</div>
           <div class="col-md-12" align="center">
@@ -34,7 +34,7 @@
             <div class="row">
               <div class="form-group col-md-6 form-inline">
                 <label for="datestart" class="col-md-3"><trong>Tổng </trong> </label>
-                  <input class="form-control col-md-5" type="number" readonly name="result" id="result" >
+                  <input class="form-control col-md-5" type="text" readonly name="result" id="result" >
               </div>
             </div>
       </div>
@@ -46,16 +46,36 @@
               $datestart = $('input[name=datestart]').val();
               $datefinish = $('input[name=datefinish]').val();
               $_token = $('input[name=_token]').val();
-              $.ajax({
-                url: '{{url('/revenue/interval')}}',
-                type: 'POST',
-                cache:false,
-                dataType: 'json',
-                data: {_token:$_token,datestart: $datestart,datefinish:$datefinish},
-                success:function(response)
-                {
-                    alert(response);
-                }
+              if($datestart=='')
+              {
+                alert("Bọn chưa chọn ngày bắt đầu !");
+                return;
+              }
+              if($datefinish=='')
+              {
+                alert("Bọn chưa chọn ngày kết thúc !");
+                return;
+              }
+              if($datestart>$datefinish)
+              {
+                alert("Ngày bắt đầu phải nhỏ hơn ngày kết thúc !");
+                return;
+              }
+              // $.ajax({
+              //   url: '/revenue/interval',
+              //   type: 'POST',
+              //   cache:false,
+              //   dataType: 'json',
+              //   data: {_token:$_token,datestart: $datestart,datefinish:$datefinish},
+              //   success:function(response)
+              //   {
+              //       var response = JSON.parse(response);
+              //       alert(response);
+              //   }
+              // });
+              $.post('{{url('admin/revenue/interval')}}', {_token:$_token,datestart: $datestart,datefinish:$datefinish}, function(data, textStatus, xhr) {
+                  console.log(data['total']);
+                  $('input[name=result]').val(data['total']+' VNĐ');
               });
               
               

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\News  as news;
 use App\Product;
 use App\Seller;
+use App\Productcolor;
 use Illuminate\Support\facades\Hash;
 
 class newsController extends Controller
@@ -22,8 +23,9 @@ class newsController extends Controller
     public function detailsnew($id)
     {
     	$news = news::where('id',$id)->get()->first();
+        $productcolor = Productcolor::where('idproduct',$id)->get();
     	
-    	return view('admin/page/detailsnew',['news'=>$news]);
+    	return view('admin/page/detailsnew',['news'=>$news,'listsubpro'=>$productcolor]);
     }
 
 }

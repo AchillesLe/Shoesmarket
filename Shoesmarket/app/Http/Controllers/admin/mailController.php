@@ -31,7 +31,7 @@ class mailController extends Controller
     {
         $this->validate($request,
             [
-                'title'=>'required|min:3|max:70',
+                'title'=>'required|min:3|max:100',
                 'content'=>'required|min:10',
                 'nameTo'=>'required',
                 'mailTo'=>'required',
@@ -39,7 +39,7 @@ class mailController extends Controller
             [
                 'title.required'=>'Bạn chưa nhập tiêu đề mail',
                 'title.min'=>'Tiêu đề phải dài hơn 3 kí tự',
-                'title.max'=>'Tiêu đề không quá 70 kí tự',
+                'title.max'=>'Tiêu đề không quá 100 kí tự',
                 'content.required'=>'Bạn chưa nhập nội dung mail',
                 'content.min'=>'Nội dung phải dài hơn 10 kí tự',
                 'nameTo.required'=>'Người nhận không được để trống',
@@ -84,19 +84,24 @@ class mailController extends Controller
     {
         $this->validate($request,
             [
-                'title'=>'required|min:3|max:70',
-                'content'=>'required|min:10'
+                'title'=>'required|min:3|max:100',
+                'content'=>'required|min:30'
             ],
             [
                 'title.required'=>'Bạn chưa nhập tiêu đề mail',
                 'title.min'=>'Tiêu đề phải dài hơn 3 kí tự',
-                'title.max'=>'Tiêu đề không quá 70 kí tự',
+                'title.max'=>'Tiêu đề không quá 100 kí tự',
                 'content.required'=>'Bạn chưa nhập nội dung mail',
-                'content.min'=>'Nội dung phải dài hơn 10 kí tự',
+                'content.min'=>'Nội dung phải dài hơn 30 kí tự',
             ]);
         if($request->has('edit'))
         {
-            Emailtemplate::where('id',$request->id)->update(['title'=>$request->title,'content'=>$request->content,'updated_at'=>(Carbon::now())->toDateTimeString()]);  
+             $template = Emailtemplate::find($request->id);
+
+             $template->title= $request->title;
+             $template->content= $request->content;
+             $template->updated_at= (Carbon::now())->toDateTimeString(); 
+             $template->save();
             return redirect('admin/mail/mailtemplate')->with('thongbao','Sửa thành công');      
         }
         else

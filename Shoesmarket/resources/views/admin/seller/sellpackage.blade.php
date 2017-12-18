@@ -30,10 +30,13 @@
 					    <input class="form-control" type="text" value="{{Auth::guard('admin')->user()->name}}" name="employeesName" id="employeesName" readonly>
 					  </div>
 					</div>
+					<div class="col-1">
+					    <input class="form-control" type="text" value="{{$seller->id}}" name="idseller" hidden>
+					  </div>
 					<div class="form-group row">
 					  <label for="sellername" class="col-2 col-form-label">Tên người bán</label>
 					  <div class="col-9">
-					    <input class="form-control" type="text" value="{{$seller->id}}" name="seller" id="sellername" readonly="">
+					    <input class="form-control" type="text" value="{{$seller->name}}" name="seller" id="sellername" readonly required>
 					  </div>
 					</div>
 					<div class="form-group row">

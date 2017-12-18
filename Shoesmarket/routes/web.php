@@ -76,7 +76,8 @@
 		});
 		Route::group(['prefix'=>'penalize'],function(){
 			Route::get('list','admin\penalizeController@index')->name('admin.penalize');
-			Route::get('create','admin\penalizeController@create')->name('admin.penalize.create');
+			Route::get('create/{id}','admin\penalizeController@create')->name('admin.penalize.create');
+			Route::post('create/{id}','admin\penalizeController@createpost')->name('admin.penalize.post');
 		});
 		Route::group(['prefix'=>'employee'],function(){
 			Route::get('list','admin\employeeController@index')->name('admin.employee');
@@ -94,8 +95,8 @@
 			Route::get('mailtemplate/delete/{id}','admin\mailController@delete')->name('admin.mail.deletemailTemplate');
 		});
 
-		Route::get('/revenue/interval','admin\revenueController@revenue');
-		Route::post('/revenue/interval','admin\revenueController@getrevenue');
+		Route::get('/revenue/interval','admin\revenueController@revenue')->name('revenue');
+		Route::post('/revenue/interval','admin\revenueController@getrevenue')->name('revenue.interval');
 		Route::get('/receipt/index','admin\receiptController@index')->name('admin.receipt');
 		Route::get('/bill/index','admin\billController@index')->name('admin.bill');
 		Route::get('/bill/detail/{id}','admin\billController@detail')->name('admin.bill.detail');
