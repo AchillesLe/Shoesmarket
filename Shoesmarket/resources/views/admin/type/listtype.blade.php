@@ -36,10 +36,6 @@
 				    	<label for="name">Tên :</label>
 				    	<input class="form-control" type="text" id="name" name="name">
 			    	</div>
-			    	<div class="form-group">
-				    	<label for="des" >Mô tả:</label>
-				    	<textarea rows="3" class="form-control" id="des" name="des" placeholder="nhập mô tả"></textarea>
-			    	</div>
 					<input class="btn btn-primary" type="submit" name="add" id="add" value="Thêm">
 					<input class="btn btn-primary" type="submit" name="edit" id="edit" value="Sửa" style="display: none">
 			    </form>
@@ -57,7 +53,6 @@
                 <tr>
                   <th>Mã thể loại</th>
                   <th>Tên</th>
-                  <th>Mô Tả</th>
                   <th>Hành động</th>
                 </tr>
               </thead>
@@ -66,10 +61,9 @@
 	              	<tr >
 	                  <td width="120px">{{$type->id}}</td>
 	                  <td width="150px" >{{$type->name}}</td>
-	                  <td>{{$type->description}}</td>
 	                  <td width="120px">
 	                  	<button class="btn btn-info" name="Edit"  id="edit">Sửa</button></a>
-	                  	<a href="{{url('admin/type/delete',[$type->id])}}"><button class="btn btn-danger" name="delete"  id="delete" >Xoá</button><a>
+	                  	<a href="{{url('admin/type/updatestatus',[$type->id])}}"><button class="btn btn-danger" name="delete"  id="delete" >Xoá</button><a>
 	                  	</td>
 	                </tr>
                 @endforeach
@@ -85,9 +79,7 @@
       		 	var row=$(this).closest("tr"); 
       		 	var id = row.find("td:eq(0)").text();
       		 	var name = row.find("td:eq(1)").text();
-      		 	var des = row.find("td:eq(2)").text();
       		 	$('input[name=name]').val(name);
-      			$('textarea#des').val(des);
       			$('input[name=id]').val(id);
       			$('#Formaddtype').addClass('show');
       			$('input[name=name]').focus();

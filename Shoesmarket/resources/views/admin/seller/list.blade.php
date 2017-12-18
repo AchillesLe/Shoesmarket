@@ -2,146 +2,176 @@
 @section('content')
 	<ol class="breadcrumb">
         <li class="breadcrumb-item">
-          Nhóm người bán hàng
+          Nhóm người bán 
         </li>
-        <li class="breadcrumb-item active">danh sách người bán</li>
+        <li class="breadcrumb-item active">danh sách </li>
 	</ol>
-	<div class="card mb-3">
-		<p style="width: 150px;margin-bottom: 10px;">
-		<button class="btn btn-success yess" type="button" data-toggle="collapse" data-target="#Formaddpackage" aria-expanded="false" aria-controls="Formaddpackage"  >
-		    Thêm Người Bán
-		</button>
-		</p>
-					         @if(count($errors)>0)
-                        <div class="alert alert-danger" id="noti">
-                            @foreach($errors->all() as $err)
-                               {{$err}}<br>
-                            @endforeach
-                        </div>
-                    @endif
-
-                    @if(session('thongbao'))
-                        <div  class="alert alert-success" id="noti" style="margin-top: 5px;">{{session('thongbao')}}</div>
-                    @endif
-		<div class="collapse" id="Formaddpackage">
-		  <div class="card card-block">
-		  	<div  style="width: 80%;margin: 20px;">
-			    <form action="{{url('admin/package/update')}}" method="POST" accept-charset="utf-8" id="formadd">
-			    	{{csrf_field()}}
-			    	<div class="form-group">
-				    	<input class="form-control" type="text" id="id" name="id" hidden >
-			    	</div>
-			    	<div class="form-group">
-				    	<label for="name">Tên </label>
-				    	<input class="form-control" type="text" id="name" name="name">
-			    	</div>
-            <div class="form-group">
-              <label for="quantity">Số lượng tin </label>
-              <input class="form-control" type="number" id="quantity" name="quantity">
-            </div>
-			    	<div class="form-group">
-				    	<label for="money" >Số tiền trọn gói</label>
-				    	<input  class="form-control" type="text" name="money" id="money" pattern="[0-9]+(\.[0-9]{0,2})?" title="Số tiền phải là một số . ví dụ : 150000">
-			    	</div>
-					<input class="btn btn-primary" type="submit" name="add" id="add" value="Thêm">
-					<input class="btn btn-primary" type="submit" name="edit" id="edit" value="Sửa" style="display: none">
-			    </form>
-		    </div>
-		  </div>
-		</div>
-	</div>
 
 	<div class="card mb-3">
         <div class="card-header">
           <i class="fa fa-table"></i>danh sách người bán</div>
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-bordered mytable" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered listsellertable" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
                   <th>Mã số</th>
                   <th>Tên</th>
                   <th>Số đt</th>
-                  <th>email</th>
+                  <th>Email</th>
                   <th>Số tin</th>
-                  <th>Vip</th>
                   <th>Trạng thái</th>
-                  <th>Hành động</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
               	@foreach($list as $seller)
-	              	<tr>
-	                  <td width="80px;">{{$seller->idseller}}</td>
+	              	<tr data-address="{{$seller->address}}" data-identification="{{$seller->identification}}" data-created="{{$seller->created_at}}" data-updated="{{$seller->updated_at}}" data-reason="{{$seller->reason}}" data-status="{{$seller->isblock}}">
+	                  <td width="80px;">{{$seller->id}}</td>
 	                  <td width="130px;">{{$seller->name}}</td>
                     <td width="130px;" >{{$seller->phone}}</td>
                     <td width="130px;" >{{$seller->email}}</td>
 	                  <td >{{$seller->newsquantity}}</td>
-                    <td >{{$seller->IsVip}}</td>
-                    <td> @if($seller->isblock =='0')
-                          {!!'<i class="fa fa-fw  fa-check-circle" style="color:#4CAF50"></i><b>Hoạt động</b>'!!} 
-                        @elseif(($seller->isblock=='1'))
-                          {!!'<i class="fa fa-fw fa-minus-circle" style="color:#ff1a1a"></i><b>Đang khoá</b>'!!}
-                        @endif</td>
-	                  <td width="150px">
-                      @if($seller->isblock=='0') 
-                      <button class="btn btn-warning" name="block" id="status" data-id="{{$seller->idseller}}" >Khoá</button>
-                      @elseif($seller->isblock=='1')
-                      <button class="btn btn-success" name="active" id="status" data-id="{{$seller->idseller}}">Mở khoá</button>
-                      @endif
-	                  	<button class="btn btn-info" name="Edit"  id="edit">Chi tiết</button></a>
-	                  	<a href="{{url('admin/seller/delete',[$seller->idseller])}}"><button class="btn btn-danger" name="delete"  id="delete">Xoá</button><a>
-	                  	</td>
+                    <td width="105px"> 
+                          <p id="statusActive" @if($seller->isblock =='1') {{"hidden"}} @endif><i class="fa fa-fw  fa-check-circle" style="color:#4CAF50" value="1"></i><b>Kích hoạt</b></p>
+                          <p id="statusblock" @if($seller->isblock =='0') {{"hidden"}} @endif><i class="fa fa-fw fa-minus-circle" style="color:#ff1a1a" value="0"></i><b>Đang khoá</b></p>
+                    <td>
+                      {{-- <a href="{!!url('admin/seller/updatestatus',$seller->idseller)!!}"><button class="btn btn-danger" name="block" id="status"  @if($seller->isblock=='1') {{"hidden"}} @endif>Khoá</button></a>
+                      <a href="{!!url('admin/seller/updatestatus',$seller->idseller)!!}"><button class="btn btn-success" name="active" id="status" @if($seller->isblock=='0') {{"hidden"}} @endif>Mở khoá</button></a>
+                      <button class="btn btn-info" id="view"  type="button"  data-toggle="modal" data-target="#sellerinfo" >Xem</button> --}}
+                      <div class="btn-group groupaction" role="group">
+                          <button data-toggle="dropdown" class="btn btn-outline-primary dropdown-toggle" data-original-title="" title="Action">
+                            Hành động 
+                            <span class="caret">
+                            </span>
+                          </button>
+                          <ul class="dropdown-menu" style="min-width: 120px!important">
+                            <li >
+                                <a href="{!!url('admin/seller/updatestatus',$seller->id)!!}"><button class="btn btn-outline-danger" name="block" id="status"  @if($seller->isblock=='1') {{"hidden"}} @endif>Khoá</button></a>
+                                <a href="{!!url('admin/seller/updatestatus',$seller->id)!!}"><button class="btn btn-outline-info" name="active" id="status" @if($seller->isblock=='0') {{"hidden"}} @endif>Mở khoá</button></a>
+                            </li>
+                            <li >
+                              <button class="btn btn-outline-info" id="view"  type="button"  data-toggle="modal" data-target="#sellerinfo" >Xem</button>
+                            </li>
+                            <li >
+                              <a href="{!!url('admin/seller/sellpackage',$seller->id)!!}"><button class="btn btn-outline-info" name="addpackage" >Nạp tin</button></a>
+                            </li>
+                            <li >
+                              <a href="{!!url('admin/penalize/create',$seller->id)!!}"><button class="btn btn-outline-info" name="panalize">Phiếu phạt</button></a>
+                            </li>
+                            <li >
+                              <a href="{!!url('admin/mail/create',$seller->id)!!}"><button class="btn btn-outline-info" name="addmail" >Gửi mail</button></a>
+                            </li>
+                          </ul>
+                      </div>
 	                </tr>
                 @endforeach
               </tbody>
             </table>
           </div>
         </div>
-        <div class="card-footer small text-muted">Tổng cộng {{count($list)}} loại</div>
+        <div class="card-footer small text-muted">Tổng cộng {{count($list)}} người bán</div>
       </div>
+
+
+<div class="modal fade" id="sellerinfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Thông tin của người bán</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div style="padding: 20px;">
+          <div class="form-group" hidden id="image">
+                  <label for="image">Ảnh</label>
+                  <input class="form-control" type="file" name="image"  readonly>
+          </div>
+          <div class="form-group">
+                  <label for="name">Tên </label>
+                  <input class="form-control" type="text" name="name" readonly >
+          </div>
+          <div class="form-group">
+                  <label for="phone">Số điện thoại</label>
+                  <input class="form-control" type="number" name="phone" readonly>
+          </div>
+          <div class="form-group">
+                  <label for="email">Email</label>
+                  <input class="form-control" type="email" name="email" readonly>
+          </div>
+          <div class="form-group">
+                  <label for="address">Địa chỉ</label>
+                  <input class="form-control" type="text" name="address" readonly>
+          </div>
+          <div class="form-group">
+                  <label for="indenti">Chứng minh thư nhân dân</label>
+                  <input class="form-control" type="number" name="indenti" readonly>
+          </div>
+          <div class="form-group">
+                  <label for="quantity">Số lượng tin dư</label>
+                  <input class="form-control" type="number" name="quantity" readonly>
+          </div>
+          <div class="form-group">
+                  <label for="status">Trạng thái</label>
+                  <input class="form-control" type="text" name="status" readonly>
+          </div>
+          <div class="form-group" hidden id="reason">
+                  <label for="reason">Lí do </label>
+                  <textarea class="form-control" name="reason"  readonly></textarea>
+          </div>
+          <div class="form-group">
+                  <label for="created_at">Ngày Tạo </label>
+                  <input class="form-control" type="text" name="created_at" readonly>
+          </div>
+          <div class="form-group">
+                  <label for="updated_at">Ngày cập nhật mới nhất </label>
+                  <input class="form-control" type="text" name="updated_at" readonly>
+          </div>
+        </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Đóng</button>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
       <script >
       	$(document).ready(function(){
-      		 $(".mytable").on('click','#edit',function(){
+
+      		$(".listsellertable").on('click','#view',function(){
       		 	var row=$(this).closest("tr"); 
       		 	var id = row.find("td:eq(0)").text();
       		 	var name = row.find("td:eq(1)").text();
-            var quantity = row.find("td:eq(2)").text();
-      		 	var money = row.find("td:eq(3)").text();
+            var phone = row.find("td:eq(2)").text();
+            var email = row.find("td:eq(3)").text();
+            var quantity = row.find("td:eq(4)").text();
+            var address = row.data("address");
+            var identification = row.data("identification");
+            var reason = row.data("reason");
+            var status = row.data("status");
+            var create_at = row.data("created");
+            var update_at = row.data("updated");
       		 	$('input[name=name]').val(name);
+            $('input[name=phone]').val(phone);
+            $('input[name=email]').val(email);
             $('input[name=quantity]').val(quantity);
-            $('input[name=money]').val(money);
-      			$('input[name=id]').val(id);
-      			$('#Formaddpackage').addClass('show');
-      			$('input[name=name]').focus();
-      			$('input[name=edit]').show();
-      			$('input[name=add]').hide();
-            $('button.yess').text('Sửa danh mục');
-            $('#noti').hide();
+            $('input[name=address]').val(address);
+            $('input[name=indenti]').val(identification);
+            if(status=="1")
+              $('input[name=status]').val("Đang khoá");
+            else
+              $('input[name=status]').val("Đang hoạt động");
+            if(reason)
+            {
+              $('#reason').removeAttr("hidden"); 
+              $('textarea[name=reason]').val(reason);
+            }
+            $('input[name=created_at]').val(create_at);
+            $('input[name=updated_at]').val(update_at);
       		 });
-           $('button.yess').click(function(event) {
-            $('#noti').hide();
-           });
 
-           $('#status').click(function(event) {
-            var id = $(this).data("id");
-             $.ajax({
-               url: '{!!url('admin/seller/updatestatus/')!!}'+ '/'+ id,
-               type: 'GET',
-               success:function(response)
-               {
-                  if(response==="1")
-                  {
-                    $('buuton[name=active]').show();
-                  }
-                  else if(response==="0")
-                  {
-                    $('buuton[name=block]').show();
-                  }
-
-               }
-             });
-           });
-      	});
+        });
       </script>
 @endsection

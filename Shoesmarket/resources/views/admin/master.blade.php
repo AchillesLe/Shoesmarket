@@ -8,8 +8,8 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <title>Shoes Market</title>
-  <base href="{{asset('')}}">
   <!-- Bootstrap core CSS-->
+  <base href="{{asset('')}}">
   <link href="sourceAdmin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
   <link href="sourceAdmin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -19,11 +19,24 @@
   <link href="sourceAdmin/css/sb-admin.css" rel="stylesheet">
   <link href="sourceAdmin/css/custom-admin.css" rel="stylesheet">
   <script src="sourceAdmin/vendor/jquery/jquery.min.js"></script>
+  <script src="sourceAdmin/vendor/popper/popper.js"></script>
+  <script src="sourceAdmin/vendor/popper/popper.min.js"></script>
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
   @include('admin.layout.menu')
+                      {{-- @if(count($errors)>0)
+                    <div class="alert alert-danger" id="noti">
+                        @foreach($errors->all() as $err)
+                           {{ $err }}<br>
+                        @endforeach
+                    </div>
+                    @endif
+
+                    @if(session('thongbao'))
+                        <div  class="alert alert-success" id="noti" style="margin-top: 5px;">{{session('thongbao')}}</div>
+                    @endif --}}
   <div class="content-wrapper">
     <div class="container-fluid">
      	 @yield('content')
@@ -32,7 +45,7 @@
     <footer class="sticky-footer">
       <div class="container">
         <div class="text-center">
-          <small>Copyright © our Website 2017</small>
+          <small>Copyright © sbAdmin2 Website 2017</small>
         </div>
       </div>
     </footer>
@@ -41,20 +54,44 @@
       <i class="fa fa-angle-up"></i>
     </a>
     <!-- Logout Modal-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+
+    <div class="modal fade" id="infoemployee" tabindex="-1" role="dialog" >
+      <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Thông tin của bạn</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+          <div class="modal-body infoEmploy" >
+            <form action="{{url('admin/employee/update')}}" method="POST">
+              {{csrf_field()}}
+            <div class=" form-inline" hidden >
+              <input class="form-control col-md-8" name="id" hidden value="{{Auth::user()->id}}">
+            </div>
+            <div class=" form-inline" >
+              <label for="name" class="col-md-3"><b >Tên</b></label>
+              <input class="form-control col-md-8" name="name" type="text" readonly value="{{Auth::user()->name}}">
+            </div>
+            <div class=" form-inline" >
+              <label for="name" class="col-md-3"><b>Email</b></label>
+              <input class="form-control col-md-8" name="email" type="email" readonly value="{{Auth::user()->email}}">
+            </div>
+            <div class=" form-inline" >
+              <label for="name" class="col-md-3"><b>Địa chỉ</b></label>
+              <input class="form-control col-md-8" name="address" type="text" value="{{Auth::user()->address}}">
+            </div>
+            <div class=" form-inline" >
+              <label for="name" class="col-md-3"><b>Số điện thoại</b></label>
+              <input class="form-control col-md-8" name="phone" type="text" value="{{Auth::user()->phone}}">
+            </div>
           </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">đóng</button>
+            <button class="btn btn-primary" type="submit" name="edit">Lưu</button>
+          </div>
+          </form>
         </div>
       </div>
     </div>
@@ -62,17 +99,13 @@
     
   </div>
 
-    <script src="sourceAdmin/vendor/popper/popper.min.js"></script>
     <script src="sourceAdmin/vendor/bootstrap/js/bootstrap.min.js"></script>
+
     <!-- Core plugin JavaScript-->
     <script src="sourceAdmin/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <!-- Page level plugin JavaScript-->
     <script src="sourceAdmin/vendor/datatables/jquery.dataTables.js"></script>
     <script src="sourceAdmin/vendor/datatables/dataTables.bootstrap4.js"></script>
-    <!-- Custom scripts for all pages-->
     <script src="sourceAdmin/js/sb-admin.min.js"></script>
-    <!-- Custom scripts for this page-->
     <script src="sourceAdmin/js/sb-admin-datatables.min.js"></script>
-
 </body>
 </html>
