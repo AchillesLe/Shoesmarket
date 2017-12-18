@@ -28,8 +28,8 @@
                         <div class="form-group{{ $errors->has('optradiosex') ? ' has-error' : '' }}">
                             <label for="optradiosex" class="col-md-4 control-label">Giới tính</label>
                             <div class="col-md-6">
-                                <label class="col-md-3 radio-inline"><input type="radio" name="optradiosex" value="0"> Nam </label>
-                                <label class="col-md-3 radio-inline"><input type="radio" name="optradiosex" value="1"> Nữ </label>
+                                <label for="optradiosex" class="col-md-3 radio-inline"><input type="radio" name="optradiosex" value="0"> Nam </label>
+                                <label for="optradiosex" class="col-md-3 radio-inline"><input type="radio" name="optradiosex" value="1"> Nữ </label>
                             </div>
                              @if ($errors->has('optradiosex'))
                                     <span class="help-block">
@@ -126,7 +126,12 @@
                             <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirm" required>
+                                @if ($errors->has('password-confirm'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password-confirm') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 

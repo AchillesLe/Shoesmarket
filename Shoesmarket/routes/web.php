@@ -25,11 +25,8 @@
 
 	// Route::get('/contacts','User\pageController@getContacts');
 	// Route::get('/abouts','User\pageController@getAbouts');
-
-
 	Route::get('login','User\LoginController@getlogin')->name('login');
 	Route::post('login','User\LoginController@postlogin');
-	
 	Route::get('register','User\LoginController@register')->name('register');
 	Route::post('register','User\LoginController@postregister');
 	Route::get('password/reset','User\ForgotPasswordController@showLinkRequestForm')->name('password.request');
@@ -37,13 +34,13 @@
 	Route::post('password/reset', 'User\ResetPasswordController@reset');
 	Route::get('password/reset/{token}', 'User\ResetPasswordController@showResetForm')->name('password.reset');
 	Route::group(['middleware'=>'auth'],function(){
-		Route::get('logout','User\LoginController@logout');
-		Route::get('order/{id}','User\OrdersController@Order');
-		Route::get('list/order','User\OrdersController@ListOrder')->name('list.order');
-		Route::post('updateOrder','User\OrdersController@UpdateOrder');
-		Route::get('edit/{rowId}','User\OrdersController@getedit');
-		Route::get('removerorder/{rowId}','User\OrdersController@removerorder');
-		Route::post('payment','User\OrdersController@payment');
+	Route::get('logout','User\LoginController@logout');
+	Route::get('order/{id}','User\OrdersController@Order');
+	Route::get('list/order','User\OrdersController@ListOrder')->name('list.order');
+	Route::post('updateOrder','User\OrdersController@UpdateOrder');
+	Route::get('edit/{rowId}','User\OrdersController@getedit');
+	Route::get('removerorder/{rowId}','User\OrdersController@removerorder');
+	Route::post('payment','User\OrdersController@payment');
 
 	});
 //bao-  phần tin tức.
@@ -54,8 +51,6 @@
 		Route::post('sellercenter/login', ['as' => 'seller.login.post', 'uses' => 'seller\SellerLoginController@postLogin']);
 		Route::get('sellercenter/register', ['as' => 'seller.register', 'uses' => 'seller\SellerLoginController@getRegister']);
 		Route::post('sellercenter/register', ['as' => 'seller.register.post', 'uses' => 'seller\SellerLoginController@postRegister']);
-
-
 		Route::get('sellercenter/password/reset', 'seller\SellerForgotPasswordController@showLinkRequestForm')->name('seller.password.request');
 		Route::post('sellercenter/password/email', 'seller\SellerForgotPasswordController@sendResetLinkEmail')->name('seller.password.email');
 		Route::get('sellercenter/password/reset/{token}', 'seller\SellerResetPasswordController@showResetForm')->name('seller.password.reset');
@@ -67,22 +62,49 @@
 
 		Route::get('/','seller\pageController@getDashboard');
 		Route::get('/dashboard','seller\pageController@getDashboard')->name('seller.dashboard');
-		Route::get('feeship-config',['as' => 'getFeeshipConfig', 'uses' => 'seller\FeeshipController@getFeeshipConfig']);
+
+		Route::group(['prefix'=>'account'],function(){
+			Route::post('changeinfo',['as' => 'postChangeInfo', 'uses' => 'seller\pageController@postChangeInfo']);	
+			Route::get('changepassword',['as' => 'getChangePassword', 'uses' => 'seller\pageController@getChangePassword']);
+			Route::post('postchangepassword',['as' => 'postChangePassword', 'uses' => 'seller\pageController@postChangePassword']);
+		});
+		
+		Route::group(['prefix'=>'shipfee'],function(){
+			Route::get('/',['as' => 'getFeeshipConfig', 'uses' => 'seller\FeeshipController@getFeeshipConfig']);
+
+			Route::post('save',['as' => 'postSettingShipfee', 'uses' => 'seller\FeeshipController@postSettingShipfee']);
+
+			Route::get('delete/{id}',['as' => 'deleteShipfee', 'uses' => 'seller\FeeshipController@deleteShipfee']);
+		});
 
 		Route::group(['prefix'=>'products'],function(){
 			Route::get('listproduct',['as' => 'getListProduct', 'uses' => 'seller\ProductController@getListProduct']);
+			Route::get('status/{id}',['as' => 'changeStatusProduct', 'uses' => 'seller\ProductController@changeStatusProduct']);
+			Route::get('detail/{id}',['as' => 'detailProduct', 'uses' => 'seller\ProductController@detailProduct']);
 		});
+
 		Route::group(['prefix'=>'news'],function(){
+			Route::get('listnews',['as' => 'getListNews', 'uses' => 'seller\NewsController@getListNews']);
 			Route::get('buypackage',['as' => 'getBuyPackage', 'uses' => 'seller\NewsController@getBuyPackage']);
 			Route::get('add',['as' => 'getAddNews', 'uses' => 'seller\NewsController@getAddNews']);
-			Route::get('post-add',['as' => 'postAddNews', 'uses' => 'seller\NewsController@postAddNews']);
-			Route::get('edit',['as' => 'getEditNews', 'uses' => 'seller\NewsController@getEditNews']);
+			Route::post('add',['as' => 'postAddNews', 'uses' => 'seller\NewsController@postAddNews']);
+			Route::get('edit/{id}',['as' => 'getEditNews', 'uses' => 'seller\NewsController@getEditNews']);
+			Route::post('edit/{id}',['as' => 'postEditNews', 'uses' => 'seller\NewsController@postEditNews']);
+			Route::get('status/{id}',['as' => 'changeStatusNews', 'uses' => 'seller\NewsController@changeStatusNews']);
 			Route::get('newsorder',['as' => 'getListOrderNews', 'uses' => 'seller\NewsController@getListOrderNews']);
+
 
 			//---------------------------
 		});
 		Route::group(['prefix'=>'orders'],function(){
 			Route::get('listorder',['as' => 'getListOrder', 'uses' => 'seller\OrderController@getListOrder']);
+			Route::get('completebill/{id}',['as' => 'completeBill', 'uses' => 'seller\OrderController@completeBill']);
+			Route::get('cancelbill/{id}',['as' => 'cancelBill', 'uses' => 'seller\OrderController@cancelBill']);
+			Route::get('detail/{id}',['as' => 'getDetailBill', 'uses' => 'seller\OrderController@getDetailBill']);
+			Route::get('detail/completebill/{id}',['as' => 'completeDetailBill', 'uses' => 'seller\OrderController@completeDetailBill']);
+			Route::get('detail/cancelbill/{id}',['as' => 'cancelDetailBill', 'uses' => 'seller\OrderController@cancelDetailBill']);
+			Route::get('statistics',['as' => 'getStatistics', 'uses' => 'seller\OrderController@getStatistics']);
+			Route::get('statisticsbill',['as' => 'statisticsBill', 'uses' => 'seller\OrderController@statisticsBill']);
 		});
 		// route for view/blade file
 		//---------------------------
@@ -97,6 +119,8 @@
 		Route::get('paypal','seller\PaypalController@getPaymentStatus')->name('status');
 	
 	});
+
+
 // Phần của Bảo -- Admin ( Tạo nhóm Route)
 
 		Route::get('admin/login','admin\AdminLoginController@getlogin')->name('admin.login');

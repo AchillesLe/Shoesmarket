@@ -26,6 +26,7 @@ class Productcolor extends Model
     /**
      * @var array
      */
+    public $timestamps = false;
     protected $fillable = ['idproduct', 'color', 'size', 'quantity'];
 
     /**
@@ -34,5 +35,10 @@ class Productcolor extends Model
     public function product()
     {
         return $this->belongsTo('App\Product', 'idproduct');
+    }
+
+    public function detailBills()
+    {
+        return $this->hasMany('App\Product', 'idproductcolor');
     }
 }
