@@ -18,12 +18,11 @@
 				<table class="shop_table beta-shopping-cart-table" cellspacing="0">
 					<thead>
 						<tr>
-							<th class="product-name">Product</th>
-							<th class="product-price">Price</th>
-							<th class="product-status">Status</th>
-							<th class="product-quantity">Quantity</th>
-							<th class="product-subtotal">Total</th>
-							<th class="product-remove">Remove</th>
+							<th class="product-name">Sản phẩm</th>
+							<th class="product-price">Giá</th>
+							<th class="product-quantity">Số lượng</th>
+							<th class="product-subtotal">Tổng tiền</th>
+							<th class="product-remove">Xoá</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -31,15 +30,15 @@
 							<tr class="cart_item">
 								<td class="product-name" data-id="{{$item->id}}" data-rowid="{{$item->rowId}}">
 									<div class="media">
-										<img class="pull-left" src="{{asset('source/Upload')}}/{{$item->options->image}}" alt="Đây là ảnh">
+										<img class="pull-left" src="{{asset('source/Upload')}}/{{$item->options->image}}" alt="Đây là ảnh" width="160px" height="160px">
 										<div class="media-body">
 											<p class="font-large table-title" >{{$item->name}}</p>
 											<br>
-											<p class="table-option" name="color" data-val="{{$item->options->color}}">Color: {{$item->options->color}}</p>
+											<p class="table-option" name="color" data-val="{{$item->options->color}}">Màu: {{$item->options->color}}</p>
 											<br>
 											<p class="table-option" name="size" data-val="{{$item->options->size}}">Size: {{$item->options->size}}</p>
 											<br>
-											<a class="table-edit" href="{{url('/edit',['id'=>$item->rowId])}}">Edit</a>
+											<a class="table-edit" href="{{url('/edit',['id'=>$item->rowId])}}">Sửa</a>
 										</div>
 									</div>
 								</td>
@@ -47,11 +46,6 @@
 								<td class="product-price">
 									<span class="price" id="price">{{number_format($item->price,0,",",".")}}</span>
 								</td>
-
-								<td class="product-status">
-									In Stock
-								</td>
-
 								<td class="product-quantity">
 										<input class="form-control" type="number" id="qty"  name="qty" value="{{$item->qty}}" min="1" max="{{$item->options->qty}}" readonly style="text-align: center;">
 								</td>

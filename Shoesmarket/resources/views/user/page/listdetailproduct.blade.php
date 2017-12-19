@@ -2,13 +2,6 @@
 @section('content')
 	<h1>Danh sách  chi tiết đơn hàng </h1>
 	<div id="content">
-					@if(count($errors)>0)
-                        <div class="alert alert-danger" id="noti">
-                            @foreach($errors->all() as $err)
-                               {{$err}}<br>
-                            @endforeach
-                        </div>
-                    @endif
 
                     @if(session('thongbao'))
                         <div  class="alert alert-success" id="noti" style="margin-top: 5px;">{{session('thongbao')}}</div>
@@ -19,15 +12,14 @@
 					<thead>
 						<tr>
 							<th class="product-name">Product</th>
-							<th class="product-price">Price</th>
-							<th class="product-status">Status</th>
-							<th class="product-quantity">Quantity</th>
-							<th class="product-subtotal">Total</th>
-							<th class="product-remove">Remove</th>
+							<th class="product-price">Giá</th>
+							<th class="product-quantity">số lượng</th>
+							<th class="product-subtotal">Tổng tiền</th>
+							<th class="product-status">Trạng thái</th>
 						</tr>
 					</thead>
 					<tbody>
-						@foreach( $content as $item)
+						@foreach( $listpro as $item)
 							<tr class="cart_item">
 								<td class="product-name" data-id="{{$item->id}}" data-rowid="{{$item->rowId}}">
 									<div class="media">
