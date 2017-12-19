@@ -19,7 +19,7 @@ class NewsController extends Controller
     public function getListNews()
     {
         $seller=Auth::guard('seller')->user();
-        $listproduct=DB::table('products')->where('idseller',$seller->id)->get();
+        $listproduct=DB::table('products')->where('idseller',$seller->id)->orderBy('id','desc')->get();
         //$news= News::with('product')->get();
         return view('seller.page.news.listnews',['listproduct'=>$listproduct],compact('seller'));
     }

@@ -80,7 +80,7 @@
             <label f class="col-sm-2 col-form-label"></label>
             <label for="so_luong" class="col-sm-2 col-form-label">Số lượng gói</label>
             <div class="col-sm-6">
-              <input type="number" class="form-control" id="so_luong" name="so_luong_goi" value="1" required>
+              <input type="number" class="form-control" id="so_luong" name="so_luong_goi" value="1" min="1" required>
             </div>
           </div>
           <div class="form-group row">

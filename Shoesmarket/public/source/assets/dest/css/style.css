@@ -5253,4 +5253,6 @@ table thead tr th.product-status-order{
 table thead tr th.product-acti-order{
 	width:135px;
 }
-
+#star.checked {
+    color: orange;
+}

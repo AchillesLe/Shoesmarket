@@ -25,8 +25,9 @@ class ProductController extends Controller
             ->join('bills', 'bill_sellers.idbill', '=', 'bills.id')
             ->join('productcolors', 'detail_bills.idproductcolor', '=', 'productcolors.id')
             ->join('products', 'productcolors.idproduct', '=', 'products.id')
+            ->join('sellers', 'products.idseller', '=', 'sellers.id')
             ->where('bills.iduser',$iduser)
-            ->select('detail_bills.id','detail_bills.quantity','detail_bills.total','detail_bills.status','detail_bills.israting','productcolors.color','productcolors.size','products.name','products.price','products.sex','products.image','bills.created_at')
+            ->select('detail_bills.id','detail_bills.quantity','detail_bills.total','detail_bills.status','detail_bills.israting','productcolors.color','productcolors.size','products.name','products.price','products.sex','products.image','bills.created_at','sellers.name')
             ->orderby('bills.created_at','DESC')
             ->get();
             
@@ -34,10 +35,36 @@ class ProductController extends Controller
 	}
         public function upatestatus(Request $Request)
         {
+            
                 $id = Request::get('id');
+            if($id)
+            {
                 $detail_bill = Detail_bill::find($id);
-                $detail_bill->status = '3';
-                $detail_bill->save();
-                return "true";
+                if($detail_bill)
+                {
+                    $detail_bill->status = '3';
+                    $detail_bill->save();
+                    return "true";
+                }
+               
+            }
+                return "false";  
+        }
+        public function upatesrating(Request $Request)
+        {
+            
+            $id = Request::get('id');
+            if($id)
+            {
+                $detail_bill = Detail_bill::find($id);
+                if($detail_bill)
+                {
+                    $detail_bill->status = '3';
+                    $detail_bill->save();
+                    return "true";
+                }
+               
+            }
+                return "false";  
         }
 }

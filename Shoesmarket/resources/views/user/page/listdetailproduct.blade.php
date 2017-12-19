@@ -14,7 +14,7 @@
 						<tr>
 							<th class="product-name-order" width="340px">Product</th>
 							<th class="product-date-order">Ngày mua</th>
-							<th class="product-price-order">Giá tiền</th>
+							<th class="product-price-order">Shop</th>
 							<th class="product-quantity-order">số lượng</th>
 							<th class="product-subtotal-order">Tổng tiền</th>
 							<th class="product-status-order">Trạng thái</th>
@@ -34,7 +34,8 @@
 											<br>
 											<p class="table-option" name="size" data-val="{{$item->size}}">Size: {{$item->size}}</p>
 											<br>
-										{{-- 	<a class="table-edit" href="{{url('/edit',['id'=>$item->rowId])}}">Edit</a> --}}
+											<p class="table-option" name="size" data-val="{{$item->price}}">giá: {{number_format($item->price,0,",",".") }} VNĐ</p>
+											<br>
 										</div>
 									</div>
 								</td>
@@ -42,7 +43,7 @@
 									<span class="price" >{{$item->created_at}}</span>
 								</td>
 								<td class="product-price">
-									<span class="price" id="price">{{number_format($item->price,0,",",".") }} VNĐ</span>
+									<span class="price" >{{$item->name}}</span>
 								</td>
 
 								<td class="product-quantity">
@@ -66,8 +67,8 @@
 								<td>
 									{{csrf_field()}}
 									@if($item->status=='2' && $item->israting=='0')
-										<button class="btn btn-success" id="rating">Đánh giá</button>
-									@elseif($item->status!='3')
+										<button class="btn btn-success" id="rating"  data-toggle="modal" data-target="#ratingmodal">Đánh giá</button>
+									@elseif($item->status!='3' && $item->status!='1' )
 										<button class="btn btn-danger" id="cancel">Huỷ mua</button>
 									@endif
 								</td>
@@ -78,56 +79,71 @@
 				</table>
 				<!-- End of Shop Table Products -->
 			</div>
-
-
-
-			{{-- <div class="cart-collaterals">
-
-				
-				<div class="cart-totals pull-right" style="width: 400px;">
-					<div class="cart-totals-row"><h5 class="cart-total-title">Cart Totals</h5></div>
-					<div class="cart-totals-row"><span>Tổng tiền giỏ hàng:</span> <span id="subitem">{{number_format($total,0,",",".")}} VNĐ</span></div>
-					<div class="cart-totals-row"><span>Phí ship:</span> <span>Free Shipping</span></div>
-					<div class="cart-totals-row"><span>Order Total:</span> <span id="totalitem">{{number_format($total,0,",",".")}} VNĐ</span></div>
-					@if(Cart::count()>0)
-					<div class="cart-totals-row" ><span style="margin-left: 50px"></span><a  class="btn btn-primary" style="width: 100px;height: 40px" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#modelpayment">Mua ngay</a></div>
-					@endif
-				</div>
-					
-				<div class="clearfix"></div>
-			</div> --}}
-	
 			
 			<div class="clearfix"></div>
-
+										
 		</div> 
+		<form action="" method="POST">
+		<div class="modal fade" id="ratingmodal" tabindex="-1" role="dialog"  aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Đánh giá Shop</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+
+				<div id="star">
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+				</div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary">Lưu Đánh giá</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</form>
 <script>
 	jQuery(document).ready(function($) {
  
 	    jQuery('.beta-shopping-cart-table-order').on('click','#cancel',function(event) {
-	    	$row=jQuery(this).closest("tr"); 
-	    	$id = $row.data('id');
-	    	$_token=jQuery('input[name="_token"]').val();
-	    	jQuery.ajax({
-			  url: 'productorder/upatestatus',
-			  type: 'POST',
-			  dataType: 'json',
-			  cache:false,
-			  data: {_token:$_token,id:$id},
-			  success: function(data, textStatus, xhr) {
-			  	$newdata=JSON.parse(data);
-			   if($newdata==false)
-			   {
-			    	alert(" Có lỗi xảy ra ! .");
-			   }
-			   else
-			   {
-			   		$row.find("td:eq(5)").html('Huỷ');
-			   		$row.find("td:eq(6)").text('');
-			   }
-			   
-			  }
-			});
+	    	if (confirm('bạn chắc chắn muốn huỷ sản phẩm này !')) {
+			    $row=jQuery(this).closest("tr"); 
+		    	$id = $row.data('id');
+		    	$_token=jQuery('input[name="_token"]').val();
+		    	jQuery.ajax({
+				  url: 'productorder/upatestatus',
+				  type: 'POST',
+				  dataType: 'json',
+				  cache:false,
+				  data: {_token:$_token,id:$id},
+				  success: function(data, textStatus, xhr) {
+				  	$newdata=JSON.parse(data);
+				   if($newdata==false)
+				   {
+				    	alert(" Có lỗi xảy ra ! .");
+				   }
+				   else
+				   {
+				   		$row.find("td:eq(5)").html('Huỷ');
+				   		$row.find("td:eq(6)").text('');
+				   }
+				   
+				  }
+				});
+			}
+			 else {
+			    
+			}
+	    	
 	    });
 
 	});

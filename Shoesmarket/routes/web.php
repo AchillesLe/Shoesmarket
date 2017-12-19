@@ -48,6 +48,7 @@
 		Route::get('user/listOrder','User\ProductController@index')->name('list.ordereds');
 		Route::post('cart/caculateshipfee','User\OrdersController@caculateshipfee');
 		Route::post('productorder/upatestatus','User\ProductController@upatestatus');
+		Route::post('productorder/upatesrating','User\ProductController@upatesrating');
 
 	});
 //bao-  phần tin tức.
