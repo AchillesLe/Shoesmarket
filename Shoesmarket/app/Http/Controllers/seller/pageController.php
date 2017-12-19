@@ -15,7 +15,7 @@ class pageController extends Controller
     public function getDashboard()
     {
     	$seller=Auth::guard('seller')->user();
-        $rating=DB::table('ratings')->where('idseller',$seller->id)->first();
+        $rating=DB::table('ratings')->where('idseller',$seller->id)->orderBy('id','desc')->first();
     	$listproduct=DB::table('products')->where('idseller',$seller->id)->get();
     	$countproduct=DB::table('products')->where('idseller',$seller->id)->count();
     	$countnews=0;

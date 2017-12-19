@@ -46,6 +46,7 @@
 		Route::get('removerorder/{rowId}','User\OrdersController@removerorder');
 		Route::post('payment','User\OrdersController@payment');
 		Route::get('user/listproduct','User\ProductController@index');
+		Route::post('cart/caculateshipfee','User\OrdersController@caculateshipfee');
 
 	});
 //bao-  phần tin tức.

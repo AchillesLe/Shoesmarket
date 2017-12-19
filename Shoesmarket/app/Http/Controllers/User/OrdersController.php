@@ -17,6 +17,7 @@ use App\Bill;
 use App\Bill_seller;
 use App\Detail_bill;
 use Carbon\Carbon;
+use App\Shipfeeseller;
 //use Request;
 class OrdersController extends Controller
 {
@@ -54,7 +55,9 @@ class OrdersController extends Controller
 		{
 			$news = news::find($id);
 			$product_buy = Product::find($id);
+			$idseller = $product_buy->idseller;
 			$productcolor = Productcolor::where('idproduct',$id)->get();
+			$shipfees = Shipfeeseller::where('idseller',$idseller)->get();
 			if($product_buy!=null)
 			{
 				Cart::add(array(
@@ -67,7 +70,8 @@ class OrdersController extends Controller
 									'color'=>$productcolor[0]->color,
 									'qty'=>$productcolor[0]->quantity,
 									'idsubpro'=>$productcolor[0]->id,
-									'namemeta'=>$news->name_meta
+									'namemeta'=>$news->name_meta,
+									'shipfees'=>$shipfees
 								)
 				));
 				if((new OrdersController)->Updatedatabase($id,$productcolor[0]->color,$productcolor[0]->size,1))
@@ -97,6 +101,9 @@ class OrdersController extends Controller
             $size = (explode('-',$sizecolor))[1];
             $qty = $request->qty;
             $rowId = $request->idcart;
+            $product_buy = Product::find($idpro);
+			$idseller = $product_buy->idseller;
+            $shipfees = Shipfeeseller::where('idseller',$idseller)->get();
             if($rowId != "")
             {
             		Cart::remove($rowId);
@@ -118,7 +125,8 @@ class OrdersController extends Controller
 									'color'=>$color,
 									'qty'=>$productcolor->quantity,
 									'idsubpro'=>$productcolor->id,
-									'namemeta'=>$news->name_meta
+									'namemeta'=>$news->name_meta,
+									'shipfees'=>$shipfees
 								)
                 ));
                 (new OrdersController)->Updatedatabase($idpro,$color,$size,$qty);
@@ -193,8 +201,8 @@ class OrdersController extends Controller
                 // 'phone.numeric'=>'Số điện thoại phải là chuỗi số . ',
                 // 'total.numeric'=>'Tổng tiền phải là chuỗi số . ',
             ]);
-		$total=str_replace(",","",Cart::total());
-		
+		//$total=str_replace(",","",Cart::total());
+
 		$homenumber = $request->homenumber;
 		$street = $request->street;
 		$city = $request->city;
@@ -202,7 +210,21 @@ class OrdersController extends Controller
 		$county = $request->county;
 		$note = $request->note;
 		$name = $request->name;
-		$tong=$total/(float)1.21;
+
+
+		$tongfee = 0;
+		foreach (Cart::content() as $item) {
+			if(count($item->options->shipfees)>0){
+				$list = $item->options->shipfees;
+				foreach ($list as $subitem) {
+					if($subitem->idCounty==$county)
+						if($subitem->shipfee)
+							$tongfee += $subitem->shipfee;
+				}
+			}
+			
+		}
+		$total = str_replace(",","",Cart::total())/(float)1.21+ $tongfee;
 
 		$bill = new Bill();
 		$bill->iduser = Auth::user()->id;
@@ -232,6 +254,7 @@ class OrdersController extends Controller
 					if($key == $idseller)
 					{
 						$listseller[$key]["total"] += $tongtien;
+						$listseller[$key]["shipfee"] += $tongtien;
 						break;
 					}
 					else
@@ -272,6 +295,24 @@ class OrdersController extends Controller
    		return redirect()->back()->with('thongbao','Tạo đơn hàng thành công !');	
 
    		return redirect()->back()->with('thongbao','Có lỗi xảy ra.Chúng tôi xin lỗi về sự bất tiện này !');	
+	}
+	public function caculateshipfee(Request $request)
+	{	
+		$idcounty = $request->get('idcounty');
+		$tongfee = 0;
+		foreach (Cart::content() as $item) {
+			if(count($item->options->shipfees)>0){
+				$list = $item->options->shipfees;
+				foreach ($list as $subitem) {
+					if($subitem->idCounty==$idcounty)
+						if($subitem->shipfee)
+							$tongfee += $subitem->shipfee;
+				}
+			}
+			
+		}
+		$total = str_replace(",","",Cart::total())/(float)1.21+ $tongfee;
+		return $tongfee."-".number_format($total,0,',','.');
 	}
 
 }

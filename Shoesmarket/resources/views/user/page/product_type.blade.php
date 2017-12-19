@@ -44,8 +44,8 @@
 													</p>
 												</div>
 												<div class="single-item-caption">
-													<a class="add-to-cart pull-left" href="{{url('order',$item->product->id)}}"><i class="fa fa-shopping-cart"></i></a>
-													<a class="beta-btn primary" href="{{url('/detail',$item->name_meta)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
+													{{-- <a class="add-to-cart pull-left" href="{{url('order',$item->product->id)}}"><i class="fa fa-shopping-cart"></i></a> --}}
+													<a class="beta-btn primary" href="{{url('/detail',$item->name_meta)}}" style="width: 165px;text-align: center;">Chi tiết <i class="fa fa-chevron-right"></i></a>
 													<div class="clearfix"></div>
 												</div>
 											</div>

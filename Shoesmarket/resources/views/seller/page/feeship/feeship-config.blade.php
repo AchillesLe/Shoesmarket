@@ -4,14 +4,18 @@
   @if($seller->isblock == 1)
   <h2>Tài khoản đã bị khóa, không thể truy cập</h2>
   @else
+
   <form class="form-inline" action="{!! route('postSettingShipfee') !!}" method="POST">
   {{ csrf_field() }} 
       <div class="col-md-12 feeshipconfig">
         <div class="card col-md-12">
+
           <div class="card-header card bg-primary text-white">Cài đặt phí giao hàng</div>
           <div class="card-body">
             <ul class="list-group">
+              <div class="alert alert-info">Lưu ý : Những quận/huyện không được cài đặt phí ship thì sẽ mặc định là 0 VNĐ .</div>
               <li class="list-group-item"> 
+
                         <a class="card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
                           <i class="fa fa-cube"></i> Cài đặt phí giao hàng
                         </a>

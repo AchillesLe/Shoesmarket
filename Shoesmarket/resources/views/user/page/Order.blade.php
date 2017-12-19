@@ -79,14 +79,14 @@
 				<div class="cart-totals pull-right" style="width: 400px;">
 					<div class="cart-totals-row"><h5 class="cart-total-title">Cart Totals</h5></div>
 					<div class="cart-totals-row"><span>Tổng tiền giỏ hàng:</span> <span id="subitem">{{number_format($total,0,",",".")}} VNĐ</span></div>
-					<div class="cart-totals-row"><span>Phí ship:</span> <span>Free Shipping</span></div>
-					<div class="cart-totals-row"><span>Order Total:</span> <span id="totalitem">{{number_format($total,0,",",".")}} VNĐ</span></div>
 					@if(Cart::count()>0)
-					<div class="cart-totals-row" ><span style="margin-left: 50px"></span><a  class="btn btn-primary" style="width: 100px;height: 40px" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#modelpayment">Mua ngay</a></div>
+					<div class="cart-totals-row" ><span style="margin-left: 50px"></span><button class="btn btn-primary" style="width: 100px;height: 35px"  name="createorder" data-toggle="modal" data-target="#modelpayment">Mua ngay</button></div>
+
 					@endif
 				</div>
 					
 				<div class="clearfix"></div>
+				<div class="cart-totals-row" ><span style="margin-left: 50px"></span><a  class="btn btn-primary" style="width: 170px;height: 35px" href="{{route('home')}}"><i class="fa fa-arrow-left" style="font-size:15px;color: black"></i>Tiếp tục mua hàng</a></div>
 			</div>
 			<!-- End of Cart Collaterals -->
 			
@@ -120,6 +120,7 @@
 				    <input class="form-control" type="text" placeholder="Tên đường" name="street" required>
 				  </div>
 				  {{-- <label for="example-tel-input" class="col-2 col-form-label">Quận/Huyện</label> --}}
+				  {{-- <input class="form-control" type="text"  name="_rowId" readonly> --}}
 				  <div class="col-3">
 				    <select name="county" class="form-control">
 				    	<option value="0">--Chọn Quận/Huyện--</option>
@@ -131,6 +132,12 @@
 				   {{-- <label for="example-tel-input" class="col-2 col-form-label">Tỉnh</label> --}}
 				  <div class="col-2">
 				    <input class="form-control" type="text" placeholder="Tỉnh/Thành" name="city" required>
+				  </div>
+				</div>
+				<div class="form-group row">
+				  <label for="example-password-input" class="col-2 col-form-label">Phí ship</label>
+				  <div class="col-3">
+				    <input class="form-control" type="text" required placeholder="0" name="shipfee" readonly >
 				  </div>
 				</div>
 				<div class="form-group row">
@@ -164,52 +171,40 @@
 <script>
 	jQuery(document).ready(function($) {
  
-	    jQuery('.beta-shopping-cart-table').on('change','#qty',function(event) {
-	    	$row=jQuery(this).closest("tr"); 
-	    	$price = $row.find("td:eq(1)").text();
-	    	$price = $price.replace('.','');
-	    	$qty = jQuery(this).val();
-	    	$subitem=$('span[id=subitem]').text();
-	    	$totalitem=$('span[id=totalitem]').text();
-	    	$color = jQuery('tr>td>div>div>p[name=color]').data('val');
-	    	$size =  jQuery('tr>td>div>div>p[name=size]').data('val');
-	    	$idpro =$row.find("td:eq(0)").data('id');
-	    	$rowId = $row.find("td:eq(0)").data('rowId');
-	    	$_token=jQuery('input[name="_token"]').val();
-	    	jQuery.ajax({
-			  url: 'product/checkquantity',
-			  type: 'POST',
-			  dataType: 'json',
-			  cache:false,
-			  data: {_token:$_token,idpro:$idpro,color: $color,size : $size,qty:$qty},
-			  success: function(data, textStatus, xhr) {
-			  	$newdata=JSON.parse(data);
-			   if($newdata==false)
-			   {
-			    	alert(" Số lượng không đủ vui lòng chọn ít hơn .");
-			    	jQuery('input[name=qty]').val('1');
-			   }
-			   else
-			   {
-			   		$subtotal = $price*$qty;
-			   		$row.find("td:eq(4)").text($subtotal);
-			   		$newtotal={{Cart::total()}};
-			   		$('span[id=subitem]').text($newtotal);
-			   		$('span[id=totalitem]').text($newtotal);
-			   }
-			   
-			  }
-			});
-	    });
-	  //   jQuery('input[name=qty]').change(function(event) {
-			// event.preventDefault();
-			// $idpro = jQuery('input[name=idpro]').val();
-			// $size_color = jQuery('input[name=chbxsize]:checked').val();
-			// $color = ($size_color.split('-'))[0];
-			// $size = ($size_color.split('-'))[1];
-			// $qty = jQuery(this).val();
-			// $_token=jQuery('input[name="_token"]').val();
-			// jQuery.ajax({
+	 jQuery('select[name=county]').change(function(event) {
+		    	$idcounty =jQuery(this).val();
+		    	$_token=jQuery('input[name="_token"]').val();
+		    	$total =jQuery('input[name="total"]').val();
+		    	$total = ($total.split(' VNĐ'))[0];
+		    	jQuery.ajax({
+				  url: '{!!url('cart/caculateshipfee')!!}',
+				  type: 'POST',
+				  cache:false,
+				  //dataType:'json',
+				  data: {_token:$_token,idcounty:$idcounty},
+				  success: function(data, textStatus, xhr) {
+				  	$ship = (data.split('-'))[0];
+				  	$total = (data.split('-'))[1];
+				  	jQuery('input[name="shipfee"]').val($ship+' VNĐ');
+				  	jQuery('input[name="total"]').val($total +' VNĐ');
+				  }
+				});
+		    });
+
+		});
+	  //   jQuery('.beta-shopping-cart-table').on('change','#qty',function(event) {
+	  //   	$row=jQuery(this).closest("tr"); 
+	  //   	$price = $row.find("td:eq(1)").text();
+	  //   	$price = $price.replace('.','');
+	  //   	$qty = jQuery(this).val();
+	  //   	$subitem=$('span[id=subitem]').text();
+	  //   	$totalitem=$('span[id=totalitem]').text();
+	  //   	$color = jQuery('tr>td>div>div>p[name=color]').data('val');
+	  //   	$size =  jQuery('tr>td>div>div>p[name=size]').data('val');
+	  //   	$idpro =$row.find("td:eq(0)").data('id');
+	  //   	$rowId = $row.find("td:eq(0)").data('rowId');
+	  //   	$_token=jQuery('input[name="_token"]').val();
+	  //   	jQuery.ajax({
 			//   url: 'product/checkquantity',
 			//   type: 'POST',
 			//   dataType: 'json',
@@ -222,11 +217,18 @@
 			//     	alert(" Số lượng không đủ vui lòng chọn ít hơn .");
 			//     	jQuery('input[name=qty]').val('1');
 			//    }
-			    
+			//    else
+			//    {
+			//    		$subtotal = $price*$qty;
+			//    		$row.find("td:eq(4)").text($subtotal);
+			//    		$newtotal=Cart::total()/1.21;
+			//    		$('span[id=subitem]').text($newtotal);
+			//    		$('span[id=totalitem]').text($newtotal);
+			//    }
+			   
 			//   }
 			// });
-			//});
-
-	});
+	  //   });
+	    
 	</script>
 @endsection

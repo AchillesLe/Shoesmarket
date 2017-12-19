@@ -30,8 +30,9 @@ class NewsController extends Controller
     }
     public function getBuyPackage()
     {
+        $seller=Auth::guard('seller')->user();
         $list_newspackage= DB::table('packages')->get();
-    	return view('seller.page.news.buypackage',['list_newspackage' => $list_newspackage]);
+        return view('seller.page.news.buypackage',['list_newspackage' => $list_newspackage],compact('seller'));
     }
     public function getAddNews()
     {
