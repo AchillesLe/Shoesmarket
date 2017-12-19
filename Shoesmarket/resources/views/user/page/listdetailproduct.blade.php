@@ -27,7 +27,7 @@
 										<div class="media-body">
 											<p class="font-large table-title" >{{$item->name}}</p>
 											<br>
-											<p class="table-option" name="color" data-val="{{$item->options->color}}">Color: {{$item->options->color}}</p>
+											<p class="table-option" name="color" data-val="{{$item->options->color}}">Màu: {{$item->options->color}}</p>
 											<br>
 											<p class="table-option" name="size" data-val="{{$item->options->size}}">Size: {{$item->options->size}}</p>
 											<br>
