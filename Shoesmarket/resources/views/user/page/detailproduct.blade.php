@@ -30,17 +30,31 @@
 							<div class="single-item-body">
 								
 								<p class="single-item-title" style="width: 500px;font-size: 22px;">{{$news->product->name}}</p>
+
 								<p class="single-item-price">
 									<span>{{$news->product->price}} VNĐ</span>
 								</p>
+								<p class="single-item-price" >
+									@php( $rating=App\Rating::where('idseller',$seller->id)->orderBy('id','desc')->first())
+									@if(empty($rating))
+									<p>Shop: {!! $seller->name !!}</p>
+									<p>Chưa có đánh giá</p>
+									@else
+									<p>Shop: {!! $seller->name !!}</p>
+									<p>Đánh giá: {!! $rating->average !!} <i class="fa fa-star" style="color: orange"></i></p>
+									<p>Số người đánh giá ({!! $rating->total !!})</p>
+									@endif
+								</p>
+								<br>
+								
 							</div>
-
+							
 							<div class="clearfix"></div>
 							<div class="space20">&nbsp;</div>
 
-							<div class="single-item-desc">
+{{-- 							<div class="single-item-desc">
 								<p>{{$news->name}}</p>
-							</div>
+							</div> --}}
 							<div class="space20">&nbsp;</div>
 <form action="{{url('updateOrder')}}" method="POST">
 	{{csrf_field()}}

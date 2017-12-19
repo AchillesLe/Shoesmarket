@@ -233,7 +233,7 @@ class OrdersController extends Controller
 		$bill->countyname = $county;
 		$bill->city = $city;
 		$bill->phone = $phone;
-		$bill->total = $tong;
+		$bill->total = $total;
 		$bill->created_at = Carbon::now()->toDateTimeString();
 		$bill->note = $note;
 		$bill->save();
@@ -246,6 +246,15 @@ class OrdersController extends Controller
 			$product =Product::find($item->id);
 			$idseller = $product->idseller;
 			$tongtien = $item->price*$item->qty;
+			$shipfee = 0;
+			if(count($item->options->shipfees)>0){
+				$list = $item->options->shipfees;
+				foreach ($list as $subitem) {
+					if($subitem->idCounty==$county)
+						$shipfee = $subitem->shipfee;
+				}
+			}
+			
 			$i = 0;
 			if(count($listseller)>0)
 			{
@@ -254,19 +263,19 @@ class OrdersController extends Controller
 					if($key == $idseller)
 					{
 						$listseller[$key]["total"] += $tongtien;
-						$listseller[$key]["shipfee"] += $tongtien;
+						$listseller[$key]["shipfee"] += $shipfee;
 						break;
 					}
 					else
 					{
-						$listseller[$idseller]  = array('total' =>$tongtien ,'shipfee'=>0 );
+						$listseller[$idseller]  = array('total' =>$tongtien ,'shipfee'=>$shipfee );
 					}	
 					
 				}
 			}
 			else
 			{	
-				$listseller[$idseller]  = array('total' =>$tongtien ,'shipfee'=>0 );
+				$listseller[$idseller]  = array('total' =>$tongtien ,'shipfee'=>$shipfee);
 			}
 		}
 

@@ -8,6 +8,7 @@ use App\News as news;
 use App\Product;
 use App\Productcolor;
 use App\Type;
+use App\Seller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
 
@@ -51,7 +52,7 @@ class pageController extends Controller
     // }
     public function getdetailProduct($name_meta)
     {
-
+           
             $news = news::where('name_meta',$name_meta)->first();
             if($news!=null)
             {
@@ -63,9 +64,10 @@ class pageController extends Controller
                         });
                 $count = $related->count() >3 ? 4 : $related->count();  
                         $listrelated = $related->orderBy(DB::raw('RAND()'))->take($count)->get();
+                $seller = Seller::find($news->product->idseller);
             }
                          
-            return view('user.page.detailproduct',['news'=>$news,'productcolor'=>$productcolor,'related'=>$listrelated,'listnews'=>$listnews,'id'=>""]);
+            return view('user.page.detailproduct',['news'=>$news,'productcolor'=>$productcolor,'related'=>$listrelated,'listnews'=>$listnews,'id'=>"",'seller'=>$seller]);
     }
     public function getProductType($name)
     {
@@ -111,18 +113,13 @@ class pageController extends Controller
         }
         return 'NaN';
     }
-    public function Search($keyword="")
-    {
-            
-            
-            $news = news::where('status','0')->whereIn('idproduct',function($q) use ($keyword){
-                $q->from('product')->where('name','like',$keyword);
-            })->get();
-
-            $productcolor = Productcolor::where('idproduct',$idpro)
-                                        ->where('color',$color)
-                                        ->where('size',$size)->first();
-            if($productcolor->quantity > $qty) return 'true';
-
+    public function searchBox(Request $request) {
+        $keyword = Request::get('keyword');
+        if ($keyword == '') {
+            return back();
+        } else {
+            $listnews = news::where('name', 'like', '%' . $keyword . '%')->paginate(18);
+            return view('user.page.result', ['msg' => 'Kết quả tìm kiếm: ' . $keyword,'listnews'=>$listnews]);
+        }
     }
 }

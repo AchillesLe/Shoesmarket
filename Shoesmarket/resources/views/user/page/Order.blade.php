@@ -173,6 +173,8 @@
  
 	 jQuery('select[name=county]').change(function(event) {
 		    	$idcounty =jQuery(this).val();
+		    	if($idcounty!='25' && $idcounty!='0') jQuery('input[name="city"]').val("Hồ Chí Minh");
+		    	else jQuery('input[name="city"]').val("");
 		    	$_token=jQuery('input[name="_token"]').val();
 		    	$total =jQuery('input[name="total"]').val();
 		    	$total = ($total.split(' VNĐ'))[0];
@@ -180,7 +182,6 @@
 				  url: '{!!url('cart/caculateshipfee')!!}',
 				  type: 'POST',
 				  cache:false,
-				  //dataType:'json',
 				  data: {_token:$_token,idcounty:$idcounty},
 				  success: function(data, textStatus, xhr) {
 				  	$ship = (data.split('-'))[0];

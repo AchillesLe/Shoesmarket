@@ -1,6 +1,6 @@
 @extends('user.master')
 @section('content')
-<div class="rev-slider">
+{{-- <div class="rev-slider">
 	<div class="fullwidthbanner-container">
 						<div class="fullwidthbanner">
 							<div class="bannercontainer" >
@@ -35,7 +35,7 @@
 						</div>
 	</div>
 				<!--slider-->
-</div>
+</div> --}}
 
 	
 <div class="container">
@@ -43,41 +43,15 @@
 			<div class="main-content">
 				<div class="space60">&nbsp;</div>
 				<div class="row">
-					@php($N = $total)
 					<div class="col-sm-12">
 						<div class="beta-products-list">
-							<h4>Sản phẩm mới</h4>
 							<div class="beta-products-details">
-								<p class="pull-left">{{$N}}  kiểu được tìm thấy</p>
+								<p class="pull-left">{{$msg}}</p>
 								<div class="clearfix"></div>
 							</div>
-									{{-- @for($i=0;$i<count($listnew);$i++)	
-									  	<div class="row">
-											@for($j=0;$j<count($listnew[$i]);$j++)
-												<div class="item">
-													<div class="single-item">
-														<div class="single-item-header">
-															<a href="{{url('detail',$listnew[$i][$j]->product->id)}}"><img src="{{asset('source/Upload/')}}/{{$listnew[$i][$j]->product->image}}" alt="" ></a>
-														</div>
-														<div class="single-item-body">
-															<p class="single-item-title">{{$listnew[$i][$j]->product->name}}</p>
-															<p class="single-item-price">
-																<span>{{$listnew[$i][$j]->product->price}} VNĐ</span>
-															</p>
-														</div>
-														<div class="single-item-caption">
-															<a class="add-to-cart pull-left" href="{{url('order',['id'=>$listnew[$i][$j]->product->id])}}"><i class="fa fa-shopping-cart"></i></a>
-															<a class="beta-btn primary" href="{{url('/detailproduct',$listnew[$i][$j]->product->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
-															<div class="clearfix"></div>
-														</div>
-													</div>
-												</div>
-											@endfor
-										</div>
-										<div class="space50">&nbsp;</div>							
-									@endfor --}}
+
 									
-									@foreach($listnew as $item)
+									@foreach($listnews as $item)
 									<div class="col-md-2">
 										<div class="item">
 											<div class="single-item">
@@ -91,7 +65,6 @@
 													</p>
 												</div>
 												<div class="single-item-caption">
-													{{-- <a class="add-to-cart pull-left" href="{{url('order',$item->product->id)}}"><i class="fa fa-shopping-cart" id="_cart" data-id="{{$item->product->id}}"></i></a> --}}
 													<a class="beta-btn primary" style="width: 165px;text-align: center;" href="{{url('detail',$item->name_meta)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
 													<div class="clearfix"></div>
 												</div>
@@ -104,7 +77,7 @@
 
 					</div> 
 					<div align="center">
-						{{ $listnew->links() }}
+						{{ $listnews->links() }}
 					</div>
 				</div>
 			</div> 
@@ -112,32 +85,6 @@
 </div> 
 </div>
 <script type="text/javascript">
-	// jQuery(document).ready(function($) {
-	// 	jQuery('a #_cart').click(function(event) {
-	// 		event.preventDefault();
-	// 		$id = jQuery(this).data('id');
-	// 		jQuery.ajax({
-	// 		  url: 'order/'+$id,
-	// 		  type: 'GET',
-	// 		  cache:false,
-	// 		  success: function(data, textStatus, xhr) {
-	// 			   if(data=="success")
-	// 			   {
-	// 			    	alert(" Thêm vào giỏ hàng thành công .");
-	// 			   }
-	// 			   else if(data=="false")
-	// 			   {
-	// 			   	alert(" Thêm vào giỏ hàng thất bại .");
-	// 			   }
-	// 			    else{
-	// 			    	window.location.href = "/login";
-	// 			    }
-	// 		  },error:(function(a,b,c) {
-	// 		  	alert(a);
-	// 		  })
-	// 		});
-			
-	// 	});
-	// });
+
 </script>
 @endsection
