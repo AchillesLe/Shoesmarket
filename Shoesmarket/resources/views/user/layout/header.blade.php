@@ -55,7 +55,7 @@
 					<div class="beta-comp">
 						<form method="POSt" id="searchform" action="{{url('search')}}">
 							{{csrf_field()}}
-					        <input type="text" value="" name="keyword" id="search" placeholder="Tìm giày , loại giày , người bán ." />
+					        <input type="text" value="" name="keyword" id="search" placeholder="Tìm tên giày ." />
 					        <button class="fa fa-search" type="submit" id="searchsubmit"></button>
 						</form>
 					</div>

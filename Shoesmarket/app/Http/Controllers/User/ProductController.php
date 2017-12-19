@@ -10,7 +10,7 @@ use App\Productcolor;
 use App\Type;
 use App\Bill;
 use App\Bill_seller;
-use App\Bill;
+use App\Detail_bill;
 use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
@@ -20,15 +20,24 @@ class ProductController extends Controller
 	public function index()
 	{
         $iduser = Auth::user()->id;
-		$Bill = Bill::where('iduser',$iduser)->latest()->get();
-        
-        $listbillseller = Bill_seller::whereIn('idbill',$Bill->id)->get();
-        dd($listbillseller);
-        //$idBill_seller = array( );
-        // foreach ($listbillseller as $key => $value) {
-        //     $idBill_seller[]=$value->id;
-        // }
-        // $listdetailbill = Detail_bill::whereIn('idbill_seller',$idBill_seller)->get();
-        // return view('admin.bill.detail',['Bill'=>$Bill,'listbillseller'=>$listbillseller,'listdetailbill'=>$listdetailbill]);
+        $list = DB::table('detail_bills')
+            ->join('bill_sellers', 'detail_bills.idbill_seller', '=', 'bill_sellers.id')
+            ->join('bills', 'bill_sellers.idbill', '=', 'bills.id')
+            ->join('productcolors', 'detail_bills.idproductcolor', '=', 'productcolors.id')
+            ->join('products', 'productcolors.idproduct', '=', 'products.id')
+            ->where('bills.iduser',$iduser)
+            ->select('detail_bills.id','detail_bills.quantity','detail_bills.total','detail_bills.status','detail_bills.israting','productcolors.color','productcolors.size','products.name','products.price','products.sex','products.image','bills.created_at')
+            ->orderby('bills.created_at','DESC')
+            ->get();
+            
+        return view('user.page.listdetailproduct',['list'=>$list]);
 	}
+        public function upatestatus(Request $Request)
+        {
+                $id = Request::get('id');
+                $detail_bill = Detail_bill::find($id);
+                $detail_bill->status = '3';
+                $detail_bill->save();
+                return "true";
+        }
 }

@@ -12,6 +12,7 @@
               <thead>
                 <tr>
                   <th>Mã sản phẩm</th>
+                  <th>Hình ảnh</th>
                   <th>Tên sản phẩm</th>
                   <th>Dành cho</th>
                   <th>Số lượng</th>
@@ -32,6 +33,7 @@
                ?>
                 <tr>
                   <td>{!! $product->id !!}</td>
+                  <td><img src="{{asset('source/Upload').'/'.$product->image}}" width="100px" height="100px" alt="đây là ảnh"></td>
                   <td>{!! $product->name !!}</td>
                   <td>
                     @if($product->sex == 1)
@@ -73,6 +75,7 @@
               <thead>
                 <tr>
                   <th>Mã sản phẩm</th>
+                  <th>Hình ảnh</th>
                   <th>Tên sản phẩm</th>
                   <th>Dành cho</th>
                   <th>Số lượng</th>
@@ -94,6 +97,7 @@
                ?>
                 <tr>
                   <td>{!! $product->id !!}</td>
+                  <td><img src="{{asset('source/Upload').'/'.$product->image}}" width="100px" height="100px" alt="đây là ảnh"></td>
                   <td>{!! $product->name !!}</td>
                   <td>
                     @if($product->sex == 1)

@@ -37,8 +37,10 @@
                   <td>{!! $detailbill->total !!}</td>
                   <td style="text-align:center">
                     @if($detailbill->status == 0)
-                      <div class="btn btn-warning">Đang xử lý</div>
+                      <div class="btn btn-warning">Chờ xử lý</div>
                     @elseif($detailbill->status == 1)
+                      <div class="btn btn-primary">Đang xử lý</div>
+                    @elseif($detailbill->status == 2)
                       <div class="btn btn-success">Hoàn thành</div>
                     @else
                       <div class="btn btn-danger">Hủy bỏ</div>
@@ -52,8 +54,8 @@
                     @endif
                   </td>
                   <td> 
-                    @if($detailbill->status == 0)
-                    <a href="{!! route('completeDetailBill',$detailbill->id) !!}" class="btn btn-success"><i class="fa fa-check-circle" aria-hidden="true"></i> Xác nhận </a>
+                    @if($detailbill->status == 0 || $detailbill->status == 1)
+                    <a href="{!! route('completeDetailBill',$detailbill->id) !!}" class="btn btn-success"><i class="fa fa-check-circle" aria-hidden="true"></i> Thay đổi </a>
                     <a href="{!! route('cancelDetailBill',$detailbill->id) !!}" class="btn btn-danger"><i class="fa fa-ban" aria-hidden="true"></i> Hủy bỏ </a>
                     @endif
                     <!--<button type="submit" class="btn btn-success">Ân/Hiện</button>-->

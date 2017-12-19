@@ -5225,3 +5225,32 @@ border:none;}
 a#cartdetail:hover{background: #f90;}
 a .fa-shopping-cart:hover{cursor:pointer;background: #f90;}
 #header-right{position: absolute;right: 0;bottom: 3px;}
+/*
+table.beta-shopping-cart-table-order th {
+	line-height: 55px;
+}
+table.beta-shopping-cart-table-order td{
+	padding: 20px;
+}*/
+table thead tr th.product-name-order{
+	width:330px;
+}
+table thead tr th.product-date-order{
+	width:145px;
+}
+table thead tr th.product-price-order{
+	width:130px;
+}
+table thead tr th.product-quantity-order{
+	width:90px;
+}
+table thead tr th.product-subtotal-order{
+	width:135px;
+}
+table thead tr th.product-status-order{
+	width:135px;
+}
+table thead tr th.product-acti-order{
+	width:135px;
+}
+

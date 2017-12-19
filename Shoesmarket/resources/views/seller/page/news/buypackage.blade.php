@@ -1,13 +1,16 @@
 @extends('Seller.master')
 @section('content')
       <!-- Example DataTables Card-->
+@if($seller->isblock == 1)
+  <h3>Tài khoản đã bị khóa, chỉ xem không thể thao tác</h3>
+@else
       <form>
         <div class="col-md-12 ttthanhtoan">
           <div class="col-md-12 pricing-table">
           @foreach($list_newspackage as $newspackage)
           <div class="col-md-4 columns">
             <ul class="price">
-              <li class="header" style="background-color:#FFD42F">{!! $newspackage->name !!}</li>
+              <li class="header" style="background-color:green">{!! $newspackage->name !!}</li>
               <li class="grey">{!! $newspackage->money !!} VND</li>
               <li>{!! $newspackage->newquantity !!} tin đăng sản phẩm</li>
               <li class="grey"><a href="{!! url('sellercenter/cart',$newspackage->id) !!}" class="btn btn-primary">Mua</a></li>
@@ -35,4 +38,5 @@
           </div>
         </div>
       </form>
+      @endif
 @endsection

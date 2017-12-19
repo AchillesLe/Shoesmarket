@@ -24,7 +24,7 @@
 						
 						<div class="col-sm-4">
 
-							<img src="{{asset('source/Upload/')}}/{{$news->product->image}}" alt="Hình ảnh" width="150" height="200">
+							<img src="{{asset('source/Upload/')}}/{{$news->product->image}}" alt="Hình ảnh" height="180px" width="165px">
 						</div>
 						<div class="col-sm-8">
 							<div class="single-item-body">

@@ -118,7 +118,7 @@ class pageController extends Controller
         if ($keyword == '') {
             return back();
         } else {
-            $listnews = news::where('name', 'like', '%' . $keyword . '%')->paginate(18);
+            $listnews = product::where('name', 'like', '%' . $keyword . '%')->paginate(18);
             return view('user.page.result', ['msg' => 'Kết quả tìm kiếm: ' . $keyword,'listnews'=>$listnews]);
         }
     }

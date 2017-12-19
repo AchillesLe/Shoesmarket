@@ -35,7 +35,7 @@
 										<div class="item">
 											<div class="single-item">
 												<div class="single-item-header">
-													<a href="{{url('detail',$item->name_meta)}}"><img src="{{asset('source/Upload/')}}/{{$item->product->image}}" alt="" ></a>
+													<a href="{{url('detail',$item->name_meta)}}"><img src="{{asset('source/Upload/')}}/{{$item->product->image}}" alt="" height="180px" width="165px"></a>
 												</div>
 												<div class="single-item-body">
 													<p class="single-item-title">{{$item->name}}</p>

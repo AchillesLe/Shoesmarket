@@ -27,17 +27,25 @@ class OrderController extends Controller
     	if($bill->status==0)
     	{
     		$bill->status=1;
+            $bill->save();
+            return redirect()->route('getListOrder');
     	}
+        if($bill->status==1)
+        {
+            $bill->status=2;
+            $bill->save();
+            return redirect()->route('getListOrder');
+        }
     	$bill->save();
     	return redirect()->route('getListOrder');
     }
     public function cancelBill($id)
     {
     	$bill=Bill_seller::find($id);
-    	if($bill->status==0)
-    	{
-    		$bill->status=2;
-    	}
+    	if($bill->status==0 || $detailbill->status==1)
+        {
+            $bill->status=3;
+        }
     	$bill->save();
     	return redirect()->route('getListOrder');
     }
@@ -53,21 +61,27 @@ class OrderController extends Controller
     {
     	$detailbill=Detail_bill::find($id);
     	if($detailbill->status==0)
-    	{
-    		$detailbill->status=1;
-    	}
-    	$detailbill->save();
-    	return redirect()->route('getDetailBill');
+        {
+            $detailbill->status=1;
+            $detailbill->save();
+            return redirect()->route('getDetailBill',$detailbill->idbill_seller);
+        }
+        if($detailbill->status==1)
+        {
+            $detailbill->status=2;
+            $detailbill->save();
+            return redirect()->route('getDetailBill',$detailbill->idbill_seller);
+        }	
     }
     public function cancelDetailBill($id)
     {
     	$detailbill=Detail_bill::find($id);
-    	if($detailbill->status==0)
+    	if($detailbill->status==0 || $detailbill->status==1)
     	{
-    		$detailbill->status=2;
+    		$detailbill->status=3;
     	}
     	$detailbill->save();
-    	return redirect()->route('getDetailBill');
+    	return redirect()->route('getDetailBill',$detailbill->idbill_seller);
     }
     public function getStatistics(Request $request)
     {

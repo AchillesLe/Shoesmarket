@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddNewsRequest;
 use App\Package;
+use Illuminate\Support\Facades\Input;
 use DB;
 use App\Product;
 use App\Productcolor;
 use App\News;
 use App\Seller;
 use Auth;
-use Input;
 use DateTime;
 class NewsController extends Controller
 {
