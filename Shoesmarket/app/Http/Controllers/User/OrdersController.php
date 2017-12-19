@@ -153,8 +153,8 @@ class OrdersController extends Controller
                     });
             $count = $related->count() >3 ? 4 : $related->count();  
                     $listrelated = $related->orderBy(DB::raw('RAND()'))->take($count)->get();
-                       
-            return view('user.page.detailproduct',['news'=>$news,'productcolor'=>$productcolor,'related'=>$listrelated,'listnews'=>$listnews,'id'=>$rowId]);
+            $seller = Seller::find($news->product->idseller);
+            return view('user.page.detailproduct',['news'=>$news,'productcolor'=>$productcolor,'related'=>$listrelated,'listnews'=>$listnews,'id'=>$rowId,'seller'=>$seller]);
 	}
 	public function removerorder($rowId)
 	{
@@ -301,7 +301,7 @@ class OrdersController extends Controller
    			}
    		}
    		Cart::destroy();
-   		return redirect()->back()->with('thongbao','Tạo đơn hàng thành công !');	
+   		return redirect()->back()->with('thongbao','Đã thêm vào đơn mua thành công !');	
 
    		return redirect()->back()->with('thongbao','Có lỗi xảy ra.Chúng tôi xin lỗi về sự bất tiện này !');	
 	}

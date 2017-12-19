@@ -45,7 +45,7 @@
 		Route::get('edit/{rowId}','User\OrdersController@getedit');
 		Route::get('removerorder/{rowId}','User\OrdersController@removerorder');
 		Route::post('payment','User\OrdersController@payment');
-		Route::get('user/listproduct','User\ProductController@index');
+		Route::get('user/listOrder','User\ProductController@index')->name('list.ordereds');
 		Route::post('cart/caculateshipfee','User\OrdersController@caculateshipfee');
 
 	});

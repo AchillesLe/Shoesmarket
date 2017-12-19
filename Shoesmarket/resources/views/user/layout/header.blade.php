@@ -11,6 +11,7 @@
 					<ul class="top-details menu-beta l-inline">
 						@if(Auth::check())
 							<li><a href="#" ><i class="fa fa-user"></i>{{Auth::user()->name}}</a></li>
+							<li><a  href="{{route('list.ordereds')}}"><i class="fa  fa-building-o"></i>Đơn mua</a></li>
 							<li><a data-toggle="modal" href="#modalogaout"><i class="fa fa-sign-out"></i>Đăng xuất</a></li>
 						@else
 							<li><a href="{{url('/register')}}">Đăng kí</a></li>
@@ -61,7 +62,7 @@
 
 					<div class="beta-comp">
 						<div class="cart">
-							<div class="beta-select"><i class="fa fa-shopping-cart"></i> Giỏ hàng @if(count(Cart::content())== 0) (Trống)@endif<i class="fa fa-chevron-down"></i></div>
+							<div class="beta-select" ><i class="fa fa-shopping-cart"></i> Giỏ hàng @if(count(Cart::content())== 0) (Trống)@else + {{count(Cart::content())}}<i class="fa fa-chevron-down"></i>@endif</div>
 							@if(Auth::check()&&count(Cart::content())>0)
 							<div class="beta-dropdown cart-body">
 								@foreach( Cart::content() as $item)

@@ -19,7 +19,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach( $listpro as $item)
+						{{-- @foreach( $listpro as $item)
 							<tr class="cart_item">
 								<td class="product-name" data-id="{{$item->id}}" data-rowid="{{$item->rowId}}">
 									<div class="media">
@@ -53,10 +53,10 @@
 								</td>
 
 								<td class="product-remove">
-									<a href="{{url('removerorder',$item->rowId)}}" class="remove" title="Remove this item" id="removeorder" ><i class="fa fa-trash-o"></i></a>
+									<a href="" class="remove" title="Remove this item" id="removeorder" ><i class="fa fa-trash-o"></i></a>
 								</td>
 							</tr>
-					    @endforeach
+					    @endforeach --}}
 
 					</tbody>
 				</table>
