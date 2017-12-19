@@ -12,7 +12,7 @@ use App\Productcolor;
 use App\News;
 use App\Seller;
 use Auth;
-use Input;
+use Illuminate\Support\Facades\Input;
 use DateTime;
 class NewsController extends Controller
 {
