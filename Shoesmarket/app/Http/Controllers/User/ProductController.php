@@ -27,7 +27,7 @@ class ProductController extends Controller
             ->join('products', 'productcolors.idproduct', '=', 'products.id')
             ->join('sellers', 'products.idseller', '=', 'sellers.id')
             ->where('bills.iduser',$iduser)
-            ->select('detail_bills.id','detail_bills.quantity','detail_bills.total','detail_bills.status','detail_bills.israting','productcolors.color','productcolors.size','products.name','products.price','products.sex','products.image','bills.created_at','sellers.name')
+            ->select('detail_bills.id','detail_bills.quantity','detail_bills.total','detail_bills.status','detail_bills.israting','productcolors.color','productcolors.size','products.name as prname','products.price','products.sex','products.image','bills.created_at','sellers.name')
             ->orderby('bills.created_at','DESC')
             ->get();
             

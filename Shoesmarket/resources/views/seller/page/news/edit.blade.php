@@ -39,7 +39,7 @@
               <label for="txtNewPrice" class="col-md-3">Gía mới</label>
 
               <div class="col-md-7">
-                <input id="txtNewPrice" type="number" class="col-md-12 form-control" name="txtNewPrice" value="{{ old('txtNewPrice') }}">
+                <input id="txtNewPrice" type="number" class="col-md-12 form-control" name="txtNewPrice" value="{{ $product->price }}">
 
                 @if ($errors->has('txtNewPrice'))
                   <span class="help-block">

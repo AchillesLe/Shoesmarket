@@ -28,7 +28,7 @@
 									<div class="media">
 										<img class="pull-left" src="{{asset('source/Upload')}}/{{$item->image}}" alt="Đây là ảnh"  style="margin-left: 5px; width: 150px;height: 165px">
 										<div class="media-body">
-											<p class="font-large table-title" >{{$item->name}}</p>
+											<p class="font-large table-title" >{{$item->prname}}</p>
 											<br>
 											<p class="table-option" name="color" data-val="{{$item->color}}">Màu: {{$item->color}}</p>
 											<br>
